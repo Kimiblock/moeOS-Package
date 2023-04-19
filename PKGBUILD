@@ -16,7 +16,7 @@ depends=(
     'noto-fonts-cjk'
     'noto-fonts-emoji'
     'noto-fonts-extra'
-    'pamac-aur'
+    'linux-firmware'
     'base-devel'
     'paru'
     'firefox'
@@ -24,7 +24,7 @@ depends=(
     'kwalletmanager'
     'kvantum'
     'icalingua++'
-    'nheko'
+    'sox'
     'iio-sensor-proxy'
     'sbupdate-git'
     'firefox-gnome-theme-git'
@@ -42,9 +42,24 @@ depends=(
     'packagekit-qt5'
     'flatpak-kcm'
     'sddm-kcm'
-    'fcitx5-im')
+    'fcitx5'
+    'fcitx5-chinese-addons'
+    'fcitx5-configtool'
+    'fcitx5-gtk'
+    'fcitx5-lua'
+    'fcitx5-pinyin-moegirl'
+    'fcitx5-pinyin-zhwiki'
+    'fcitx5-qt'
+    'rtaudio'
+    'linux-firmware-whence'
+    'sof-firmware'
+    'opencv'
+    'movit'
+    'libva'
+    'libva-utils')
 makedepends=(
     'git')
+optdepends=('intel-media-driver')
 source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
@@ -91,3 +106,10 @@ function _info() {
     fi
 }
 
+function detectVa(){
+	if [[ `lspci -k | grep VGA` =~ "Intel" ]]; then
+		sudo pacman -S intel-media-driver --needed --noconfirm
+	elif [[ `lspci -k | grep VGA` =~ "Advanced Micro Devices" ]]; then
+		sudo pacman -S libva-mesa-driver --needed --noconfirm
+	fi
+}
