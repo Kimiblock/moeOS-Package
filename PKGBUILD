@@ -38,6 +38,7 @@ depends=(
     'avahi'
     'lsb-release'
     'obs-gstreamer'
+    'mediainfo'
     'ark'
     'packagekit-qt5'
     'flatpak-kcm'
@@ -59,7 +60,7 @@ depends=(
     'libva-utils')
 makedepends=(
     'git')
-optdepends=('intel-media-driver')
+optdepends=('intel-media-driver' 'nerd-fonts-sf-mono')
 source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
@@ -84,6 +85,7 @@ Type = Path
 Target = etc/os-release
 Target = etc/lsb-release
 Target = usr/lib/os-release
+Target = etc/tlp.conf
 
 [Action]
 When = PostTransaction
