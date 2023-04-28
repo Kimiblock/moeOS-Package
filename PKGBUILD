@@ -57,10 +57,11 @@ depends=(
     'opencv'
     'movit'
     'libva'
-    'libva-utils')
+    'libva-utils'
+    'x86_energy_perf_policy')
 makedepends=(
     'git')
-optdepends=('intel-media-driver' 'nerd-fonts-sf-mono')
+optdepends=('intel-media-driver' 'nerd-fonts-sf-mono' 'uutils-coreutils')
 source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
