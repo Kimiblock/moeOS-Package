@@ -78,7 +78,7 @@ function package(){
         _info Creating directory ${dir}
         mkdir -p "${pkgdir}${dir}"
     done
-    for source in etc usr/bin moeOS.bmp usr/share/plymouth/themes/moe usr/share/icons/hicolor/512x512/apps/moeos.png; do
+    for source in etc usr/bin moeOS.bmp usr/share/plymouth/themes/moe usr/share/icons/hicolor/512x512/apps/moeos.png usr/share/Kvantum; do
         _info Copying "${source}"
         cp "${srcdir}"/moeOS.config/${source} "${pkgdir}"/${source} -r
     done
