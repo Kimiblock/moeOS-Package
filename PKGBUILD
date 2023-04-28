@@ -86,6 +86,7 @@ function package(){
         mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
     done
     mv "${pkgdir}/etc/systemd/sleep.conf" "${pkgdir}/usr/share/moeOS-Docs"
+    cp -r "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/* "${pkgdir}/usr/share/moeOS-Docs"
     _info 'Creating Hook(s)'
     echo '''[Trigger]
 Operation = Install
