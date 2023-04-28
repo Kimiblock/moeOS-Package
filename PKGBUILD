@@ -66,6 +66,14 @@ source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
 function package(){
+    _info "Initializing VA-API install"
+    if [[ `lspci | grep VGA` =~ Intel ]]; then
+        _info "Pending intel-media-driver"
+        depends+=("intel-media-driver")
+    elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
+        _info "Pending libva-mesa-driver"
+        depends+=('libva-mesa-driver')
+    fi
     for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps; do
         _info Creating directory ${dir}
         mkdir -p "${pkgdir}${dir}"
