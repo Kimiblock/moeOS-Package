@@ -7,7 +7,16 @@ url="https://github.com/Kimiblock/moeOS.config"
 License=('none')
 install=${pkgname}.install
 depends=(
-    'tela-circle-icon-theme-pink-git'
+    'easyeffects'
+    'gst-plugin-pipewire'
+    'pipewire'
+    'lib32-pipewire'
+    'pipewire-alsa'
+    'pipewire-audio'
+    'pipewire-jack'
+    'pipewire-pulse'
+    'wireplumber'
+    'gstreamer-vaapi'
     'tlp'
     'networkmanager'
     'plymouth'
