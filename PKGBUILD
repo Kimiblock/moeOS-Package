@@ -49,7 +49,6 @@ depends=(
     'obs-gstreamer'
     'mediainfo'
     'ark'
-    'packagekit-qt5'
     'flatpak-kcm'
     'sddm-kcm'
     'fcitx5'
@@ -70,7 +69,7 @@ depends=(
     'x86_energy_perf_policy')
 makedepends=(
     'git')
-optdepends=('intel-media-driver' 'nerd-fonts-sf-mono' 'uutils-coreutils')
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'packagekit-qt5')
 source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
