@@ -66,10 +66,11 @@ depends=(
     'movit'
     'libva'
     'libva-utils'
-    'x86_energy_perf_policy')
+    'x86_energy_perf_policy'
+    'packagekit-qt5')
 makedepends=(
     'git')
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'packagekit-qt5')
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils')
 source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
@@ -104,6 +105,7 @@ Target = etc/os-release
 Target = etc/lsb-release
 Target = usr/lib/os-release
 Target = etc/tlp.conf
+Target = etc/Packagekit.conf
 
 [Action]
 When = PostTransaction
