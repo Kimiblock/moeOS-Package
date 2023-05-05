@@ -17,7 +17,7 @@ depends=(
     'pipewire-pulse'
     'wireplumber'
     'gstreamer-vaapi'
-    'tlp'
+    'power-profiles-daemon'
     'networkmanager'
     'plymouth'
     'mpv'
