@@ -24,7 +24,7 @@ depends=(
     'noto-fonts'
     'noto-fonts-cjk'
     'noto-fonts-emoji'
-    'noto-fonts-extra'
+    'ttf-sarasa-gothic'
     'linux-firmware'
     'base-devel'
     'paru'
@@ -64,9 +64,6 @@ depends=(
     'sof-firmware'
     'opencv'
     'movit'
-    'libva'
-    'libva-utils'
-    'x86_energy_perf_policy'
     'packagekit-qt5')
 makedepends=(
     'git')
@@ -75,13 +72,13 @@ source=('git+https://github.com/Kimiblock/moeOS.config.git')
 sha256sums=('SKIP')
 
 function package(){
-    _info "Initializing VA-API install"
+    _info "Initialize VA-API installation"
     if [[ `lspci | grep VGA` =~ Intel ]]; then
         _info "Pending intel-media-driver"
-        depends+=("intel-media-driver")
+        depends+=("intel-media-driver" "libva-utils" 'libva')
     elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
         _info "Pending libva-mesa-driver"
-        depends+=('libva-mesa-driver')
+        depends+=('libva-mesa-driver' "libva-utils" 'libva')
     fi
     for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps; do
         _info Creating directory ${dir}
@@ -96,7 +93,7 @@ function package(){
     done
     mv "${pkgdir}/etc/systemd/sleep.conf" "${pkgdir}/usr/share/moeOS-Docs"
     cp -r "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/* "${pkgdir}/usr/share/moeOS-Docs"
-    _info 'Creating Hook(s)'
+    _info 'Create Hook(s)'
     echo '''[Trigger]
 Operation = Install
 Operation = Upgrade
@@ -126,12 +123,4 @@ function _info() {
 		yellow="${bold}$(tput setaf 3)"
 		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
     fi
-}
-
-function detectVa(){
-	if [[ `lspci -k | grep VGA` =~ "Intel" ]]; then
-		sudo pacman -S intel-media-driver --needed --noconfirm
-	elif [[ `lspci -k | grep VGA` =~ "Advanced Micro Devices" ]]; then
-		sudo pacman -S libva-mesa-driver --needed --noconfirm
-	fi
 }
