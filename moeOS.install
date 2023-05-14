@@ -1,6 +1,7 @@
 function post_install(){
     _info "Made with love by Kimiblock Moe⭐"
     /usr/bin/moeRelease
+    systemctl enable linux-modules-cleanup.service
 }
 
 function _info() {

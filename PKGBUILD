@@ -24,7 +24,7 @@ depends=(
     'noto-fonts'
     'noto-fonts-cjk'
     'noto-fonts-emoji'
-    'ttf-sarasa-gothic'
+    'kernel-modules-hook'
     'linux-firmware'
     'base-devel'
     'paru'
