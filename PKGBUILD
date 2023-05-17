@@ -36,9 +36,7 @@ depends=(
     'sox'
     'iio-sensor-proxy'
     'sbupdate-git'
-    'firefox-gnome-theme-git'
     'marktext-git'
-    'qbittorrent-enhanced-git'
     'sddm-git'
     'clash-meta'
     'clash-verge'
@@ -49,8 +47,6 @@ depends=(
     'obs-gstreamer'
     'mediainfo'
     'ark'
-    'flatpak-kcm'
-    'sddm-kcm'
     'fcitx5'
     'fcitx5-chinese-addons'
     'fcitx5-configtool'
@@ -63,8 +59,7 @@ depends=(
     'linux-firmware-whence'
     'sof-firmware'
     'opencv'
-    'movit'
-    'packagekit-qt5')
+    'movit')
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils')
