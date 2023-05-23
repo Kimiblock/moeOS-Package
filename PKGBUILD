@@ -16,7 +16,7 @@ depends=(
     'pipewire-jack'
     'pipewire-pulse'
     'wireplumber'
-    'gstreamer-vaapi'
+    'inter-font'
     'power-profiles-daemon'
     'networkmanager'
     'plymouth'
@@ -66,10 +66,10 @@ function package(){
     _info "Initialize VA-API installation"
     if [[ `lspci | grep VGA` =~ Intel ]]; then
         _info "Pending intel-media-driver"
-        depends+=("intel-media-driver" "libva-utils" 'libva')
+        depends+=("intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
         _info "Pending libva-mesa-driver"
-        depends+=('libva-mesa-driver' "libva-utils" 'libva')
+        depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     fi
     for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps; do
         _info Creating directory ${dir}
