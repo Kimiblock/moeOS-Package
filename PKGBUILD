@@ -28,7 +28,6 @@ depends=(
     'linux-firmware'
     'base-devel'
     'paru'
-    'firefox'
     'kdenlive'
     'icalingua++'
     'sox'
@@ -59,8 +58,9 @@ depends=(
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils')
-source=('git+https://github.com/Kimiblock/moeOS.config.git')
-sha256sums=('SKIP')
+source=('git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
+sha256sums=('SKIP' 'SKIP')
+
 
 function package(){
     _info "Initialize VA-API installation"
@@ -71,7 +71,7 @@ function package(){
         _info "Pending libva-mesa-driver"
         depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     fi
-    for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps; do
+    for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps /usr/share/fonts/moeOS-pingfang; do
         _info Creating directory ${dir}
         mkdir -p "${pkgdir}${dir}"
     done
@@ -79,6 +79,7 @@ function package(){
         _info Copying "${source}"
         cp "${srcdir}"/moeOS.config/${source} "${pkgdir}"/${source} -r
     done
+    cp -r "${srcdir}"/PingFang/*.ttf "${pkgdir}"/usr/share/fonts/moeOS-pingfang
     for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
         mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
     done
