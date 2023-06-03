@@ -67,21 +67,18 @@ function package(){
         _info "Pending libva-mesa-driver"
         depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     fi
-    for dir in /usr/share/libalpm/hooks /usr/share/moeOS-Docs /usr/share/plymouth/themes /usr/share/icons/hicolor/512x512/apps /usr/share/fonts/moeOS-pingfang; do
+    for dir in /usr/share/libalpm/hooks /usr/share/fonts/moeOS-pingfang; do
         _info Creating directory ${dir}
         mkdir -p "${pkgdir}${dir}"
     done
-    for source in etc usr/bin moeOS.bmp usr/share/plymouth/themes/moe usr/share/icons/hicolor/512x512/apps/moeos.png usr/share/Kvantum; do
-        _info Copying "${source}"
-        cp "${srcdir}"/moeOS.config/${source} "${pkgdir}"/${source} -r
-    done
+    cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"/
+    cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"/
     cp -r "${srcdir}"/PingFang/*.ttf "${pkgdir}"/usr/share/fonts/moeOS-pingfang
     for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
         mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
     done
     mv "${pkgdir}/etc/systemd/sleep.conf" "${pkgdir}/usr/share/moeOS-Docs"
-    cp -r "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/* "${pkgdir}/usr/share/moeOS-Docs"
-    _info 'Create Hook(s)'
+    _info 'Creating Hook(s)'
     echo '''[Trigger]
 Operation = Install
 Operation = Upgrade
