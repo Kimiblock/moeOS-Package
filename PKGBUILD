@@ -6,6 +6,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 License=('none')
 install=${pkgname}.install
+backup=('etc/moeOS-clash-meta/subscribe.conf')
 depends=(
     'easyeffects'
     'gst-plugin-pipewire'
