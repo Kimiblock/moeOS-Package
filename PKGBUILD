@@ -52,7 +52,7 @@ depends=(
     'sof-firmware'
     'opencv'
     'movit'
-    'yq')
+    'go-yq')
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils')
