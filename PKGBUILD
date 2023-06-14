@@ -8,6 +8,7 @@ License=('none')
 install=${pkgname}.install
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
+	'glxinfo'
     'easyeffects'
     'gst-plugin-pipewire'
     'pipewire'
@@ -55,7 +56,7 @@ depends=(
     'go-yq')
 makedepends=(
     'git')
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils')
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize')
 source=('git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
 sha256sums=('SKIP' 'SKIP')
 
