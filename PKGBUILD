@@ -44,16 +44,20 @@ depends=(
     'lsb-release'
     'obs-gstreamer'
     'mediainfo'
-    'ibus'
-    'ibus-pinyin'
-    'ibus-rime'
-    'ibus-typing-booster'
     'rtaudio'
     'linux-firmware-whence'
     'sof-firmware'
     'opencv'
     'movit'
-    'go-yq')
+    'go-yq'
+    'fcitx5'
+    'fcitx5-configtool'
+    'fcitx5-gtk'
+    'fcitx5-qt'
+    'fcitx5-pinyin-zhwiki'
+    'fcitx5-chinese-addons'
+    'fcitx5-pinyin-moegirl'
+    'sddm-git')
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize')
