@@ -51,12 +51,14 @@ depends=(
     'movit'
     'go-yq'
     'fcitx5'
-    'fcitx5-configtool'
-    'fcitx5-gtk'
-    'fcitx5-qt'
-    'fcitx5-pinyin-zhwiki'
-    'fcitx5-chinese-addons'
-    'fcitx5-pinyin-moegirl'
+#    'fcitx5-configtool'
+#    'fcitx5-gtk'
+#    'fcitx5-qt'
+#    'fcitx5-pinyin-zhwiki'
+#    'fcitx5-chinese-addons'
+#    'fcitx5-pinyin-moegirl'
+    'ibus'
+    'ibus-rime'
     'sddm-git')
 makedepends=(
     'git')
