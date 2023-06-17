@@ -19,7 +19,7 @@ depends=(
     'pipewire-pulse'
     'wireplumber'
     'inter-font'
-    'power-profiles-daemon'
+    #'power-profiles-daemon'
     'networkmanager'
     'plymouth'
     'mpv'
@@ -71,10 +71,10 @@ function package(){
     _info "Initialize VA-API installation"
     if [[ `lspci | grep VGA` =~ Intel ]]; then
         _info "Pending intel-media-driver"
-        depends+=("intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
+        depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
         _info "Pending libva-mesa-driver"
-        depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
+        depends+=('tlp' 'libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
     fi
     for dir in /usr/share/libalpm/hooks /usr/share/fonts/moeOS-pingfang; do
         _info Creating directory ${dir}
