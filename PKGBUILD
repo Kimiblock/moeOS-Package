@@ -8,6 +8,7 @@ License=('none')
 install=${pkgname}.install
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
+	'bc'
 	'glxinfo'
     'easyeffects'
     'gst-plugin-pipewire'
@@ -59,7 +60,8 @@ depends=(
 #    'fcitx5-pinyin-moegirl'
     'ibus'
     'ibus-rime'
-    'sddm-git')
+    'sddm-git'
+    'gst-plugin-va')
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize')
@@ -68,15 +70,7 @@ sha256sums=('SKIP' 'SKIP')
 
 
 function package(){
-    _info "Initialize VA-API installation"
-    if [[ `lspci | grep VGA` =~ Intel ]]; then
-        _info "Pending intel-media-driver"
-        depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
-    elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
-        _info "Pending libva-mesa-driver"
-        depends+=('tlp' 'libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'gst-plugin-va')
-    fi
-    for dir in /usr/share/libalpm/hooks /usr/share/fonts/moeOS-pingfang; do
+    for dir in "/usr/share/libalpm/hooks" "/usr/share/fonts/moeOS-pingfang" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
         _info Creating directory ${dir}
         mkdir -p "${pkgdir}${dir}"
     done
@@ -105,6 +99,41 @@ Depends = moeOS
 Description = Restoring moeOS Release
 ''' >"${pkgdir}"/usr/share/libalpm/hooks/moeOS-OS-replace.hook
     chmod 755 -R "${pkgdir}"/usr/bin
+    
+    _info "Initializing vendor-specfic installation..."
+    if [[ `lspci | grep VGA` =~ Intel ]]; then
+    	suspendNvidia
+        _info "Adding Intel driver and Power Profiles Daemon"
+        depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi')
+    elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
+    	suspendNvidia
+        _info "Pending libva-mesa-driver"
+        if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
+        	_info 
+        	depends+=("power-profiles-daemon")
+        else
+        	depends+=("tlp")
+        fi
+        depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi')
+    fi
+    #_info "Writing tmpfiles..."
+    #echo "d	/etc/moeOS-clash-meta 0700 root root" >"${pkgdir}/usr/lib/tmpfiles.d/moeOS-clash-meta.conf"
+}
+
+function suspendNvidia(){
+	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
+		depends+=('nvidia-prime' 'nvidia-utils' 'nvidia-dkms')
+		_info "Fixing RTD3 power management"
+		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
+		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="auto"
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="auto"
+
+# Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
+	echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/nvidia-pm.conf"
+	fi
 }
 
 function _info() {
