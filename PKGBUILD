@@ -118,6 +118,8 @@ Description = Restoring moeOS Release
     fi
     #_info "Writing tmpfiles..."
     #echo "d	/etc/moeOS-clash-meta 0700 root root" >"${pkgdir}/usr/lib/tmpfiles.d/moeOS-clash-meta.conf"
+    _info "Generating Build ID"
+    echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
 function suspendNvidia(){
