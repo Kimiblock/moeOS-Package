@@ -120,6 +120,7 @@ Description = Restoring moeOS Release
     #echo "d	/etc/moeOS-clash-meta 0700 root root" >"${pkgdir}/usr/lib/tmpfiles.d/moeOS-clash-meta.conf"
     _info "Generating Build ID"
     echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
+    echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
 }
 
 function suspendNvidia(){
