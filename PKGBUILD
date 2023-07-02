@@ -61,7 +61,9 @@ depends=(
     'ibus'
     'ibus-rime'
     'sddm-git'
-    'gst-plugin-va')
+    'gst-plugin-va'
+    'nftables'
+    'iptables-nft')
 makedepends=(
     'git')
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize')
