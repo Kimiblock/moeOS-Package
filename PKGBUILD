@@ -59,7 +59,7 @@ depends=(
     'fcitx5-pinyin-moegirl'
     #'ibus'
     #'ibus-rime'
-    'sddm-git'
+    'sddm'
     'gst-plugin-va'
     'nftables'
     'iptables-nft')
