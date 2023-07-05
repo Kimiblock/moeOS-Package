@@ -8,6 +8,7 @@ License=('none')
 install=${pkgname}.install
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
+	'xdg-desktop-portal-gnome'
 	'bc'
 	'glxinfo'
 	'easyeffects'
