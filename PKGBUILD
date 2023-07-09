@@ -108,7 +108,7 @@ Description = Restoring moeOS Release
 	if [[ `lspci | grep VGA` =~ Intel ]]; then
 		suspendNvidia
 		_info "Adding Intel driver and Power Profiles Daemon"
-		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi')
+		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
 	elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
 		suspendNvidia
 		_info "Pending libva-mesa-driver"
@@ -118,7 +118,7 @@ Description = Restoring moeOS Release
 		else
 			depends+=("tlp")
 		fi
-		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi')
+		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
 	fi
 	#_info "Writing tmpfiles..."
 	#echo "d	/etc/moeOS-clash-meta 0700 root root" >"${pkgdir}/usr/lib/tmpfiles.d/moeOS-clash-meta.conf"
@@ -131,7 +131,7 @@ Description = Restoring moeOS Release
 
 function suspendNvidia(){
 	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
-		depends+=('nvidia-prime' 'nvidia-utils' 'nvidia-dkms')
+		depends+=('nvidia-prime' 'nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
