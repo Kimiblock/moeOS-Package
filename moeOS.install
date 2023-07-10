@@ -2,6 +2,7 @@ function post_install(){
     _info "Made with love by Kimiblock Moe⭐"
     /usr/bin/moeRelease
     systemctl enable linux-modules-cleanup.service
+    _info Install qadwaitaplatform-qt5-git in the AUR to get libadwaita style CSD in Qt
 }
 
 function _info() {
