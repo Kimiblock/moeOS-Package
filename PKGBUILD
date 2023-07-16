@@ -131,7 +131,7 @@ Description = Restoring moeOS Release
 	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
-	chmod -x "${pkgdir}/etc/udev/rules.d"
+	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
 }
 
 function suspendNvidia(){
