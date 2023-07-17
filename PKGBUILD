@@ -1,10 +1,11 @@
+# Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS
 pkgver=r46.c085302
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
-License=('none')
+license=('MIT')
 install=${pkgname}.install
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
@@ -69,14 +70,12 @@ depends=(
 	'gst-plugin-va'
 	'nftables'
 	'iptables-nft'
-	#'plasma-meta'
 	'yt-dlp'
 	# Default Librewolf browser
-	"librewolf"
-	)
+	"librewolf")
 makedepends=(
 'git')
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden")
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
 source=('git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
 sha256sums=('SKIP' 'SKIP')
 
