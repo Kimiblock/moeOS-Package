@@ -71,6 +71,7 @@ depends=(
 	'nftables'
 	'iptables-nft'
 	'yt-dlp'
+	'dhclient'
 	# Default Librewolf browser
 	"librewolf")
 makedepends=(
@@ -133,6 +134,8 @@ Description = Restoring moeOS Release
 	_info "Generating Build ID"
 	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
+	echo "[main]" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
+	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
 }
