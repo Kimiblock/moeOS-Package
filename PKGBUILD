@@ -70,10 +70,13 @@ depends=(
 	'nftables'
 	'iptables-nft'
 	#'plasma-meta'
-	'yt-dlp')
+	'yt-dlp'
+	# Default Librewolf browser
+	"librewolf"
+	)
 makedepends=(
 'git')
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize')
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden")
 source=('git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
 sha256sums=('SKIP' 'SKIP')
 
@@ -100,6 +103,7 @@ Target = etc/lsb-release
 Target = usr/lib/os-release
 Target = etc/tlp.conf
 Target = etc/Packagekit.conf
+Target = usr/lib/librewolf/librewolf.cfg
 
 [Action]
 When = PostTransaction
