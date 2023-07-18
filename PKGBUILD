@@ -136,6 +136,10 @@ Description = Restoring moeOS Release
 	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
 	echo "[main]" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
 	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
+	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
+		_info "Enabling rt schedulers for mutter..."
+		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/local.d/00-moeOS-HiDPI"
+	fi
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
 }

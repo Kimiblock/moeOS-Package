@@ -1,8 +1,13 @@
 function post_install(){
-    _info "Made with love by Kimiblock Moe⭐"
-    /usr/bin/moeRelease
-    systemctl enable linux-modules-cleanup.service
-    _info Install qadwaitaplatform-qt5-git in the AUR to get libadwaita style CSD in Qt
+	_info "Made with love by Kimiblock Moe⭐"
+	/usr/bin/moeRelease
+	systemctl enable linux-modules-cleanup.service
+	_info "Install qadwaitaplatform-qt5-git in the AUR to get libadwaita style CSD in Qt"
+	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
+		_info "rt scheduler for mutter is enabled"
+	else
+		_info "Install gnome-shell-performance and mutter-performance then rebuild this package to get better performance and rt schedulers"
+	fi
 }
 
 function _info() {
@@ -14,7 +19,7 @@ function _info() {
 		blue="${bold}$(tput setaf 4)"
 		yellow="${bold}$(tput setaf 3)"
 		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
-    fi
+	fi
 }
 
 function post_upgrade(){
