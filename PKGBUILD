@@ -83,7 +83,7 @@ sha256sums=('SKIP' 'SKIP')
 
 function package(){
 	for dir in "/usr/share/libalpm/hooks" "/usr/share/fonts/moeOS-pingfang" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
-		_info Creating directory ${dir}
+		_info "Creating directory ${dir}"
 		mkdir -p "${pkgdir}${dir}"
 	done
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"/
@@ -138,7 +138,7 @@ Description = Restoring moeOS Release
 	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
 	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
 		_info "Enabling rt schedulers for mutter..."
-		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/local.d/00-moeOS-HiDPI"
+		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/db/local.d/00-moeOS-HiDPI"
 	fi
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
