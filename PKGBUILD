@@ -36,11 +36,9 @@ depends=(
 	'base-devel'
 	'paru'
 	'kdenlive'
-	'icalingua++'
 	'sox'
 	'iio-sensor-proxy'
 	'sbupdate-git'
-	'marktext-git'
 	'clash-meta'
 	'clash-verge'
 	'timeshift'
@@ -90,7 +88,7 @@ function build(){
 function package(){
 	createDir
 	copyFiles
-	for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
+	for file in os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
 	configureGraphics
