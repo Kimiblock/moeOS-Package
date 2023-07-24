@@ -7,8 +7,8 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 install=${pkgname}.install
-conflicts=(lsb-release)
-provides=(lsb-release)
+conflicts=("lsb-release" "nvidia-prime")
+provides=("lsb-release" nvidia-prime)
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
 	'xdg-desktop-portal-gnome'
@@ -88,12 +88,8 @@ function build(){
 }
 
 function package(){
-	for dir in "/usr/share/libalpm/hooks" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
-		_info "Creating directory ${dir}"
-		mkdir -p "${pkgdir}${dir}"
-	done
-	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"/
-	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"/
+	createDir
+	copyFiles
 	for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
@@ -105,6 +101,19 @@ function package(){
 	fixPermission
 }
 
+function copyFiles(){
+	_info "Moving Files..."
+	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
+	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
+}
+
+function createDir(){
+	for dir in "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d"; do
+		_info "Creating directory ${dir}"
+		mkdir -p "${pkgdir}${dir}"
+	done
+}
+
 function genBuildId(){
 	_info "Generating Build ID"
 	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
@@ -114,23 +123,22 @@ function configureGraphics(){
 	_info "Configuring graphics card..."
 	if [[ `lspci | grep VGA` =~ Intel ]]; then
 		suspendNvidia
-		_info "Adding Intel driver and Power Profiles Daemon"
+		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
 	elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
 		radvVA
 		suspendNvidia
-		_info "Pending libva-mesa-driver"
+		_info "Adding libva-mesa-driver as a dependency"
 		if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
 			_info
 			depends+=("power-profiles-daemon")
-		else
-			depends+=("tlp")
 		fi
 		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
 	fi
 }
 
 function radvVA(){
+	_info "Enabling vulkan video decode..."
 	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
 }
 
@@ -185,5 +193,5 @@ function _info() {
 		blue="${bold}$(tput setaf 4)"
 		yellow="${bold}$(tput setaf 3)"
 		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
-fi
+	fi
 }
