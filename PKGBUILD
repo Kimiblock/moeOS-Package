@@ -97,33 +97,12 @@ function package(){
 	for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
-	pacmanHook
 	configureGraphics
 	dhcp
 	gnomeShellRt
 	genLsb
 	genBuildId
 	fixPermission
-}
-
-function pacmanHook(){
-	_info 'Creating Hook(s)'
-	echo '''[Trigger]
-Operation = Install
-Operation = Upgrade
-Type = Path
-Target = etc/os-release
-Target = usr/lib/os-release
-Target = etc/tlp.conf
-Target = etc/Packagekit.conf
-Target = usr/lib/librewolf/librewolf.cfg
-
-[Action]
-When = PostTransaction
-Exec = /usr/bin/moeRelease
-Depends = moeOS
-Description = Restoring moeOS Release
-''' >"${pkgdir}"/usr/share/libalpm/hooks/moeOS.hook
 }
 
 function genBuildId(){
