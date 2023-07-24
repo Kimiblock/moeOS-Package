@@ -88,7 +88,7 @@ function build(){
 }
 
 function package(){
-	for dir in "/usr/share/libalpm/hooks" "/usr/share/fonts/moeOS-pingfang" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
+	for dir in "/usr/share/libalpm/hooks" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
 		_info "Creating directory ${dir}"
 		mkdir -p "${pkgdir}${dir}"
 	done
