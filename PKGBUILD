@@ -79,8 +79,8 @@ depends=(
 	"librewolf")
 makedepends=("git" "make")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
-source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" 'git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
-sha256sums=('SKIP' 'SKIP' "SKIP")
+source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" 'git+https://github.com/Kimiblock/moeOS.config.git')
+sha256sums=('SKIP' 'SKIP')
 
 function build(){
 	cd lsb-samples/lsb_release/src
@@ -94,7 +94,6 @@ function package(){
 	done
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"/
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"/
-	cp -r "${srcdir}"/PingFang/*.ttf "${pkgdir}"/usr/share/fonts/moeOS-pingfang
 	for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
