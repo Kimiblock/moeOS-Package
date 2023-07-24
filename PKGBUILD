@@ -7,9 +7,12 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 install=${pkgname}.install
+conflicts=(lsb-release)
+provides=(lsb-release)
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
 	'xdg-desktop-portal-gnome'
+	'xdg-desktop-portal'
 	'bc'
 	'glxinfo'
 	'easyeffects'
@@ -74,12 +77,15 @@ depends=(
 	'dhclient'
 	# Default Librewolf browser
 	"librewolf")
-makedepends=(
-'git')
+makedepends=("git" "make")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
-source=('git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
-sha256sums=('SKIP' 'SKIP')
+source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" 'git+https://github.com/Kimiblock/moeOS.config.git' 'git+https://github.com/ShmilyHTT/PingFang.git')
+sha256sums=('SKIP' 'SKIP' "SKIP")
 
+function build(){
+	cd lsb-samples/lsb_release/src
+	make
+}
 
 function package(){
 	for dir in "/usr/share/libalpm/hooks" "/usr/share/fonts/moeOS-pingfang" "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d" "/usr/lib/tmpfiles.d"; do
@@ -99,7 +105,6 @@ Operation = Install
 Operation = Upgrade
 Type = Path
 Target = etc/os-release
-Target = etc/lsb-release
 Target = usr/lib/os-release
 Target = etc/tlp.conf
 Target = etc/Packagekit.conf
@@ -110,7 +115,7 @@ When = PostTransaction
 Exec = /usr/bin/moeRelease
 Depends = moeOS
 Description = Restoring moeOS Release
-''' >"${pkgdir}"/usr/share/libalpm/hooks/moeOS-OS-replace.hook
+''' >"${pkgdir}"/usr/share/libalpm/hooks/moeOS.hook
 	chmod 755 -R "${pkgdir}"/usr/bin
 
 	_info "Initializing vendor-specfic installation..."
@@ -140,6 +145,11 @@ Description = Restoring moeOS Release
 		_info "Enabling rt schedulers for mutter..."
 		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/db/local.d/00-moeOS-HiDPI"
 	fi
+	_info "Preparing lsb-release..."
+	cd lsb-samples/lsb_release/src
+	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
+	install -Dm755 lsb_release -t "$pkgdir/usr/bin"
+	install -Dm644 "${srcdir}/moeOS.config/etc/lsb-release" -t "${pkgdir}/etc"
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
 }
