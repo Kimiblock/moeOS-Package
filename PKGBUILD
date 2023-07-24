@@ -97,7 +97,16 @@ function package(){
 	for file in lsb-release os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
-	mv "${pkgdir}/etc/systemd/sleep.conf" "${pkgdir}/usr/share/moeOS-Docs"
+	pacmanHook
+	configureGraphics
+	dhcp
+	gnomeShellRt
+	genLsb
+	genBuildId
+	fixPermission
+}
+
+function pacmanHook(){
 	_info 'Creating Hook(s)'
 	echo '''[Trigger]
 Operation = Install
@@ -115,14 +124,21 @@ Exec = /usr/bin/moeRelease
 Depends = moeOS
 Description = Restoring moeOS Release
 ''' >"${pkgdir}"/usr/share/libalpm/hooks/moeOS.hook
-	chmod 755 -R "${pkgdir}"/usr/bin
+}
 
-	_info "Initializing vendor-specfic installation..."
+function genBuildId(){
+	_info "Generating Build ID"
+	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
+}
+
+function configureGraphics(){
+	_info "Configuring graphics card..."
 	if [[ `lspci | grep VGA` =~ Intel ]]; then
 		suspendNvidia
 		_info "Adding Intel driver and Power Profiles Daemon"
 		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
 	elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
+		radvVA
 		suspendNvidia
 		_info "Pending libva-mesa-driver"
 		if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
@@ -133,24 +149,36 @@ Description = Restoring moeOS Release
 		fi
 		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
 	fi
-	#_info "Writing tmpfiles..."
-	#echo "d	/etc/moeOS-clash-meta 0700 root root" >"${pkgdir}/usr/lib/tmpfiles.d/moeOS-clash-meta.conf"
-	_info "Generating Build ID"
-	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
+}
+
+function radvVA(){
 	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
-	echo "[main]" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
-	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
-	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
-		_info "Enabling rt schedulers for mutter..."
-		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/db/local.d/00-moeOS-HiDPI"
-	fi
+}
+
+function genLsb(){
 	_info "Preparing lsb-release..."
 	cd lsb-samples/lsb_release/src
 	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
 	install -Dm755 lsb_release -t "$pkgdir/usr/bin"
 	install -Dm644 "${srcdir}/moeOS.config/etc/lsb-release" -t "${pkgdir}/etc"
+}
+
+function gnomeShellRt(){
+	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
+		_info "Enabling rt schedulers for mutter..."
+		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/db/local.d/00-moeOS-HiDPI"
+	fi
+}
+
+function dhcp(){
+	echo "[main]" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
+	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
+}
+
+function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
+	chmod -R 755 "${pkgdir}"/usr/bin
 }
 
 function suspendNvidia(){
