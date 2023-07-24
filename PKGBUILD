@@ -115,7 +115,7 @@ function createDir(){
 
 function genBuildId(){
 	_info "Generating Build ID"
-	echo "BUILD_ID=$(date +%Y-%m-%d)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
+	echo "BUILD_ID=$(date +%Y-%m-%d-%H-%M-%S)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
 function configureGraphics(){
