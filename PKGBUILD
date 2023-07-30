@@ -75,7 +75,8 @@ depends=(
 	'dhclient'
 	# Default Librewolf browser
 	"librewolf"
-	"diffutils")
+	"diffutils"
+	"gdm-settings")
 makedepends=("git" "make")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
 source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" 'git+https://github.com/Kimiblock/moeOS.config.git')
