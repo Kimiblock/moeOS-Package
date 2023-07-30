@@ -1,5 +1,5 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
-pkgname=moeOS
+pkgname=moeOS-git
 pkgver=r46.c085302
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -7,6 +7,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 install=${pkgname}.install
+replaces=('moeOS' 'nvidia-prime' 'lsb-release')
 conflicts=("lsb-release" "nvidia-prime")
 provides=("lsb-release" nvidia-prime)
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
