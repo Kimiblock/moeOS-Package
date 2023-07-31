@@ -68,7 +68,6 @@ depends=(
 	'rime-terra-pinyin'
 	'fcitx5-pinyin-moegirl-rime'
 	'librime-data'
-	'sddm'
 	'gst-plugin-va'
 	'nftables'
 	'iptables-nft'
