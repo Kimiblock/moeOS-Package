@@ -96,6 +96,7 @@ function package(){
 	configureGraphics
 	dhcp
 	gnomeShellRt
+	fcitx5
 	genLsb
 	genBuildId
 	fixPermission
@@ -112,6 +113,15 @@ function createDir(){
 		_info "Creating directory ${dir}"
 		mkdir -p "${pkgdir}${dir}"
 	done
+}
+
+function fcitx5(){
+	if [[ $(paru -Q) =~ fcitx5 ]]; then
+		_info "Fcitx5 detected"
+		sed -i 's/ibus/fcitx/g' "${pkgdir}/etc/environment.d/moeOS.conf"
+		sed -i 's/GLFW_IM_MODULE/#GLFW_IM_MODULE/g' "${pkgdir}/etc/environment.d/moeOS.conf"
+		echo GLFW_IM_MODULE=ibus >>"${pkgdir}/etc/environment.d/moeOS.conf"
+	fi
 }
 
 function genBuildId(){
