@@ -7,9 +7,9 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 install=${pkgname}.install
-replaces=('moeOS' 'nvidia-prime' 'lsb-release')
-conflicts=("lsb-release" "nvidia-prime")
-provides=("lsb-release" nvidia-prime)
+replaces=('moeOS' 'nvidia-prime' 'lsb-release' "rime-minecraft-dict-git" "rime-minecraft-dict")
+conflicts=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
+provides=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
 	'xdg-desktop-portal-gnome'
@@ -79,8 +79,8 @@ depends=(
 	"gdm-settings")
 makedepends=("git" "make")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
-source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" 'git+https://github.com/Kimiblock/moeOS.config.git')
-sha256sums=('SKIP' 'SKIP')
+source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" "git+https://github.com/Kimiblock/moeOS.config.git" "git+https://github.com/Kimiblock/rime-minecraft-dict.git")
+sha256sums=('SKIP' 'SKIP' "SKIP")
 
 function build(){
 	cd lsb-samples/lsb_release/src
@@ -97,6 +97,7 @@ function package(){
 	dhcp
 	gnomeShellRt
 	fcitx5
+	rimeMinecraft
 	genLsb
 	genBuildId
 	fixPermission
@@ -192,6 +193,11 @@ ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0300
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
 	echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/nvidia-pm.conf"
 	fi
+}
+
+function rimeMinecraft(){
+	_info "Installing Minecraft dict for Rime"
+	install -Dm644 "${srcdir}/rime-minecraft-dict/minecraft_pinyin.dict.yaml" "${pkgdir}/usr/share/rime-data/minecraft_pinyin.dict.yaml"
 }
 
 function _info() {
