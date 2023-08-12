@@ -54,18 +54,18 @@ depends=(
 	'opencv'
 	'movit'
 	'go-yq'
-	#'fcitx5'
-	#'fcitx5-configtool'
-	#'fcitx5-gtk'
-	#'fcitx5-qt'
-	#'fcitx5-pinyin-zhwiki'
-	#'fcitx5-chinese-addons'
-	#'fcitx5-pinyin-moegirl'
-	'ibus'
-	'ibus-rime'
-	'rime-pinyin-zhwiki'
-	'rime-luna-pinyin'
-	'rime-terra-pinyin'
+	'fcitx5'
+	'fcitx5-configtool'
+	'fcitx5-gtk'
+	'fcitx5-qt'
+	'fcitx5-pinyin-zhwiki'
+	'fcitx5-chinese-addons'
+	'fcitx5-pinyin-moegirl'
+	#'ibus'
+	#'ibus-rime'
+	#'rime-pinyin-zhwiki'
+	#'rime-luna-pinyin'
+	#'rime-terra-pinyin'
 	'fcitx5-pinyin-moegirl-rime'
 	'librime-data'
 	'gst-plugin-va'
@@ -115,15 +115,6 @@ function createDir(){
 		_info "Creating directory ${dir}"
 		mkdir -p "${pkgdir}${dir}"
 	done
-}
-
-function fcitx5(){
-	if [[ $(paru -Q) =~ fcitx5 ]]; then
-		_info "Fcitx5 detected"
-		sed -i 's/ibus/fcitx/g' "${pkgdir}/etc/environment.d/moeOS.conf"
-		sed -i 's/GLFW_IM_MODULE/#GLFW_IM_MODULE/g' "${pkgdir}/etc/environment.d/moeOS.conf"
-		echo GLFW_IM_MODULE=ibus >>"${pkgdir}/etc/environment.d/moeOS.conf"
-	fi
 }
 
 function genBuildId(){
