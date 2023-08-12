@@ -76,8 +76,9 @@ depends=(
 	# Default Librewolf browser
 	"librewolf"
 	"diffutils"
-	"gdm-settings")
-makedepends=("git" "make")
+	"gdm-settings"
+	"rime-ice")
+makedepends=("git" "make" "paru")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
 source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" "git+https://github.com/Kimiblock/moeOS.config.git" "git+https://github.com/Kimiblock/rime-minecraft-dict.git")
 sha256sums=('SKIP' 'SKIP' "SKIP")
