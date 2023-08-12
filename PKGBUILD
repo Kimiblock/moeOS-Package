@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
-pkgver=r46.c085302
+pkgver=r167.71078b5
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -56,7 +56,6 @@ depends=(
 	'go-yq'
 	'fcitx5'
 	'fcitx5-configtool'
-	'fcitx5-gtk'
 	'fcitx5-qt'
 	#'ibus'
 	#'ibus-rime'
@@ -76,9 +75,16 @@ depends=(
 	"gdm-settings"
 	"rime-ice")
 makedepends=("git" "make" "paru")
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin")
+optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin"
+	'fcitx5-gtk: XWayland GTK may need')
 source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" "git+https://github.com/Kimiblock/moeOS.config.git" "git+https://github.com/Kimiblock/rime-minecraft-dict.git")
 sha256sums=('SKIP' 'SKIP' "SKIP")
+
+
+function pkgver(){
+	cd moeOS.config
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 function build(){
 	cd lsb-samples/lsb_release/src
@@ -94,7 +100,6 @@ function package(){
 	configureGraphics
 	dhcp
 	gnomeShellRt
-	fcitx5
 	rimeMinecraft
 	genLsb
 	genBuildId
