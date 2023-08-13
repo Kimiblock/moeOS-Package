@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
-pkgver=r168.ab88db9
+pkgver=r169.bc708c4
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -121,7 +121,7 @@ function createDir(){
 
 function genBuildId(){
 	_info "Generating Build ID"
-	echo "BUILD_ID=$(date +%Y-%m-%d-%H-%M-%S)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
+	echo "BUILD_ID=$(date +%d/%m/%Y):${pkgver}" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
 function configureGraphics(){
