@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
-pkgver=r169.bc708c4
+pkgver=r170.0669e4c
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
