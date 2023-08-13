@@ -8,6 +8,8 @@ function post_install(){
 	else
 		_info "Install gnome-shell-performance and mutter-performance then rebuild this package to get better performance and rt schedulers"
 	fi
+	_info "Signing EFI binaries"
+	sbctl sign -s "/efi/EFI/Boot/BOOTx64.efi"
 }
 
 function _info() {

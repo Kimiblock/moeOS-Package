@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
-pkgver=r167.71078b5
+pkgver=r168.ab88db9
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -39,7 +39,7 @@ depends=(
 	'kdenlive'
 	'sox'
 	'iio-sensor-proxy'
-	'sbupdate-git'
+	'sbctl'
 	'clash-meta'
 	'clash-verge'
 	'timeshift'
