@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
-pkgver=r170.0669e4c
+pkgver=r185.e3f8e90
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -187,6 +187,11 @@ ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0300
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
 	echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/nvidia-pm.conf"
 	fi
+	mkdir -p "${pkgdir}/usr/local/bin"
+	echo '#!/bin/bash' >>"${pkgdir}/usr/local/bin/flatpak"
+	echo 'env -u __EGL_VENDOR_LIBRARY_FILENAMES /usr/bin/flatpak "$@"' >>"${pkgdir}/usr/local/bin/flatpak"
+	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
+	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"
 }
 
 function rimeMinecraft(){
