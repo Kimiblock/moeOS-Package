@@ -1,4 +1,4 @@
-# Maintainer: Kimiblock Moe
+# Maintainer: Kimiblock Moe <pn3535@icloud.com>
 pkgname=moeOS-git
 pkgver=r170.0669e4c
 pkgrel=1
@@ -12,7 +12,7 @@ conflicts=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraf
 provides=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
-	'xdg-desktop-portal-kde'
+	'xdg-desktop-portal-gnome'
 	'xdg-desktop-portal'
 	'bc'
 	'bat'
@@ -57,6 +57,11 @@ depends=(
 	'fcitx5'
 	'fcitx5-configtool'
 	'fcitx5-qt'
+	#'ibus'
+	#'ibus-rime'
+	#'rime-pinyin-zhwiki'
+	#'rime-luna-pinyin'
+	#'rime-terra-pinyin'
 	'fcitx5-pinyin-moegirl-rime'
 	'librime-data'
 	'gst-plugin-va'
@@ -67,7 +72,7 @@ depends=(
 	# Default Librewolf browser
 	"librewolf"
 	"diffutils"
-	#"gdm-settings"
+	"gdm-settings"
 	"rime-ice")
 makedepends=("git" "make" "paru")
 optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin"
