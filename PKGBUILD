@@ -124,13 +124,30 @@ function genBuildId(){
 	echo "BUILD_ID=$(date +%d/%m/%Y):${pkgver}" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
+function initVkIcd(){
+	if [[ "${vgaDev}" =~ Intel ]] && [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
+		_info "This script currently can't handle Intel + AMD card"
+	else
+		if [[ "${vgaDev}" =~ Intel ]]; then
+			_info "Configuring Vulkan to use Intel GPU"
+			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
+		elif [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
+			_info "Configuring Vulkan to use AMD GPU"
+			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
+		else
+			_info "Failed to configure Vulkan ICD filenames"
+		fi
+	fi
+}
+
 function configureGraphics(){
 	_info "Configuring graphics card..."
-	if [[ `lspci | grep VGA` =~ Intel ]]; then
+	vgaDev=$(lspci | grep VGA)
+	if [[ "${vgaDev}" =~ Intel ]]; then
 		suspendNvidia
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
-	elif [[ `lspci | grep VGA` =~ "Advanced Micro Devices" ]]; then
+	elif [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
 		radvVA
 		suspendNvidia
 		_info "Adding libva-mesa-driver as a dependency"
@@ -187,11 +204,9 @@ ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0300
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
 	echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/nvidia-pm.conf"
 	fi
-	mkdir -p "${pkgdir}/usr/local/bin"
-	#echo '#!/bin/bash' >>"${pkgdir}/usr/local/bin/flatpak"
-	#echo 'env -u __EGL_VENDOR_LIBRARY_FILENAMES /usr/bin/flatpak "$@"' >>"${pkgdir}/usr/local/bin/flatpak"
 	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
 	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"
+	initVkIcd
 }
 
 function rimeMinecraft(){
