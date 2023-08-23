@@ -52,16 +52,11 @@ depends=(
 	'linux-firmware-whence'
 	'sof-firmware'
 	'opencv'
-	'movit'
-	'go-yq'
-	'fcitx5'
-	'fcitx5-configtool'
-	'fcitx5-qt'
-	#'ibus'
-	#'ibus-rime'
-	#'rime-pinyin-zhwiki'
-	#'rime-luna-pinyin'
-	#'rime-terra-pinyin'
+	"movit"
+	"go-yq"
+	"fcitx5"
+	"fcitx5-configtool"
+	"fcitx5-qt"
 	'fcitx5-pinyin-moegirl-rime'
 	'librime-data'
 	'gst-plugin-va'
@@ -73,10 +68,21 @@ depends=(
 	"librewolf"
 	"diffutils"
 	"gdm-settings"
-	"rime-ice")
-makedepends=("git" "make" "paru")
-optdepends=('nerd-fonts-sf-mono' 'uutils-coreutils' 'ffmpeg-normalize' "librewolf-ublock-origin" "librewolf-extension-dark-reader" "librewolf-extension-bitwarden" "librewolf-extension-violentmonkey-bin" "librewolf-extension-sponsorblock-bin"
-	'fcitx5-gtk: XWayland GTK may need')
+	"rime-ice"
+	"flatpak")
+makedepends=(
+	"git"
+	"make"
+	"paru")
+optdepends=(
+	"nerd-fonts-sf-mono"
+	"ffmpeg-normalize"
+	"librewolf-ublock-origin"
+	"librewolf-extension-dark-reader"
+	"librewolf-extension-bitwarden"
+	"librewolf-extension-violentmonkey-bin"
+	"librewolf-extension-sponsorblock-bin"
+	"fcitx5-gtk: XWayland GTK may need")
 source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" "git+https://github.com/Kimiblock/moeOS.config.git" "git+https://github.com/Kimiblock/rime-minecraft-dict.git")
 sha256sums=('SKIP' 'SKIP' "SKIP")
 
@@ -87,6 +93,10 @@ function pkgver(){
 }
 
 function build(){
+	buildLsb
+}
+
+function buildLsb(){
 	cd lsb-samples/lsb_release/src
 	make
 }
