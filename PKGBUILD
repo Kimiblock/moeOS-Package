@@ -1,6 +1,6 @@
-# Maintainer: Kimiblock Moe <pn3535@icloud.com>
+# Maintainer: Kimiblock Moe
 pkgname=moeOS-git
-pkgver=r185.e3f8e90
+pkgver=r188.dcdc1e8
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -69,22 +69,28 @@ depends=(
 	"diffutils"
 	"gdm-settings"
 	"rime-ice"
-	"flatpak")
-makedepends=(
-	"git"
-	"make"
-	"paru")
-optdepends=(
+	"flatpak"
 	"nerd-fonts-sf-mono"
-	"ffmpeg-normalize"
 	"librewolf-ublock-origin"
 	"librewolf-extension-dark-reader"
 	"librewolf-extension-bitwarden"
 	"librewolf-extension-violentmonkey-bin"
 	"librewolf-extension-sponsorblock-bin"
-	"fcitx5-gtk: XWayland GTK may need")
-source=("git+https://github.com/LinuxStandardBase/lsb-samples.git" "git+https://github.com/Kimiblock/moeOS.config.git" "git+https://github.com/Kimiblock/rime-minecraft-dict.git")
-sha256sums=('SKIP' 'SKIP' "SKIP")
+	"fcitx5-gtk")
+makedepends=(
+	"git"
+	"make"
+	"paru")
+optdepends=(
+	"ffmpeg-normalize")
+source=(
+	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
+	"git+https://github.com/Kimiblock/moeOS.config.git"
+	"git+https://github.com/Kimiblock/rime-minecraft-dict.git")
+sha256sums=(
+	'SKIP'
+	'SKIP'
+	"SKIP")
 
 
 function pkgver(){
