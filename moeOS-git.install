@@ -14,6 +14,7 @@ function post_install(){
 	flatpak mask 'org.freedesktop.Platform.GL.nvidia*'
 	flatpak override --unset-env=__EGL_VENDOR_LIBRARY_FILENAMES
 	flatpak override --unset-env=VK_ICD_FILENAMES
+	flatpak override --unset-env=QT_QPA_PLATFORMTHEME
 	flatpak override --filesystem=xdg-config/fontconfig:ro
 	flatpak override --device=dri
 	flatpak override --filesystem=xdg-config/gtk-3.0:ro
