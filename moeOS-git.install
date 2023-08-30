@@ -16,6 +16,7 @@ function post_install(){
 	flatpak override --unset-env=VK_ICD_FILENAMES
 	flatpak override --unset-env=QT_QPA_PLATFORMTHEME
 	flatpak override --filesystem=xdg-config/fontconfig:ro
+	flatpak override --filesystem=xdg-config/Kvantum:ro
 	flatpak override --device=dri
 	flatpak override --filesystem=xdg-config/gtk-3.0:ro
 	flatpak override --filesystem=xdg-config/gtk-4.0:ro
