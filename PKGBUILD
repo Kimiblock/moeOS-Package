@@ -1,12 +1,11 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release" "nvidia-prime")
-pkgver=r210.da035a1
+pkgver=r211.e579968
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
-install=moeOS-git.install
 replaces=()
 conflicts=()
 provides=("nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
@@ -117,6 +116,7 @@ function package_lsb-release(){
 }
 
 function package_moeOS-git(){
+	install=moeOS-git.install
 	createDir
 	copyFiles
 	for file in os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
