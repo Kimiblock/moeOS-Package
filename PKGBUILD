@@ -85,10 +85,8 @@ optdepends=(
 	"ffmpeg-normalize")
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/Kimiblock/rime-minecraft-dict.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git")
 sha256sums=(
-	'SKIP'
 	'SKIP'
 	"SKIP")
 
@@ -128,7 +126,6 @@ function package_moeOS-git(){
 	configureGraphics
 	dhcp
 	gnomeShellRt
-	rimeMinecraft
 	genBuildId
 	fixPermission
 }
