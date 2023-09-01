@@ -81,13 +81,12 @@ makedepends=(
 	"git"
 	"make"
 	"paru")
-optdepends=(
-	"ffmpeg-normalize")
+optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
 	"git+https://github.com/Kimiblock/moeOS.config.git")
 sha256sums=(
-	'SKIP'
+	"SKIP"
 	"SKIP")
 
 
@@ -106,7 +105,7 @@ function buildLsb(){
 }
 
 function package_nvidia-prime(){
-	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/bin/prime-run" -t "${pkgdir}/etc"
+	install -Dm755 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/bin/prime-run" -t "${pkgdir}/usr/bin"
 }
 
 function package_lsb-release(){
@@ -228,11 +227,6 @@ ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0302
 	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
 	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"
 	initVkIcd
-}
-
-function rimeMinecraft(){
-	_info "Installing Minecraft dict for Rime"
-	install -Dm644 "${srcdir}/rime-minecraft-dict/minecraft_pinyin.dict.yaml" "${pkgdir}/usr/share/rime-data/minecraft_pinyin.dict.yaml"
 }
 
 function _info() {
