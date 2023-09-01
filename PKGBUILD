@@ -10,72 +10,6 @@ replaces=()
 conflicts=()
 provides=("nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
-depends=(
-	'xdg-desktop-portal-gnome'
-	'xdg-desktop-portal'
-	'bc'
-	'bat'
-	'glxinfo'
-	'easyeffects'
-	'gst-plugin-pipewire'
-	'pipewire'
-	'lib32-pipewire'
-	'pipewire-alsa'
-	'pipewire-audio'
-	'pipewire-jack'
-	'pipewire-pulse'
-	'wireplumber'
-	'inter-font'
-	'networkmanager'
-	'plymouth'
-	'mpv'
-	'noto-fonts-cjk'
-	'ttf-twemoji'
-	'kernel-modules-hook'
-	'linux-firmware'
-	'base-devel'
-	'paru'
-	'kdenlive'
-	'sox'
-	'iio-sensor-proxy'
-	'sbctl'
-	'clash-meta'
-	'clash-verge'
-	'timeshift'
-	'cups'
-	'avahi'
-	'obs-gstreamer'
-	'mediainfo'
-	'rtaudio'
-	'linux-firmware-whence'
-	'sof-firmware'
-	'opencv'
-	"movit"
-	"go-yq"
-	"fcitx5"
-	"fcitx5-configtool"
-	"fcitx5-qt"
-	'fcitx5-pinyin-moegirl-rime'
-	'librime-data'
-	'gst-plugin-va'
-	'nftables'
-	'iptables-nft'
-	'yt-dlp'
-	'dhclient'
-	# Default Librewolf browser
-	"librewolf"
-	"diffutils"
-	"gdm-settings"
-	"rime-ice"
-	"flatpak"
-	"nerd-fonts-sf-mono"
-	"librewolf-ublock-origin"
-	"librewolf-extension-dark-reader"
-	"librewolf-extension-bitwarden"
-	"librewolf-extension-violentmonkey-bin"
-	"librewolf-extension-sponsorblock-bin"
-	"fcitx5-gtk"
-	"rime-minecraft-dict-git")
 makedepends=(
 	"git"
 	"make"
@@ -116,6 +50,73 @@ function package_lsb-release(){
 }
 
 function package_moeOS-git(){
+	depends=(
+		'xdg-desktop-portal-gnome'
+		'xdg-desktop-portal'
+		'bc'
+		'bat'
+		'glxinfo'
+		'easyeffects'
+		'gst-plugin-pipewire'
+		'pipewire'
+		'lib32-pipewire'
+		'pipewire-alsa'
+		'pipewire-audio'
+		'pipewire-jack'
+		'pipewire-pulse'
+		'wireplumber'
+		'inter-font'
+		'networkmanager'
+		'plymouth'
+		'mpv'
+		'noto-fonts-cjk'
+		'ttf-twemoji'
+		'kernel-modules-hook'
+		'linux-firmware'
+		'base-devel'
+		'paru'
+		'kdenlive'
+		'sox'
+		'iio-sensor-proxy'
+		'sbctl'
+		'clash-meta'
+		'clash-verge'
+		'timeshift'
+		'cups'
+		'avahi'
+		'obs-gstreamer'
+		'mediainfo'
+		'rtaudio'
+		'linux-firmware-whence'
+		'sof-firmware'
+		'opencv'
+		"movit"
+		"go-yq"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		'fcitx5-pinyin-moegirl-rime'
+		'librime-data'
+		'gst-plugin-va'
+		'nftables'
+		'iptables-nft'
+		'yt-dlp'
+		'dhclient'
+		# Default Librewolf browser
+		"librewolf"
+		"diffutils"
+		"gdm-settings"
+		"rime-ice"
+		"flatpak"
+		"nerd-fonts-sf-mono"
+		"librewolf-ublock-origin"
+		"librewolf-extension-dark-reader"
+		"librewolf-extension-bitwarden"
+		"librewolf-extension-violentmonkey-bin"
+		"librewolf-extension-sponsorblock-bin"
+		"fcitx5-gtk"
+		"rime-minecraft-dict-git"
+	)
 	install=moeOS-git.install
 	createDir
 	copyFiles
