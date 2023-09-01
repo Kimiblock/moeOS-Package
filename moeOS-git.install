@@ -1,8 +1,6 @@
 function post_install(){
-	_info "Made with love by Kimiblock Moe⭐"
 	/usr/bin/moeRelease
 	systemctl enable linux-modules-cleanup.service
-	_info "Install qadwaitaplatform-qt5-git in the AUR to get libadwaita style CSD in Qt"
 	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
 		_info "rt scheduler for mutter is enabled"
 	else
@@ -35,6 +33,6 @@ function _info() {
 }
 
 function post_upgrade(){
-    post_install
+	post_install
 }
 

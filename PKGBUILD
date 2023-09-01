@@ -1,15 +1,15 @@
 # Maintainer: Kimiblock Moe
-pkgname=moeOS-git
-pkgver=r192.a8085d1
+pkgname=("moeOS-git" "lsb-release" "nvidia-prime")
+pkgver=r210.da035a1
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
-install=${pkgname}.install
-replaces=('moeOS' 'nvidia-prime' 'lsb-release' "rime-minecraft-dict-git" "rime-minecraft-dict")
-conflicts=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
-provides=("lsb-release" "nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
+install=moeOS-git.install
+replaces=()
+conflicts=()
+provides=("nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 depends=(
 	'xdg-desktop-portal-gnome'
@@ -45,7 +45,6 @@ depends=(
 	'timeshift'
 	'cups'
 	'avahi'
-	'lsb-release'
 	'obs-gstreamer'
 	'mediainfo'
 	'rtaudio'
@@ -76,7 +75,8 @@ depends=(
 	"librewolf-extension-bitwarden"
 	"librewolf-extension-violentmonkey-bin"
 	"librewolf-extension-sponsorblock-bin"
-	"fcitx5-gtk")
+	"fcitx5-gtk"
+	"rime-minecraft-dict-git")
 makedepends=(
 	"git"
 	"make"
@@ -107,7 +107,19 @@ function buildLsb(){
 	make
 }
 
-function package(){
+function package_nvidia-prime(){
+	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/bin/prime-run" -t "${pkgdir}/etc"
+}
+
+function package_lsb-release(){
+	_info "Preparing lsb-release..."
+	cd lsb-samples/lsb_release/src
+	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
+	install -Dm755 lsb_release -t "$pkgdir/usr/bin"
+	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/lsb-release" -t "${pkgdir}/etc"
+}
+
+function package_moeOS-git(){
 	createDir
 	copyFiles
 	for file in os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
@@ -117,7 +129,6 @@ function package(){
 	dhcp
 	gnomeShellRt
 	rimeMinecraft
-	genLsb
 	genBuildId
 	fixPermission
 }
@@ -175,18 +186,15 @@ function configureGraphics(){
 	fi
 }
 
-function radvVA(){
-	_info "Enabling vulkan video decode..."
-	echo "RADV_VIDEO_DECODE=1" >>"${pkgdir}/etc/environment.d/moeOS.conf"
+function applyEnv(){
+	cp "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"
 }
 
-function genLsb(){
-	_info "Preparing lsb-release..."
-	cd lsb-samples/lsb_release/src
-	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
-	install -Dm755 lsb_release -t "$pkgdir/usr/bin"
-	install -Dm644 "${srcdir}/moeOS.config/etc/lsb-release" -t "${pkgdir}/etc"
+function radvVA(){
+	_info "Enabling vulkan video decode..."
+	applyEnv amdVulkanDecode
 }
+
 
 function gnomeShellRt(){
 	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
@@ -202,7 +210,7 @@ function dhcp(){
 
 function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
-	chmod -R 644 "${pkgdir}/etc/udev/rules.d"
+	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 755 "${pkgdir}"/usr/bin
 }
 
