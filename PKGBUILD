@@ -39,6 +39,7 @@ function buildLsb(){
 }
 
 function package_nvidia-prime-moe(){
+	pkgdesc="Replacement of the official nvidia-prime. Supports moeOS's powersave features."
 	replaces=("nvidia-prime")
 	conflicts=("nvidia-prime")
 	provides=("nvidia-prime")
@@ -46,6 +47,7 @@ function package_nvidia-prime-moe(){
 }
 
 function package_lsb-release-moe(){
+	pkgdesc="Replacement of the official lsb-release."
 	replaces=("lsb-release")
 	conflicts=("lsb-release")
 	provides=("lsb-release")
@@ -125,6 +127,7 @@ function package_moeOS-git(){
 		"librewolf-extension-sponsorblock-bin"
 		"fcitx5-gtk"
 		"rime-minecraft-dict-git"
+		"firefox-gnome-theme"
 	)
 	install=moeOS-git.install
 	createDir
