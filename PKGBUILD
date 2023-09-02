@@ -1,6 +1,7 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release" "nvidia-prime")
-pkgver=r211.e579968
+pkgver=r213.12e05c3
+epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
@@ -8,8 +9,9 @@ url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 replaces=()
 conflicts=()
-provides=("nvidia-prime" "rime-minecraft-dict-git" "rime-minecraft-dict")
+provides=()
 backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
+groups=("moeOS")
 makedepends=(
 	"git"
 	"make"
@@ -21,7 +23,6 @@ source=(
 sha256sums=(
 	"SKIP"
 	"SKIP")
-
 
 function pkgver(){
 	cd moeOS.config
