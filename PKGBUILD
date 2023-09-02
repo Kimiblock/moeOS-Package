@@ -1,5 +1,5 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release" "nvidia-prime")
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe")
 pkgver=r213.12e05c3
 epoch=1
 pkgrel=1
@@ -38,11 +38,17 @@ function buildLsb(){
 	make
 }
 
-function package_nvidia-prime(){
+function package_nvidia-prime-moe(){
+	replaces=("nvidia-prime")
+	conflicts=("nvidia-prime")
+	provides=("nvidia-prime")
 	install -Dm755 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/bin/prime-run" -t "${pkgdir}/usr/bin"
 }
 
-function package_lsb-release(){
+function package_lsb-release-moe(){
+	replaces=("lsb-release")
+	conflicts=("lsb-release")
+	provides=("lsb-release")
 	_info "Preparing lsb-release..."
 	cd lsb-samples/lsb_release/src
 	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
@@ -214,7 +220,7 @@ function fixPermission(){
 
 function suspendNvidia(){
 	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
-		depends+=('nvidia-prime' 'nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
