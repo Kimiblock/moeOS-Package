@@ -58,6 +58,8 @@ function package_lsb-release-moe(){
 
 function package_moeOS-git(){
 	depends=(
+		"nvidia-prime-moe"
+		"lsb-release-moe"
 		'xdg-desktop-portal-gnome'
 		'xdg-desktop-portal'
 		'bc'
