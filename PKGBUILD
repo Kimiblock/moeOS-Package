@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe")
-pkgver=r213.12e05c3
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
+pkgver=r223.99586f7
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -19,8 +19,10 @@ makedepends=(
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git"
+	"git+https://github.com/rime/rime-essay-simp.git")
 sha256sums=(
+	"SKIP"
 	"SKIP"
 	"SKIP")
 
@@ -56,6 +58,14 @@ function package_lsb-release-moe(){
 	install -Dm644 lsb_release.1.gz -t "$pkgdir/usr/share/man/man1"
 	install -Dm755 lsb_release -t "$pkgdir/usr/bin"
 	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/lsb-release" -t "${pkgdir}/etc"
+}
+
+function package_rime-essay-moe(){
+	pkgdesc="moeOS Rime essay, optimized for simplified Chinese."
+	_info "Preparing Rime essay..."
+	mkdir -p "${pkgdir}/usr/share/rime-data"
+	cp "${srcdir}/rime-essay-simp/essay-zh-hans.txt" "${pkgdir}/usr/share/rime-data/moe-essay.txt"
+	chmod -R 644 "${pkgdir}/usr/share/rime-data"
 }
 
 function package_moeOS-git(){
