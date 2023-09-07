@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r223.99586f7
+pkgver=r227.e51e6be
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -70,6 +70,10 @@ function package_rime-essay-moe(){
 
 function package_moeOS-git(){
 	depends=(
+		"adw-gtk-theme"
+		"gnome-shell-extension-appindicator"
+		"gnome-shell-extension-kimpanel-git"
+		"tela-circle-icon-theme-pink-git"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
 		'xdg-desktop-portal-gnome'
