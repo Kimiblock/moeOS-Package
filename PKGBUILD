@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r227.e51e6be
+pkgver=r231.9eb4f70
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -156,10 +156,17 @@ function package_moeOS-git(){
 	fixPermission
 }
 
+function firefoxNightlyConfig(){
+	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/librewolf.d/librewolf.cfg" "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
+	sed -i 's/lockPref/pref/g' "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
+	sed -i 's/defaultPref/pref/g' "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
+}
+
 function copyFiles(){
 	_info "Moving Files..."
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
+	firefoxNightlyConfig
 }
 
 function createDir(){
