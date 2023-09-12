@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r231.9eb4f70
+pkgver=r239.75574ed
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -10,12 +10,10 @@ license=('MIT')
 replaces=()
 conflicts=()
 provides=()
-backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 groups=("moeOS")
 makedepends=(
 	"git"
-	"make"
-	"paru")
+	"make")
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
@@ -65,10 +63,11 @@ function package_rime-essay-moe(){
 	_info "Preparing Rime essay..."
 	mkdir -p "${pkgdir}/usr/share/rime-data"
 	cp "${srcdir}/rime-essay-simp/essay-zh-hans.txt" "${pkgdir}/usr/share/rime-data/moe-essay.txt"
-	chmod -R 644 "${pkgdir}/usr/share/rime-data"
+	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
 function package_moeOS-git(){
+	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
@@ -79,6 +78,7 @@ function package_moeOS-git(){
 		'xdg-desktop-portal-gnome'
 		'xdg-desktop-portal'
 		'bc'
+		"paru"
 		'bat'
 		'glxinfo'
 		'easyeffects'
@@ -142,6 +142,7 @@ function package_moeOS-git(){
 		"fcitx5-gtk"
 		"rime-minecraft-dict-git"
 		"firefox-gnome-theme"
+		"snotify-git"
 	)
 	install=moeOS-git.install
 	createDir
@@ -150,7 +151,6 @@ function package_moeOS-git(){
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
 	configureGraphics
-	dhcp
 	gnomeShellRt
 	genBuildId
 	fixPermission
@@ -233,15 +233,11 @@ function gnomeShellRt(){
 	fi
 }
 
-function dhcp(){
-	echo "[main]" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
-	echo "dhcp=dhclient" >>"${pkgdir}/etc/NetworkManager/conf.d/moeOS-dhcp-client.conf"
-}
-
 function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 755 "${pkgdir}"/usr/bin
+	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
 function suspendNvidia(){
