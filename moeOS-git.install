@@ -1,11 +1,6 @@
 function post_install(){
 	/usr/bin/moeRelease
 	systemctl enable linux-modules-cleanup.service
-	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
-		_info "rt scheduler for mutter is enabled"
-	else
-		_info "Install gnome-shell-performance and mutter-performance then rebuild this package to get better performance and rt schedulers"
-	fi
 	_info "Signing EFI binaries"
 	sbctl sign -s "/efi/EFI/Boot/BOOTx64.efi"
 	flatpak mask 'org.freedesktop.Platform.GL32.nvidia*'
