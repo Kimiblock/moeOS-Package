@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r239.75574ed
+pkgver=r248.d4504e3
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -227,9 +227,12 @@ function radvVA(){
 
 
 function gnomeShellRt(){
-	if [[ $(pacman -Q) =~ gnome-shell-performance ]] & [[ $(pacman -Q) =~ mutter-performance ]]; then
-		_info "Enabling rt schedulers for mutter..."
-		cp "${pkgdir}/usr/share/moeOS-Docs/mutter-performance.conf" "${pkgdir}/etc/dconf/db/local.d/00-moeOS-HiDPI"
+	depends+=("mutter-performance")
+	_info "Enabling rt schedulers for mutter..."
+	if [[ $(pacman -Q) =~ gnome-shell-performance ]]; then
+		_info "Replacing modified GNOME shell..."
+		conflicts+=("gnome-shell-performance")
+		depends+=("gnome-shell")
 	fi
 }
 
