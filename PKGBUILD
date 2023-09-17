@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r248.d4504e3
+pkgver=r249.3ff3630
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -153,7 +153,14 @@ function package_moeOS-git(){
 	configureGraphics
 	gnomeShellRt
 	genBuildId
+	gdmWayland
 	fixPermission
+}
+
+function gdmWayland(){
+	mkdir -p "${pkgdir}/etc/udev/rules.d"
+	ln -s /dev/null "${pkgdir}/etc/udev/rules.d/61-gdm.rules"
+	chmod 644 -R "${pkgdir}/etc/udev/rules.d"
 }
 
 function firefoxNightlyConfig(){
