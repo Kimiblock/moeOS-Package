@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r249.3ff3630
+pkgver=r252.1082f8c
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -114,8 +114,6 @@ function package_moeOS-git(){
 		'rtaudio'
 		'linux-firmware-whence'
 		'sof-firmware'
-		'opencv'
-		"movit"
 		"go-yq"
 		"fcitx5"
 		"fcitx5-configtool"
@@ -126,14 +124,12 @@ function package_moeOS-git(){
 		'nftables'
 		'iptables-nft'
 		'yt-dlp'
-		'dhclient'
 		# Default Librewolf browser
 		"librewolf"
 		"diffutils"
-		"gdm-settings"
 		"rime-ice"
 		"flatpak"
-		"nerd-fonts-sf-mono"
+		"ttf-roboto-mono"
 		"librewolf-ublock-origin"
 		"librewolf-extension-dark-reader"
 		"librewolf-extension-bitwarden"
