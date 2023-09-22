@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r252.1082f8c
+pkgver=r253.a9dad32
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -69,6 +69,7 @@ function package_rime-essay-moe(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"material-cursors-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
 		"gnome-shell-extension-kimpanel-git"
