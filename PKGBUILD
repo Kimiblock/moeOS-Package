@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "rime-essay-moe")
-pkgver=r253.a9dad32
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-rime-essay" "moe-multimedia-meta" "moe-fonts-meta")
+pkgver=r259.9b2ef5d
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -58,7 +58,9 @@ function package_lsb-release-moe(){
 	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/lsb-release" -t "${pkgdir}/etc"
 }
 
-function package_rime-essay-moe(){
+function package_moe-rime-essay(){
+	replaces=("rime-essay-moe")
+	conflicts=("rime-essay-moe")
 	pkgdesc="moeOS Rime essay, optimized for simplified Chinese."
 	_info "Preparing Rime essay..."
 	mkdir -p "${pkgdir}/usr/share/rime-data"
@@ -66,9 +68,42 @@ function package_rime-essay-moe(){
 	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
+function package_moe-multimedia-meta(){
+	depends=(
+		'gst-plugin-pipewire'
+		'pipewire'
+		'lib32-pipewire'
+		'pipewire-alsa'
+		'pipewire-audio'
+		'pipewire-jack'
+		'pipewire-pulse'
+		'wireplumber'
+		'easyeffects'
+		'mpv'
+		'obs-gstreamer'
+		'mediainfo'
+		'rtaudio'
+		'sof-firmware'
+		'gst-plugin-va'
+		'yt-dlp'
+	)
+}
+
+function package_moe-fonts-meta(){
+	depends=(
+		'noto-fonts-cjk'
+		'ttf-twemoji'
+		'inter-font'
+		"ttf-roboto-mono"
+	)
+}
+
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"moe-rime-essay"
+		"moe-fonts-meta"
+		"moe-multimedia-meta"
 		"material-cursors-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
@@ -82,27 +117,13 @@ function package_moeOS-git(){
 		"paru"
 		'bat'
 		'glxinfo'
-		'easyeffects'
-		'gst-plugin-pipewire'
-		'pipewire'
-		'lib32-pipewire'
-		'pipewire-alsa'
-		'pipewire-audio'
-		'pipewire-jack'
-		'pipewire-pulse'
-		'wireplumber'
-		'inter-font'
 		'networkmanager'
 		'plymouth'
-		'mpv'
-		'noto-fonts-cjk'
-		'ttf-twemoji'
 		'kernel-modules-hook'
 		'linux-firmware'
 		'base-devel'
 		'paru'
 		'kdenlive'
-		'sox'
 		'iio-sensor-proxy'
 		'sbctl'
 		'clash-meta'
@@ -110,27 +131,20 @@ function package_moeOS-git(){
 		'timeshift'
 		'cups'
 		'avahi'
-		'obs-gstreamer'
-		'mediainfo'
-		'rtaudio'
 		'linux-firmware-whence'
-		'sof-firmware'
 		"go-yq"
 		"fcitx5"
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		'fcitx5-pinyin-moegirl-rime'
 		'librime-data'
-		'gst-plugin-va'
 		'nftables'
 		'iptables-nft'
-		'yt-dlp'
 		# Default Librewolf browser
 		"librewolf"
 		"diffutils"
 		"rime-ice"
 		"flatpak"
-		"ttf-roboto-mono"
 		"librewolf-ublock-origin"
 		"librewolf-extension-dark-reader"
 		"librewolf-extension-bitwarden"
