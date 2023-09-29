@@ -111,7 +111,12 @@ function package_moe-inter-font(){
 	mkdir -p "${pkgdir}/usr/share/fonts/inter/"
 	unzip -qo inter.zip
 	cp -r "${srcdir}"/Inter\ Hinted\ for\ Windows/Desktop/* "${pkgdir}/usr/share/fonts/inter/"
-	cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
+	#cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
+}
+
+function package_moe-roboto-mono(){
+	provides=("ttf-roboto-mono")
+	conflicts=("ttf-roboto-mono")
 }
 
 function getLatestRel(){
