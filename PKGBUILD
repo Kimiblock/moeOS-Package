@@ -1,5 +1,5 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-rime-essay" "moe-multimedia-meta" "moe-fonts-meta")
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-rime-essay" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font")
 pkgver=r259.9b2ef5d
 epoch=1
 pkgrel=1
@@ -93,9 +93,34 @@ function package_moe-fonts-meta(){
 	depends=(
 		'noto-fonts-cjk'
 		'ttf-twemoji'
-		'inter-font'
+		"moe-inter-font"
 		"ttf-roboto-mono"
 	)
+}
+
+function package_moe-inter-font(){
+	provides=("inter-font")
+	conflicts=("inter-font")
+	getLatestRel "rsms/inter" github
+	_interVer=$(echo ${_release} | cut -c 2-)
+	if [ -f inter.zip ]; then
+		_info "Skipping Download"
+	else
+		curl "https://github.com/rsms/inter/releases/download/${_release}/Inter-${_interVer}.zip" -o "${srcdir}/inter.zip" -L
+	fi
+	mkdir -p "${pkgdir}/usr/share/fonts/inter/"
+	unzip -qo inter.zip
+	cp -r "${srcdir}"/Inter\ Hinted\ for\ Windows/Desktop/* "${pkgdir}/usr/share/fonts/inter/"
+	cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
+}
+
+function getLatestRel(){
+	if [[ $2 = github ]]; then
+		_rawVersion=$(curl -s https://api.github.com/repos/"$1"/releases/latest | jq .tag_name)
+		_release=$(echo "${_rawVersion}" | cut -c 2-$(expr ${#_rawVersion} - 1))
+	else
+		return 1
+	fi
 }
 
 function package_moeOS-git(){
