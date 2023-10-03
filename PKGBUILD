@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-rime-essay" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font")
-pkgver=r259.9b2ef5d
+pkgver=r267.85dfe02
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -153,7 +153,6 @@ function package_moeOS-git(){
 		'linux-firmware'
 		'base-devel'
 		'paru'
-		'kdenlive'
 		'iio-sensor-proxy'
 		'sbctl'
 		'clash-meta'
