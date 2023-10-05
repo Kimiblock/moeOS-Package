@@ -162,9 +162,6 @@ function package_moeOS-git(){
 		'avahi'
 		'linux-firmware-whence'
 		"go-yq"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
 		'fcitx5-pinyin-moegirl-rime'
 		'librime-data'
 		'nftables'
@@ -179,10 +176,17 @@ function package_moeOS-git(){
 		"librewolf-extension-bitwarden"
 		"librewolf-extension-violentmonkey-bin"
 		"librewolf-extension-sponsorblock-bin"
-		"fcitx5-gtk"
 		"rime-minecraft-dict-git"
 		"firefox-gnome-theme"
 		"snotify-git"
+		"ibus-rime"
+	)
+	conflicts=(
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
 	)
 	install=moeOS-git.install
 	createDir
