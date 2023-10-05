@@ -137,7 +137,6 @@ function package_moeOS-git(){
 		"material-cursors-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
-		"gnome-shell-extension-kimpanel-git"
 		"tela-circle-icon-theme-pink-git"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
@@ -187,6 +186,7 @@ function package_moeOS-git(){
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+		"gnome-shell-extension-kimpanel-git"
 	)
 	install=moeOS-git.install
 	createDir
