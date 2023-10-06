@@ -1,5 +1,5 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font")
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta")
 pkgver=r276.f593a91
 epoch=1
 pkgrel=1
@@ -121,21 +121,59 @@ function getLatestRel(){
 	fi
 }
 
-function package_moeOS-git(){
-	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
+function package_moe-input-meta(){
 	depends=(
+		"ibus-rime"
 		"rime-essay-simp"
+		"librime-data"
+		"fcitx5-pinyin-moegirl-rime"
+		"rime-minecraft-dict-git"
+		"rime-ice"
+	)
+	conflicts=(
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
+		"gnome-shell-extension-kimpanel-git"
+	)
+}
+
+function package_moe-desktop-meta(){
+	depends=(
+		"gnome-shell"
+		"moe-input-meta"
 		"moe-fonts-meta"
 		"moe-multimedia-meta"
 		"material-cursors-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
+		"xdg-desktop-portal"
+		"xdg-desktop-portal-gnome"
+		"iio-sensor-proxy"
+		"clash-verge"
+		"librewolf"
+		"librewolf-ublock-origin"
+		"librewolf-extension-dark-reader"
+		"librewolf-extension-bitwarden"
+		"librewolf-extension-violentmonkey-bin"
+		"librewolf-extension-sponsorblock-bin"
+		"firefox-gnome-theme"
+		"snotify-git"
+		"flatpak"
+	)
+}
+
+function package_moeOS-git(){
+	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
+	depends=(
+		"less"
+		"moe-desktop-meta"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
-		'xdg-desktop-portal-gnome'
-		'xdg-desktop-portal'
-		'bc'
+		"bc"
 		"paru"
 		'bat'
 		'glxinfo'
@@ -145,41 +183,16 @@ function package_moeOS-git(){
 		'linux-firmware'
 		'base-devel'
 		'paru'
-		'iio-sensor-proxy'
 		'sbctl'
 		'clash-meta'
-		'clash-verge'
 		'timeshift'
 		'cups'
 		'avahi'
 		'linux-firmware-whence'
 		"go-yq"
-		'fcitx5-pinyin-moegirl-rime'
-		'librime-data'
 		'nftables'
 		'iptables-nft'
-		# Default Librewolf browser
-		"librewolf"
 		"diffutils"
-		"rime-ice"
-		"flatpak"
-		"librewolf-ublock-origin"
-		"librewolf-extension-dark-reader"
-		"librewolf-extension-bitwarden"
-		"librewolf-extension-violentmonkey-bin"
-		"librewolf-extension-sponsorblock-bin"
-		"rime-minecraft-dict-git"
-		"firefox-gnome-theme"
-		"snotify-git"
-		"ibus-rime"
-	)
-	conflicts=(
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
-		"gnome-shell-extension-kimpanel-git"
 	)
 	install=moeOS-git.install
 	createDir
