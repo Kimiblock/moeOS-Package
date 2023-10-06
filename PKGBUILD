@@ -296,7 +296,7 @@ function gnomeShellRt(){
 function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 755 "${pkgdir}/usr/lib/udev/rules.d"
-	chmod -R 755 "${pkgdir}"/usr/bin
+	chmod -R 755 "${pkgdir}/usr/bin"
 	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
