@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-rime-essay" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font")
-pkgver=r267.85dfe02
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font")
+pkgver=r273.633a4d3
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -17,10 +17,8 @@ makedepends=(
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/rime/rime-essay-simp.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git")
 sha256sums=(
-	"SKIP"
 	"SKIP"
 	"SKIP")
 
@@ -114,11 +112,6 @@ function package_moe-inter-font(){
 	#cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
 }
 
-function package_moe-roboto-mono(){
-	provides=("ttf-roboto-mono")
-	conflicts=("ttf-roboto-mono")
-}
-
 function getLatestRel(){
 	if [[ $2 = github ]]; then
 		_rawVersion=$(curl -s https://api.github.com/repos/"$1"/releases/latest | jq .tag_name)
@@ -132,6 +125,7 @@ function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
 		"moe-rime-essay"
+		"rime-essay-simp"
 		"moe-fonts-meta"
 		"moe-multimedia-meta"
 		"material-cursors-git"
