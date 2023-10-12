@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta")
-pkgver=r278.b2a56f5
+pkgver=r282.35cdd1a
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -109,7 +109,7 @@ function package_moe-inter-font(){
 	mkdir -p "${pkgdir}/usr/share/fonts/inter/"
 	unzip -qo inter.zip
 	cp -r "${srcdir}"/Inter\ Hinted\ for\ Windows/Desktop/* "${pkgdir}/usr/share/fonts/inter/"
-	#cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
+	cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
 }
 
 function getLatestRel(){
@@ -123,20 +123,21 @@ function getLatestRel(){
 
 function package_moe-input-meta(){
 	depends=(
-		"ibus-rime"
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
+		#"gnome-shell-extension-kimpanel-git"
 		"rime-essay-simp"
+		"rime-essay"
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-minecraft-dict-git"
 		"rime-ice"
 	)
 	conflicts=(
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
-		"gnome-shell-extension-kimpanel-git"
+		"ibus-rime"
 	)
 }
 
@@ -284,7 +285,7 @@ function radvVA(){
 
 
 function gnomeShellRt(){
-	depends+=("mutter-performance")
+	#depends+=("mutter-performance")
 	_info "Enabling rt schedulers for mutter..."
 	if [[ $(pacman -Q) =~ gnome-shell-performance ]]; then
 		_info "Replacing modified GNOME shell..."
