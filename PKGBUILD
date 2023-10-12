@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta")
-pkgver=r282.35cdd1a
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
+pkgver=r283.6bc15e2
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -17,8 +17,10 @@ makedepends=(
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git"
+	"git+https://github.com/cyl0/ModernX.git")
 sha256sums=(
+	"SKIP"
 	"SKIP"
 	"SKIP")
 
@@ -96,6 +98,12 @@ function package_moe-fonts-meta(){
 	)
 }
 
+function package_moe-mpv-modern(){
+	depends=("mpv" "mpv-thumbfast-git")
+	install -Dm644 "${srcdir}/ModernX/Material-Design-Iconic-Font.ttf" "${pkgdir}/etc/mpv/fonts/Material-Design-Iconic-Font.ttf"
+	install -Dm644 "${srcdir}/ModernX/modernx.lua" "${pkgdir}/etc/mpv/scripts/modernx.lua"
+}
+
 function package_moe-inter-font(){
 	provides=("inter-font")
 	conflicts=("inter-font")
@@ -164,6 +172,7 @@ function package_moe-desktop-meta(){
 		"firefox-gnome-theme"
 		"snotify-git"
 		"flatpak"
+		"klipper"
 	)
 }
 
