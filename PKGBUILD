@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r283.6bc15e2
+pkgver=r289.3271f7b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -151,16 +151,13 @@ function package_moe-input-meta(){
 
 function package_moe-desktop-meta(){
 	depends=(
-		"gnome-shell"
-		"moe-input-meta"
-		"moe-fonts-meta"
-		"moe-multimedia-meta"
+		#"gnome-shell"
 		"material-cursors-git"
 		"adw-gtk-theme"
-		"gnome-shell-extension-appindicator"
+		#"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		"xdg-desktop-portal-gnome"
+		#"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
 		"clash-verge"
 		"librewolf"
@@ -176,6 +173,15 @@ function package_moe-desktop-meta(){
 		# KDE Printing
 		"system-config-printer"
 		"print-manager"
+		# KDE Deps
+		"phonon-qt5-gstreamer"
+		"xdg-desktop-portal-kde"
+		"qt6-multimedia-gstreamer"
+		"ffmpegthumbs"
+		"kdegraphics-thumbnailers"
+		"kde-gtk-config"
+		"plasma-browser-integration"
+		"kmail"
 	)
 }
 
