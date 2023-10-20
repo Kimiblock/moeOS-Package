@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r285.41212e7
+pkgver=r283.6bc15e2
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -36,12 +36,6 @@ function build(){
 function buildLsb(){
 	cd lsb-samples/lsb_release/src
 	make
-}
-
-function package_moe-mpv-modern(){
-	depends=("mpv" "mpv-thumbfast-git")
-	install -Dm644 "${srcdir}/ModernX/Material-Design-Iconic-Font.ttf" "${pkgdir}/etc/mpv/fonts/Material-Design-Iconic-Font.ttf"
-	install -Dm644 "${srcdir}/ModernX/modernx.lua" "${pkgdir}/etc/mpv/scripts/modernx.lua"
 }
 
 function package_nvidia-prime-moe(){
@@ -104,6 +98,12 @@ function package_moe-fonts-meta(){
 	)
 }
 
+function package_moe-mpv-modern(){
+	depends=("mpv" "mpv-thumbfast-git")
+	install -Dm644 "${srcdir}/ModernX/Material-Design-Iconic-Font.ttf" "${pkgdir}/etc/mpv/fonts/Material-Design-Iconic-Font.ttf"
+	install -Dm644 "${srcdir}/ModernX/modernx.lua" "${pkgdir}/etc/mpv/scripts/modernx.lua"
+}
+
 function package_moe-inter-font(){
 	provides=("inter-font")
 	conflicts=("inter-font")
@@ -117,7 +117,7 @@ function package_moe-inter-font(){
 	mkdir -p "${pkgdir}/usr/share/fonts/inter/"
 	unzip -qo inter.zip
 	cp -r "${srcdir}"/Inter\ Hinted\ for\ Windows/Desktop/* "${pkgdir}/usr/share/fonts/inter/"
-	#cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
+	cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
 }
 
 function getLatestRel(){
@@ -131,20 +131,21 @@ function getLatestRel(){
 
 function package_moe-input-meta(){
 	depends=(
-		"ibus-rime"
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
+		#"gnome-shell-extension-kimpanel-git"
 		"rime-essay-simp"
+		"rime-essay"
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-minecraft-dict-git"
 		"rime-ice"
 	)
 	conflicts=(
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
-		"gnome-shell-extension-kimpanel-git"
+		"ibus-rime"
 	)
 }
 
@@ -171,6 +172,7 @@ function package_moe-desktop-meta(){
 		"firefox-gnome-theme"
 		"snotify-git"
 		"flatpak"
+		"klipper"
 	)
 }
 
@@ -310,7 +312,7 @@ function fixPermission(){
 
 function suspendNvidia(){
 	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
-		depends+=('nvidia-utils' 'nvidia' 'linux' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
