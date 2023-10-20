@@ -173,6 +173,9 @@ function package_moe-desktop-meta(){
 		"snotify-git"
 		"flatpak"
 		"klipper"
+		# KDE Printing
+		"system-config-printer"
+		"print-manager"
 	)
 }
 
@@ -180,7 +183,6 @@ function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
 		"less"
-		"moe-desktop-meta"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
 		"bc"
