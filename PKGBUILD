@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r289.3271f7b
+pkgver=r300.ce1973e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -131,11 +131,6 @@ function getLatestRel(){
 
 function package_moe-input-meta(){
 	depends=(
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
 		#"gnome-shell-extension-kimpanel-git"
 		"rime-essay-simp"
 		"rime-essay"
@@ -143,9 +138,14 @@ function package_moe-input-meta(){
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-minecraft-dict-git"
 		"rime-ice"
+		"ibus-rime"
 	)
 	conflicts=(
-		"ibus-rime"
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"		
 	)
 }
 
