@@ -1,5 +1,6 @@
 function post_install(){
 	/usr/bin/moeRelease
+	/usr/lib/moeOS/patch-chromium
 	systemctl enable linux-modules-cleanup.service
 	_info "Signing EFI binaries"
 	sbctl sign -s "/efi/EFI/Boot/BOOTx64.efi"
