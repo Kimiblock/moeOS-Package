@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r308.5aef336
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
+pkgver=r309.d1fb3cc
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -18,8 +18,10 @@ optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
 	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/cyl0/ModernX.git")
+	"git+https://github.com/cyl0/ModernX.git"
+	"git+https://github.com/lotem/rime-octagram-data.git")
 sha256sums=(
+	"SKIP"
 	"SKIP"
 	"SKIP"
 	"SKIP")
@@ -129,7 +131,7 @@ function getLatestRel(){
 	fi
 }
 
-function package_moe-input-meta(){
+function package_moe-input-config(){
 	depends=(
 		#"gnome-shell-extension-kimpanel-git"
 		"rime-essay-simp"
@@ -146,7 +148,13 @@ function package_moe-input-meta(){
 	)
 	conflicts=(
 		"ibus-rime"
+		"moe-input-meta"
 	)
+	replaces=("moe-input-meta")
+	cd "${srcdir}/rime-octagram-data"
+	git checkout hans
+	install -Dm644 zh-hans-t-essay-bgc.gram "${pkgdir}/usr/share/rime-data/zh-hans-t-essay-bgc.gram"
+	install -Dm644 zh-hans-t-essay-bgw.gram "${pkgdir}/usr/share/rime-data/zh-hans-t-essay-bgw.gram"
 }
 
 function package_moe-desktop-meta(){
@@ -183,6 +191,16 @@ function package_moe-desktop-meta(){
 		"kde-gtk-config"
 		"plasma-browser-integration"
 		"kmail"
+		"spectacle"
+		"dolphin"
+		"kate"
+		"kwalletmanager"
+		"konsole"
+		"gwenview"
+		"okular"
+		"ark"
+		"plasma-meta"
+		"plasma-wayland-session"
 	)
 }
 
