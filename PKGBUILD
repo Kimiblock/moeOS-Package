@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-meta" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r306.fb240f4
+pkgver=r308.5aef336
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -138,26 +138,27 @@ function package_moe-input-meta(){
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-minecraft-dict-git"
 		"rime-ice"
-		"ibus-rime"
-	)
-	conflicts=(
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
 		"fcitx5-qt"
-		"fcitx5-rime"		
+		"fcitx5-rime"
+	)
+	conflicts=(
+		"ibus-rime"
 	)
 }
 
 function package_moe-desktop-meta(){
 	depends=(
-		"gnome-shell"
+		#"gnome-shell"
+		"plasma-wayland-session"
 		"material-cursors-git"
 		"adw-gtk-theme"
-		"gnome-shell-extension-appindicator"
+		#"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		"xdg-desktop-portal-gnome"
+		#"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
 		"clash-verge"
 		"librewolf"
@@ -170,18 +171,18 @@ function package_moe-desktop-meta(){
 		"snotify-git"
 		"flatpak"
 		# KDE Printing
-		#"system-config-printer"
-		#"print-manager"
+		"system-config-printer"
+		"print-manager"
 		# KDE Deps
-		#"klipper"
-		#"phonon-qt5-gstreamer"
-		#"xdg-desktop-portal-kde"
+		"klipper"
+		"phonon-qt5-gstreamer"
+		"xdg-desktop-portal-kde"
 		"qt6-multimedia-gstreamer"
-		#"ffmpegthumbs"
-		#"kdegraphics-thumbnailers"
-		#"kde-gtk-config"
-		#"plasma-browser-integration"
-		#"kmail"
+		"ffmpegthumbs"
+		"kdegraphics-thumbnailers"
+		"kde-gtk-config"
+		"plasma-browser-integration"
+		"kmail"
 	)
 }
 
