@@ -133,9 +133,6 @@ function getLatestRel(){
 
 function package_moe-input-config(){
 	depends=(
-		#"gnome-shell-extension-kimpanel-git"
-		"rime-essay-simp"
-		"rime-essay"
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-pinyin-zhwiki"
@@ -147,6 +144,7 @@ function package_moe-input-config(){
 	)
 	conflicts=(
 		#"ibus-rime"
+		#"gnome-shell-extension-kimpanel-git"
 		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
@@ -156,6 +154,7 @@ function package_moe-input-config(){
 	mkdir -p "${pkgdir}/usr/share"
 	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
 	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
+	rm -r "${pkgdir}/usr/share/rime-data/others/rime-ice/others"
 	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
