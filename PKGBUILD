@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r309.d1fb3cc
+pkgver=r324.b2dbd38
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -19,7 +19,7 @@ source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
 	"git+https://github.com/Kimiblock/moeOS.config.git"
 	"git+https://github.com/cyl0/ModernX.git"
-	"git+https://github.com/lotem/rime-octagram-data.git")
+	"git+https://github.com/Kimiblock/moeOS-pinyin.git")
 sha256sums=(
 	"SKIP"
 	"SKIP"
@@ -138,7 +138,7 @@ function package_moe-input-config(){
 		"rime-essay"
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
-		"rime-minecraft-dict-git"
+		"rime-pinyin-zhwiki"
 		"rime-ice"
 		"fcitx5-gtk"
 		"fcitx5"
@@ -147,14 +147,17 @@ function package_moe-input-config(){
 		"fcitx5-rime"
 	)
 	conflicts=(
-		"ibus-rime"
+		#"ibus-rime"
 		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
-	cd "${srcdir}/rime-octagram-data"
-	git checkout hans
-	install -Dm644 zh-hans-t-essay-bgc.gram "${pkgdir}/usr/share/rime-data/zh-hans-t-essay-bgc.gram"
-	install -Dm644 zh-hans-t-essay-bgw.gram "${pkgdir}/usr/share/rime-data/zh-hans-t-essay-bgw.gram"
+	cd "${srcdir}/moeOS-pinyin"
+	git submodule init
+	git submodule update
+	mkdir -p "${pkgdir}/usr/share"
+	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
+	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
+	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
 function package_moe-desktop-meta(){
@@ -334,7 +337,6 @@ function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 755 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 755 "${pkgdir}/usr/bin"
-	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
 function suspendNvidia(){
