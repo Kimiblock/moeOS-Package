@@ -139,7 +139,6 @@ function package_moe-input-config(){
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-pinyin-zhwiki"
-		"rime-ice"
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
