@@ -141,10 +141,10 @@ function package_moe-input-config(){
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+		"gnome-shell-extension-kimpanel-git"
 	)
 	conflicts=(
 		#"ibus-rime"
-		#"gnome-shell-extension-kimpanel-git"
 		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
@@ -160,14 +160,14 @@ function package_moe-input-config(){
 
 function package_moe-desktop-meta(){
 	depends=(
-		#"gnome-shell"
-		"plasma-wayland-session"
+		"gnome-shell"
+		#"plasma-wayland-session"
 		"material-cursors-git"
 		"adw-gtk-theme"
-		#"gnome-shell-extension-appindicator"
+		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		#"xdg-desktop-portal-gnome"
+		"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
 		"clash-verge"
 		"librewolf"
@@ -179,29 +179,29 @@ function package_moe-desktop-meta(){
 		"firefox-gnome-theme"
 		"snotify-git"
 		"flatpak"
-		# KDE Printing
-		"system-config-printer"
-		"print-manager"
-		# KDE Deps
-		"klipper"
-		"phonon-qt5-gstreamer"
-		"xdg-desktop-portal-kde"
-		"qt6-multimedia-gstreamer"
-		"ffmpegthumbs"
-		"kdegraphics-thumbnailers"
-		"kde-gtk-config"
-		"plasma-browser-integration"
-		"kmail"
-		"spectacle"
-		"dolphin"
-		"kate"
-		"kwalletmanager"
-		"konsole"
-		"gwenview"
-		"okular"
-		"ark"
-		"plasma-meta"
-		"plasma-wayland-session"
+# 		# KDE Printing
+# 		"system-config-printer"
+# 		"print-manager"
+# 		# KDE Deps
+# 		"klipper"
+# 		"phonon-qt5-gstreamer"
+# 		"xdg-desktop-portal-kde"
+# 		"qt6-multimedia-gstreamer"
+# 		"ffmpegthumbs"
+# 		"kdegraphics-thumbnailers"
+# 		"kde-gtk-config"
+# 		"plasma-browser-integration"
+# 		"kmail"
+# 		"spectacle"
+# 		"dolphin"
+# 		"kate"
+# 		"kwalletmanager"
+# 		"konsole"
+# 		"gwenview"
+# 		"okular"
+# 		"ark"
+# 		"plasma-meta"
+# 		"plasma-wayland-session"
 	)
 }
 
