@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r325.e11efb7
+pkgver=r328.72aa486
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -234,7 +234,7 @@ function package_moeOS-git(){
 		"diffutils"
 	)
 	cd "${srcdir}/moeOS.config"
-	git checkout GNOME
+	#git checkout GNOME
 	install=moeOS-git.install
 	createDir
 	copyFiles
