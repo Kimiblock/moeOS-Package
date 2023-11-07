@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r324.b2dbd38
+pkgver=r325.e11efb7
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -160,6 +160,8 @@ function package_moe-input-config(){
 function package_moe-desktop-meta(){
 	depends=(
 		"gnome-shell"
+		"qadwaitaplatform-qt6-git"
+		"qadwaitaplatform-qt5-git"
 		#"plasma-wayland-session"
 		"material-cursors-git"
 		"adw-gtk-theme"
@@ -231,6 +233,8 @@ function package_moeOS-git(){
 		'iptables-nft'
 		"diffutils"
 	)
+	cd "${srcdir}/moeOS.config"
+	git checkout GNOME
 	install=moeOS-git.install
 	createDir
 	copyFiles
