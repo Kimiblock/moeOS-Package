@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r340.8da3d0f
+pkgver=r341.ad74538
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -339,7 +339,7 @@ function gnomeShellRt(){
 function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta"
 	chmod -R 755 "${pkgdir}/usr/lib/udev/rules.d"
-	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d/*"
+	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
 	chmod -R 755 "${pkgdir}/usr/bin"
 }
 
