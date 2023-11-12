@@ -237,8 +237,8 @@ function package_moeOS-git(){
 		"diffutils"
 	)
 	cd "${srcdir}/moeOS.config"
-	if [[ ${_moe-branch} ]]; then
-		git checkout ${_moe-branch}
+	if [[ ${_branch} ]]; then
+		git checkout ${_branch}
 	fi
 	install=moeOS-git.install
 	createDir
