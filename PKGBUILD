@@ -237,7 +237,9 @@ function package_moeOS-git(){
 		"diffutils"
 	)
 	cd "${srcdir}/moeOS.config"
-	#git checkout GNOME
+	if [[ ${_moe-branch} ]]; then
+		git checkout ${_moe-branch}
+	fi
 	install=moeOS-git.install
 	createDir
 	copyFiles
