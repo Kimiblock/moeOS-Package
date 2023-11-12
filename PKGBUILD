@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r341.ad74538
+pkgver=r342.97c69d9
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -136,15 +136,16 @@ function package_moe-input-config(){
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-pinyin-zhwiki"
-		"ibus-rime"
-	)
-	conflicts=(
-		"moe-input-meta"
+		#"ibus-rime"
+		"gnome-shell-extension-kimpanel-git"
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+	)
+	conflicts=(
+		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
 	cd "${srcdir}/moeOS-pinyin"
