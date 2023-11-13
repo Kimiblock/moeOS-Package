@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r347.991a997
+pkgver=r342.97c69d9
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -142,9 +142,9 @@ function package_moe-input-config(){
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+		"gnome-shell-extension-kimpanel-git"
 	)
 	conflicts=(
-		"gnome-shell-extension-kimpanel-git"
 		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
@@ -183,28 +183,29 @@ function package_moe-desktop-meta(){
 		"firefox-gnome-theme"
 		"snotify-git"
 		"flatpak"
- 		# KDE Printing
- 		"system-config-printer"
- 		"print-manager"
- 		# KDE Deps
- 		"phonon-qt5-gstreamer"
- 		"xdg-desktop-portal-kde"
- 		"qt6-multimedia-gstreamer"
- 		"ffmpegthumbs"
- 		"kdegraphics-thumbnailers"
- 		"kde-gtk-config"
- 		"plasma-browser-integration"
- 		"kmail"
- 		"spectacle"
- 		"dolphin"
- 		"kate"
- 		"kwalletmanager"
- 		"konsole"
- 		"gwenview"
- 		"okular"
- 		"ark"
- 		"plasma-meta"
- 		"plasma-wayland-session"
+# 		# KDE Printing
+# 		"system-config-printer"
+# 		"print-manager"
+# 		# KDE Deps
+# 		"klipper"
+# 		"phonon-qt5-gstreamer"
+# 		"xdg-desktop-portal-kde"
+# 		"qt6-multimedia-gstreamer"
+# 		"ffmpegthumbs"
+# 		"kdegraphics-thumbnailers"
+# 		"kde-gtk-config"
+# 		"plasma-browser-integration"
+# 		"kmail"
+# 		"spectacle"
+# 		"dolphin"
+# 		"kate"
+# 		"kwalletmanager"
+# 		"konsole"
+# 		"gwenview"
+# 		"okular"
+# 		"ark"
+# 		"plasma-meta"
+# 		"plasma-wayland-session"
 	)
 }
 
