@@ -142,9 +142,9 @@ function package_moe-input-config(){
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+		"gnome-shell-extension-kimpanel-git"
 	)
 	conflicts=(
-		"gnome-shell-extension-kimpanel-git"
 		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
