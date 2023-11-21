@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r342.97c69d9
+pkgver=r372.7742756
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -212,6 +212,7 @@ function package_moe-desktop-meta(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"msr-tools"
 		"less"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
