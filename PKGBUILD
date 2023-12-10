@@ -120,6 +120,7 @@ function package_moe-input-config(){
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-pinyin-zhwiki"
+		"rime-emoji"
 		#"ibus-rime"
 		"fcitx5-gtk"
 		"fcitx5"
@@ -139,6 +140,7 @@ function package_moe-input-config(){
 	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
 	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
 	rm -r "${pkgdir}/usr/share/rime-data/others/rime-ice/others"
+	rm -r "${pkgdir}/usr/share/rime-data/opencc"
 	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
