@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-inter-font" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r372.7742756
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
+pkgver=r385.b46f9a3
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -95,7 +95,7 @@ function package_moe-fonts-meta(){
 	depends=(
 		'noto-fonts-cjk'
 		'ttf-twemoji'
-		"moe-inter-font"
+		"inter-font"
 		"ttf-roboto-mono"
 	)
 }
@@ -104,22 +104,6 @@ function package_moe-mpv-modern(){
 	depends=("mpv" "mpv-thumbfast-git")
 	install -Dm644 "${srcdir}/ModernX/Material-Design-Iconic-Font.ttf" "${pkgdir}/etc/mpv/fonts/Material-Design-Iconic-Font.ttf"
 	install -Dm644 "${srcdir}/ModernX/modernx.lua" "${pkgdir}/etc/mpv/scripts/modernx.lua"
-}
-
-function package_moe-inter-font(){
-	provides=("inter-font")
-	conflicts=("inter-font")
-	getLatestRel "rsms/inter" github
-	_interVer=$(echo ${_release} | cut -c 2-)
-	if [ -f inter.zip ]; then
-		_info "Skipping Download"
-	else
-		curl "https://github.com/rsms/inter/releases/download/${_release}/Inter-${_interVer}.zip" -o "${srcdir}/inter.zip" -L
-	fi
-	mkdir -p "${pkgdir}/usr/share/fonts/inter/"
-	unzip -qo inter.zip
-	cp -r "${srcdir}"/Inter\ Hinted\ for\ Windows/Desktop/* "${pkgdir}/usr/share/fonts/inter/"
-	cp "${pkgdir}/usr/share/fonts/inter/Inter-Medium.ttf" "${pkgdir}/usr/share/fonts/inter/Inter-Regular.ttf"
 }
 
 function getLatestRel(){
@@ -161,6 +145,7 @@ function package_moe-input-config(){
 function package_moe-desktop-meta(){
 	depends=(
 		"gnome-shell"
+		"mutter-performance>45.1"
 		"clapper"
 		"libreoffice-fresh"
 		"qadwaitaplatform-qt6-git"
@@ -213,6 +198,7 @@ function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
 		"msr-tools"
+		"nano"
 		"less"
 		"nvidia-prime-moe"
 		"lsb-release-moe"
@@ -336,8 +322,6 @@ function radvVA(){
 
 
 function gnomeShellRt(){
-	#depends+=("mutter-performance")
-	_info "Enabling rt schedulers for mutter..."
 	if [[ $(pacman -Q) =~ gnome-shell-performance ]]; then
 		_info "Replacing modified GNOME shell..."
 		conflicts+=("gnome-shell-performance")
