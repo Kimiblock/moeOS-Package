@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r385.b46f9a3
+pkgver=r387.6bdd274
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -149,6 +149,7 @@ function package_moe-input-config(){
 function package_moe-desktop-meta(){
 	depends=(
 		"gnome-shell"
+		"ffmpegthumbnailer"
 		"mutter-performance>45.1"
 		"clapper"
 		"libreoffice-fresh"
@@ -196,11 +197,13 @@ function package_moe-desktop-meta(){
 # 		"plasma-meta"
 # 		"plasma-wayland-session"
 	)
+	conflict=("totem")
 }
 
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/subscribe.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"pacman-contrib"
 		"msr-tools"
 		"nano"
 		"less"
