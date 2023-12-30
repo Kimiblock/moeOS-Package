@@ -121,16 +121,16 @@ function package_moe-input-config(){
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-pinyin-zhwiki"
 		"rime-emoji"
-		"ibus-rime"
-	)
-	conflicts=(
-		"moe-input-meta"
+		#"ibus-rime"
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
 		"gnome-shell-extension-kimpanel-git"
+	)
+	conflicts=(
+		"moe-input-meta"
 	)
 	replaces=("moe-input-meta")
 	cd "${srcdir}/moeOS-pinyin"
