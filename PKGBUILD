@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r393.36198b7
+pkgver=r408.2b1ef81
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -148,6 +148,7 @@ function package_moe-input-config(){
 
 function package_moe-desktop-meta(){
 	depends=(
+		"game-devices-udev"
 		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
@@ -157,7 +158,6 @@ function package_moe-desktop-meta(){
 		"qadwaitaplatform-qt6-git"
 		"qadwaitaplatform-qt5-git"
 		#"plasma-wayland-session"
-		"material-cursors-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
