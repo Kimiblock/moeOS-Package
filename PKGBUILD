@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r419.cfed64c
+pkgver=r421.b106ed4
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -316,12 +316,7 @@ function configureGraphics(){
 }
 
 function applyEnv(){
-	cp "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"		"gnome-shell-extension-kimpanel-git"
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
+	cp "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"
 }
 
 function radvVA(){
@@ -357,7 +352,8 @@ ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200
 # Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
-	echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/nvidia-pm.conf"
+		echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
+		echo "options nvidia NVreg_PreserveVideoMemoryAllocations=1" >"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-suspend.conf"
 	fi
 	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
 	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"

@@ -14,6 +14,11 @@ function post_install(){
 	flatpak override --device=dri
 	flatpak override --filesystem=xdg-config/gtk-3.0:ro
 	flatpak override --filesystem=xdg-config/gtk-4.0:ro
+	if [[ -f /usr/lib/modprobe.d/moeOS-nvidia-suspend.conf ]]; then
+		systemctl enable nvidia-suspend nvidia-hibernate
+		systemctl enable --now nvidia-powerd
+	fi
+
 }
 
 function _info() {
