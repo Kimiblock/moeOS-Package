@@ -165,12 +165,7 @@ function package_moe-desktop-meta(){
 		"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
 		"clash-verge"
-		"librewolf"
-		"librewolf-ublock-origin"
-		"librewolf-extension-dark-reader"
-		"librewolf-extension-bitwarden"
-		"librewolf-extension-violentmonkey-bin"
-		"librewolf-extension-sponsorblock-bin"
+		"firefox"
 		"firefox-gnome-theme"
 		"snotify-git"
 		"flatpak"
@@ -255,17 +250,10 @@ function gdmWayland(){
 	chmod 644 -R "${pkgdir}/etc/udev/rules.d"
 }
 
-function firefoxNightlyConfig(){
-	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/librewolf.d/librewolf.cfg" "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
-	sed -i 's/lockPref/pref/g' "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
-	sed -i 's/defaultPref/pref/g' "${pkgdir}/opt/firefox-nightly/defaults/pref/moeOS.js"
-}
-
 function copyFiles(){
 	_info "Moving Files..."
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
-	firefoxNightlyConfig
 }
 
 function createDir(){
