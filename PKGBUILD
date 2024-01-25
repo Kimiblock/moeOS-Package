@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r444.9b49a20
+pkgver=r446.393b9c5
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
