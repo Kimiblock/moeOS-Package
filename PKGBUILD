@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r441.ca19846
+pkgver=r444.9b49a20
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -233,7 +233,7 @@ function package_moeOS-git(){
 	install=moeOS-git.install
 	createDir
 	copyFiles
-	for file in os-release sbupdate.conf mkinitcpio.conf mkinitcpio.d; do
+	for file in os-release mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
 	configureGraphics
