@@ -179,7 +179,7 @@ function package_moe-desktop-meta(){
 		"qt6-multimedia-gstreamer"
 		"ffmpegthumbs"
 		"kdegraphics-thumbnailers"
-		"kde-gtk-config"
+		#"kde-gtk-config"
 		"plasma-browser-integration"
 		"kmail"
 		"spectacle"
