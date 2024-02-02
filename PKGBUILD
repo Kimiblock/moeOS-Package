@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta" "moe-mpv-modern")
-pkgver=r462.9c2adb9
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta")
+pkgver=r466.1931031
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -18,10 +18,8 @@ optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
 	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/cyl0/ModernX.git"
 	"git+https://github.com/Kimiblock/moeOS-pinyin.git")
 sha256sums=(
-	"SKIP"
 	"SKIP"
 	"SKIP"
 	"SKIP")
@@ -98,12 +96,6 @@ function package_moe-fonts-meta(){
 		"inter-font"
 		"ttf-roboto-mono"
 	)
-}
-
-function package_moe-mpv-modern(){
-	depends=("mpv" "mpv-thumbfast-git")
-	install -Dm644 "${srcdir}/ModernX/Material-Design-Iconic-Font.ttf" "${pkgdir}/etc/mpv/fonts/Material-Design-Iconic-Font.ttf"
-	install -Dm644 "${srcdir}/ModernX/modernx.lua" "${pkgdir}/etc/mpv/scripts/modernx.lua"
 }
 
 function getLatestRel(){
