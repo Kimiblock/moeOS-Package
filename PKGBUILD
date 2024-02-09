@@ -120,7 +120,7 @@ function package_moe-input-config(){
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
-		#"gnome-shell-extension-kimpanel-git"
+		"gnome-shell-extension-kimpanel-git"
 	)
 	conflicts=(
 		"moe-input-meta"
@@ -142,20 +142,20 @@ function package_moe-input-config(){
 function package_moe-desktop-meta(){
 	depends=(
 		"game-devices-udev"
-		#"gnome-shell"
+		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		#"mutter-performance>45.1"
-		#"clapper"
+		"mutter-performance>45.1"
+		"clapper"
 		"libreoffice-fresh"
 		"qadwaitaplatform-qt6-git"
 		"qadwaitaplatform-qt5-git"
 		#"plasma-wayland-session"
 		"adw-gtk-theme"
-		#"gnome-shell-extension-appindicator"
+		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		#"xdg-desktop-portal-gnome"
+		"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
 		"clash-verge"
 		"firefox"
@@ -166,6 +166,7 @@ function package_moe-desktop-meta(){
 # 		"system-config-printer"
 # 		"print-manager"
 # 		# KDE Deps
+<<<<<<< HEAD
 		"kimageformats5"
 		"phonon-qt5-gstreamer"
 		"xdg-desktop-portal-kde"
@@ -185,6 +186,27 @@ function package_moe-desktop-meta(){
 		"ark"
 		"plasma-meta"
 		"plasma-wayland-session"
+=======
+# 		"klipper"
+# 		"phonon-qt5-gstreamer"
+# 		"xdg-desktop-portal-kde"
+# 		"qt6-multimedia-gstreamer"
+# 		"ffmpegthumbs"
+# 		"kdegraphics-thumbnailers"
+# 		"kde-gtk-config"
+# 		"plasma-browser-integration"
+# 		"kmail"
+# 		"spectacle"
+# 		"dolphin"
+# 		"kate"
+# 		"kwalletmanager"
+# 		"konsole"
+# 		"gwenview"
+# 		"okular"
+# 		"ark"
+# 		"plasma-meta"
+# 		"plasma-wayland-session"
+>>>>>>> parent of 8fee7d4 (feat: KDE)
 	)
 	conflict=("totem")
 }
