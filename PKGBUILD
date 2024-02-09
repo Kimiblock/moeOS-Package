@@ -166,27 +166,6 @@ function package_moe-desktop-meta(){
 # 		"system-config-printer"
 # 		"print-manager"
 # 		# KDE Deps
-<<<<<<< HEAD
-		"kimageformats5"
-		"phonon-qt5-gstreamer"
-		"xdg-desktop-portal-kde"
-		"qt6-multimedia-gstreamer"
-		"ffmpegthumbs"
-		"kdegraphics-thumbnailers"
-		#"kde-gtk-config"
-		"plasma-browser-integration"
-		"kmail"
-		"spectacle"
-		"dolphin"
-		"kate"
-		"kwalletmanager"
-		"konsole"
-		"gwenview"
-		"okular"
-		"ark"
-		"plasma-meta"
-		"plasma-wayland-session"
-=======
 # 		"klipper"
 # 		"phonon-qt5-gstreamer"
 # 		"xdg-desktop-portal-kde"
@@ -206,7 +185,6 @@ function package_moe-desktop-meta(){
 # 		"ark"
 # 		"plasma-meta"
 # 		"plasma-wayland-session"
->>>>>>> parent of 8fee7d4 (feat: KDE)
 	)
 	conflict=("totem")
 }
