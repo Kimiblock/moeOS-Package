@@ -343,7 +343,6 @@ ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
 		echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
-		echo "options nvidia NVreg_PreserveVideoMemoryAllocations=1" >"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-suspend.conf"
 	fi
 	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
 	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"
