@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta")
-pkgver=r496.ea2f73c
+pkgver=r495.4e612a2
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -332,7 +332,7 @@ function fixPermission(){
 
 function suspendNvidia(){
 	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
-		depends+=('nvidia-utils' 'nvidia-open-dkms' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
