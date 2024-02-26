@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta")
-pkgver=r497.955b1fb
+pkgver=r499.5a9bf93
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -126,8 +126,7 @@ function package_moe-input-config(){
 	)
 	replaces=("moe-input-meta")
 	cd "${srcdir}/moeOS-pinyin"
-	git submodule init
-	git submodule update --recursive --remote --depth=1
+	git submodule update --init --depth 1 --remote
 	mkdir -p "${pkgdir}/usr/share"
 	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
 	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
