@@ -17,10 +17,8 @@ makedepends=(
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/Kimiblock/moeOS-pinyin.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git")
 sha256sums=(
-	"SKIP"
 	"SKIP"
 	"SKIP")
 
@@ -112,6 +110,7 @@ function package_moe-input-config(){
 	depends=(
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
+		"rime-moe-pinyin"
 		"rime-pinyin-zhwiki"
 		"ibus-rime"
 		"gnome-shell-extension-kimpanel-git"
@@ -125,17 +124,6 @@ function package_moe-input-config(){
 		"fcitx5-rime"
 	)
 	replaces=("moe-input-meta")
-	cd "${srcdir}/moeOS-pinyin"
-	git submodule update --init --depth 1 --remote
-	mkdir -p "${pkgdir}/usr/share"
-	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
-	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
-	rm -r "${pkgdir}/usr/share/rime-data/others/rime-ice/others"
-	rm -r "${pkgdir}/usr/share/rime-data/others/rime-setting/fonts"
-	for dir in $(ls "${pkgdir}/usr/share/rime-data/others"); do
-		rm -rf "${pkgdir}/usr/share/rime-data/others/${dir}/.git"
-	done
-	chmod -R 755 "${pkgdir}/usr/share/rime-data"
 }
 
 function package_moe-desktop-meta(){
