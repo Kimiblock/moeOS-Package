@@ -1,5 +1,5 @@
 # Maintainer: Kimiblock Moe
-pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-config" "moe-desktop-meta")
+pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
 pkgver=r499.5a9bf93
 epoch=1
 pkgrel=1
@@ -106,7 +106,7 @@ function getLatestRel(){
 	fi
 }
 
-function package_moe-input-config(){
+function package_moe-input-method(){
 	depends=(
 		"librime-data"
 		"fcitx5-pinyin-moegirl-rime"
@@ -117,6 +117,7 @@ function package_moe-input-config(){
 	)
 	conflicts=(
 		"moe-input-meta"
+		"moe-input-config"
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
