@@ -331,7 +331,7 @@ function fixPermission(){
 
 function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=('nvidia-utils' 'nvidia-open-dkms' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
