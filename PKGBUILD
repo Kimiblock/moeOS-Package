@@ -131,6 +131,7 @@ function package_moe-input-config(){
 	cp "${srcdir}/moeOS-pinyin/rime-data" -r "${pkgdir}/usr/share"
 	install -Dm644 "${srcdir}/moeOS-pinyin/default.yaml" "${pkgdir}/usr/share/moeOS-Docs/ibus-rime.conf.d/default.yaml"
 	rm -r "${pkgdir}/usr/share/rime-data/others/rime-ice/others"
+	rm -r "${pkgdir}/usr/share/rime-data/others/rime-setting/fonts"
 	for dir in $(ls "${pkgdir}/usr/share/rime-data/others"); do
 		rm -rf "${pkgdir}/usr/share/rime-data/others/${dir}/.git"
 	done
@@ -270,13 +271,13 @@ function genBuildId(){
 }
 
 function initVkIcd(){
-	if [[ "${vgaDev}" =~ Intel ]] && [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
+	if [[ "${videoMod}" =~ i915 ]] && [[ "${videoMod}" =~ amdgpu ]]; then
 		_info "This script currently can't handle Intel + AMD card"
 	else
-		if [[ "${vgaDev}" =~ Intel ]]; then
+		if [[ "${videoMod}" =~ i915 ]]; then
 			_info "Configuring Vulkan to use Intel GPU"
 			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
-		elif [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
+		elif [[ "${videoMod}" =~ amdgpu ]]; then
 			_info "Configuring Vulkan to use AMD GPU"
 			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
 		else
@@ -287,14 +288,12 @@ function initVkIcd(){
 
 function configureGraphics(){
 	_info "Configuring graphics card..."
-	vgaDev=$(lspci | grep VGA)
-	if [[ "${vgaDev}" =~ Intel ]]; then
-		suspendNvidia
+	videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
+	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
-	elif [[ "${vgaDev}" =~ "Advanced Micro Devices" ]]; then
+	elif [[ "${videoMod}" =~ amdgpu ]]; then
 		radvVA
-		suspendNvidia
 		_info "Adding libva-mesa-driver as a dependency"
 		if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
 			_info
@@ -302,6 +301,7 @@ function configureGraphics(){
 		fi
 		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
 	fi
+	configureNvidia
 }
 
 function applyEnv(){
@@ -329,8 +329,8 @@ function fixPermission(){
 	chmod -R 755 "${pkgdir}/usr/bin"
 }
 
-function suspendNvidia(){
-	if [[ $(lspci -k | grep -A 2 -E "(VGA|3D)") =~ (NVIDIA|nvidia|GeForce) ]]; then
+function configureNvidia(){
+	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
 		depends+=('nvidia-utils' 'nvidia-open-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
