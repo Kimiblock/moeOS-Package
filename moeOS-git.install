@@ -1,9 +1,6 @@
 function post_install(){
 	/usr/bin/moeRelease
 	/usr/lib/moeOS/patch-chromium
-	systemctl enable linux-modules-cleanup.service
-	_info "Signing EFI binaries"
-	sbctl sign -s "/efi/EFI/Boot/BOOTx64.efi"
 	flatpak mask 'org.freedesktop.Platform.GL32.nvidia*'
 	flatpak mask 'org.freedesktop.Platform.GL.nvidia*'
 	flatpak override --unset-env=__EGL_VENDOR_LIBRARY_FILENAMES
@@ -14,23 +11,7 @@ function post_install(){
 	flatpak override --device=dri
 	flatpak override --filesystem=xdg-config/gtk-3.0:ro
 	flatpak override --filesystem=xdg-config/gtk-4.0:ro
-	if [[ -f /usr/lib/modprobe.d/moeOS-nvidia-suspend.conf ]]; then
-		systemctl enable nvidia-suspend nvidia-hibernate
-		systemctl enable --now nvidia-powerd
-	fi
 
-}
-
-function _info() {
-	if [ -f /usr/bin/pamac ]; then
-		echo "  ==> [Info]: $@"
-	else
-		all_off="$(tput sgr0)"
-		bold="${all_off}$(tput bold)"
-		blue="${bold}$(tput setaf 4)"
-		yellow="${bold}$(tput setaf 3)"
-		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
-	fi
 }
 
 function post_upgrade(){
