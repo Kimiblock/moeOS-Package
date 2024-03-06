@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r499.5a9bf93
+pkgver=r507.38c35ab
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -107,24 +107,39 @@ function getLatestRel(){
 }
 
 function package_moe-input-method(){
-	depends=(
-		"librime-data"
-		"fcitx5-pinyin-moegirl-rime"
-		"rime-moe-pinyin"
-		"rime-pinyin-zhwiki"
-		"ibus-rime"
-		"gnome-shell-extension-kimpanel-git"
-	)
-	conflicts=(
-		"moe-input-meta"
-		"moe-input-config"
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
-	)
 	replaces=("moe-input-meta")
+	${moePreferIM}=fcitx
+	if [[ ${moePreferIM} = ibus ]] || [[ ! ${moePreferIM} ]]; then
+		depends=(
+			"librime-data"
+			"fcitx5-pinyin-moegirl-rime"
+			"rime-moe-pinyin"
+			"rime-pinyin-zhwiki"
+			"ibus-rime"
+		)
+		conflicts=(
+			"moe-input-meta"
+			"moe-input-config"
+			"fcitx5-gtk"
+			"fcitx5"
+			"fcitx5-configtool"
+			"fcitx5-qt"
+			"fcitx5-rime"
+		)
+	elif [[ ${moePreferIM} =~ fcitx ]]; then
+		depends=(
+			"librime-data"
+			"fcitx5-pinyin-moegirl-rime"
+			"rime-moe-pinyin"
+			"rime-pinyin-zhwiki"
+			"fcitx5-gtk"
+			"fcitx5"
+			"fcitx5-configtool"
+			"fcitx5-qt"
+			"fcitx5-rime"
+			"gnome-shell-extension-kimpanel-git"
+		)
+	fi
 }
 
 function package_moe-desktop-meta(){
