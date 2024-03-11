@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r508.0331f03
+pkgver=r540.f96182b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -108,7 +108,7 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	export moePreferIM=fcitx
+	export moePreferIM=ibus
 	if [[ ${moePreferIM} = ibus ]] || [[ ! ${moePreferIM} ]]; then
 		depends=(
 			"librime-data"
@@ -125,6 +125,7 @@ function package_moe-input-method(){
 			"fcitx5-configtool"
 			"fcitx5-qt"
 			"fcitx5-rime"
+			"gnome-shell-extension-kimpanel-git"
 		)
 	elif [[ ${moePreferIM} =~ fcitx ]]; then
 		depends=(
