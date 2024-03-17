@@ -157,7 +157,6 @@ function package_moe-desktop-meta(){
 		"libreoffice-fresh"
 		"qadwaitaplatform-qt6-git"
 		"qadwaitaplatform-qt5-git"
-		#"plasma-wayland-session"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
@@ -174,7 +173,7 @@ function package_moe-desktop-meta(){
 # 		"system-config-printer"
 # 		"print-manager"
 # 		# KDE Deps
-# 		"klipper"
+#		"plasma5-integration"
 # 		"phonon-qt5-gstreamer"
 # 		"xdg-desktop-portal-kde"
 # 		"qt6-multimedia-gstreamer"
@@ -192,7 +191,6 @@ function package_moe-desktop-meta(){
 # 		"okular"
 # 		"ark"
 # 		"plasma-meta"
-# 		"plasma-wayland-session"
 	)
 	conflict=("totem")
 }
