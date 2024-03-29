@@ -108,7 +108,7 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	export moePreferIM=ibus
+	export moePreferIM=fcitx5
 	if [[ ${moePreferIM} = ibus ]] || [[ ! ${moePreferIM} ]]; then
 		depends=(
 			"librime-data"
