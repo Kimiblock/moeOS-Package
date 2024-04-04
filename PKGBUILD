@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r579.59857ce
+pkgver=r614.09a3de0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -8,7 +8,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 replaces=()
-conflicts=("snapd")
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde")
 provides=()
 groups=("moeOS")
 makedepends=(
