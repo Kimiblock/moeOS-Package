@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r614.09a3de0
+pkgver=r633.3d06eae
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -278,22 +278,6 @@ function genBuildId(){
 	echo "BUILD_ID=${pkgver}@$(date +%m/%d/%Y)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
-function initVkIcd(){
-	if [[ "${videoMod}" =~ i915 ]] && [[ "${videoMod}" =~ amdgpu ]]; then
-		_info "This script currently can't handle Intel + AMD card"
-	else
-		if [[ "${videoMod}" =~ i915 ]]; then
-			_info "Configuring Vulkan to use Intel GPU"
-			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
-		elif [[ "${videoMod}" =~ amdgpu ]]; then
-			_info "Configuring Vulkan to use AMD GPU"
-			echo 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
-		else
-			_info "Failed to configure Vulkan ICD filenames"
-		fi
-	fi
-}
-
 function configureGraphics(){
 	_info "Configuring graphics card..."
 	videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
@@ -313,7 +297,7 @@ function configureGraphics(){
 }
 
 function applyEnv(){
-	cp "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"
+	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"
 }
 
 function radvVA(){
@@ -343,19 +327,18 @@ function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
 		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
-		echo "__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json" >>"${pkgdir}/etc/environment.d/moeOS-Nvidia-RTD3.conf"
-		echo '''# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
-ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="auto"
-ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="auto"
-
-# Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind
-ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
-ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"''' >"${pkgdir}/usr/lib/udev/rules.d/80-nvidia-pm.rules"
-		echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' >"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
+		install -Dm644 \
+			"${srcdir}/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
+			"${pkgdir}/usr/lib/udev/rules.d/80-moe-nvidia-pm.rules"
+		install -Dm644 \
+			"${srcdir}/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
+			"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
+		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]]; then
+			_info "Your flatpak installation has been configured to not install any Nvidia runtime"
+			_info "If you need to run an app on discreate graphics card, install it natively and prepend prime-run when launching"
+			applyEnv moeOS-nvidiaOffload
+		fi
 	fi
-	_info "Your flatpak installation has been configured to not install any Nvidia runtime"
-	_info "If you need to run an app on discreate graphics card, install it natively and use prime-run"
-	initVkIcd
 }
 
 function _info() {
