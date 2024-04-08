@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r633.3d06eae
+pkgver=r636.349fc4b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -328,10 +328,10 @@ function configureNvidia(){
 		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		install -Dm644 \
-			"${srcdir}/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
+			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
 			"${pkgdir}/usr/lib/udev/rules.d/80-moe-nvidia-pm.rules"
 		install -Dm644 \
-			"${srcdir}/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
+			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
 			"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
 		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]]; then
 			_info "Your flatpak installation has been configured to not install any Nvidia runtime"
