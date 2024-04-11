@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r636.349fc4b
+pkgver=r641.c509557
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -8,7 +8,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 replaces=()
-conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde")
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance")
 provides=()
 groups=("moeOS")
 makedepends=(
@@ -155,7 +155,7 @@ function package_moe-desktop-meta(){
 		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		"mutter-performance>=46"
+		"mutter>=46"
 		"clapper"
 		"libreoffice-fresh"
 		"qadwaitaplatform-qt6-git"
@@ -243,7 +243,6 @@ function package_moeOS-git(){
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
 	configureGraphics
-	gnomeShellRt
 	genBuildId
 	gdmWayland
 	blacklistSteamUdev
@@ -305,15 +304,6 @@ function radvVA(){
 	applyEnv amdVulkanDecode
 }
 
-
-function gnomeShellRt(){
-	if [[ $(pacman -Q) =~ gnome-shell-performance ]]; then
-		_info "Replacing modified GNOME shell..."
-		conflicts+=("gnome-shell-performance")
-		depends+=("gnome-shell")
-	fi
-}
-
 function fixPermission(){
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta/env.conf"
 	chmod 755 "${pkgdir}/usr/lib/udev/rules.d"
@@ -325,7 +315,7 @@ function fixPermission(){
 
 function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
