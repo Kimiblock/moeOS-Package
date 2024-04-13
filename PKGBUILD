@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r641.c509557
+pkgver=r642.f211c3f
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -145,6 +145,9 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends=(
+		"qgnomeplatform-qt6-git"
+		"kvantum"
+		#"adwaita-qt6-git"
 		"fractal"
 		"foliate"
 		"cgproxy"
@@ -158,8 +161,6 @@ function package_moe-desktop-meta(){
 		"mutter>=46"
 		"clapper"
 		"libreoffice-fresh"
-		"qadwaitaplatform-qt6-git"
-		"qadwaitaplatform-qt5-git"
 		"adw-gtk-theme"
 		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
