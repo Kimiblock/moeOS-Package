@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r648.aaa0679
+pkgver=r656.815bee2
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -317,7 +317,7 @@ function fixPermission(){
 
 function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=('nvidia-utils' 'nvidia' 'lib32-nvidia-utils')
+		depends+=('nvidia-utils' 'nvidia-open' 'lib32-nvidia-utils')
 		_info "Fixing RTD3 power management"
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
@@ -325,10 +325,14 @@ function configureNvidia(){
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
 			"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
-		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]]; then
+		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "Your flatpak installation has been configured to not install any Nvidia runtime"
 			_info "If you need to run an app on discreate graphics card, install it natively and prepend prime-run when launching"
-			applyEnv moeOS-nvidiaOffload
+			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
+				applyEnv moeOS-nvidiaOffload-intel
+			elif [[ "${videoMod}" =~ amdgpu ]]; then
+				applyEnv moeOS-nvidiaOffload-amd
+			fi
 		fi
 	fi
 }
