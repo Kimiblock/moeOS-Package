@@ -203,6 +203,9 @@ function package_moe-desktop-meta(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/env.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"nss-mdns"
+		"avahi"
+		"systemd-resolvconf"
 		"rebuild-detector"
 		"dhclient"
 		"thermald"
