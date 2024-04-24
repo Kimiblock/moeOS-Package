@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r668.9bf0f4e
+pkgver=r672.0463e72
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -321,7 +321,8 @@ function fixPermission(){
 
 function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=('nvidia-utils' 'nvidia-dkms' 'lib32-nvidia-utils')
+		depends+=("nvidia-libgl" "nvidia")
+		optdepends+=("lib32-nvidia-libgl")
 		_info "Fixing RTD3 power management"
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
