@@ -206,7 +206,7 @@ function package_moeOS-git(){
 		"btrfs-progs"
 		"nss-mdns"
 		"avahi"
-		"systemd-resolvconf"
+		#"systemd-resolvconf"
 		"rebuild-detector"
 		"dhclient"
 		"thermald"
@@ -238,6 +238,7 @@ function package_moeOS-git(){
 		"diffutils"
 		"zram-generator"
 	)
+	conflicts=("systemd-resolvconf")
 	cd "${srcdir}/moeOS.config"
 	if [[ ${_branch} ]]; then
 		git checkout ${_branch}
