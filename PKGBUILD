@@ -230,7 +230,6 @@ function package_moeOS-git(){
 		'clash-meta'
 		'timeshift'
 		'cups'
-		'cups-browsed'
 		'avahi'
 		'linux-firmware-whence'
 		"go-yq"
