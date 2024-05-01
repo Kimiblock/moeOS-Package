@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r684.ae26903
+pkgver=r690.171a7e0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -159,7 +159,7 @@ function package_moe-desktop-meta(){
 		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		"mutter>=46"
+		"mutter-performance>=46"
 		"clapper"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
@@ -235,7 +235,10 @@ function package_moeOS-git(){
 		"cups-browsed"
 		"ipp-usb"
 		"logrotate"
-		'avahi'
+		"avahi"
+		
+		# Scanning
+		"sane-airscan"
 		
 		'linux-firmware-whence'
 		"go-yq"
@@ -294,7 +297,7 @@ function configureGraphics(){
 	videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
 	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
-		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-intel' )
+		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
 	elif [[ "${videoMod}" =~ amdgpu ]]; then
 		radvVA
 		_info "Adding libva-mesa-driver as a dependency"
