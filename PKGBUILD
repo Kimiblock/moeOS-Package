@@ -159,7 +159,7 @@ function package_moe-desktop-meta(){
 		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		"mutter-performance>=46"
+		"mutter>=46"
 		"clapper"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
