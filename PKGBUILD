@@ -222,7 +222,7 @@ function package_moeOS-git(){
 		'glxinfo'
 		'networkmanager'
 		'plymouth'
-		'kernel-modules-hook'
+		"kernel-modules-hook-bindmount"
 		'linux-firmware'
 		'base-devel'
 		'paru'
