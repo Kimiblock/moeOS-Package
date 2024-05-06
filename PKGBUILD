@@ -145,8 +145,8 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends=(
-		"qadwaitadecorations-qt6-git"
-		"qadwaitadecorations-qt5-git"
+		"qgnomeplatform-qt6-git"
+		"qgnomeplatform-qt5-git"
 		"kvantum"
 		#"adwaita-qt6-git"
 		"fractal"
