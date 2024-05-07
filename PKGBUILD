@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r692.794c864
+pkgver=r701.6ed45da
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -75,6 +75,7 @@ function package_moe-multimedia-meta(){
 		'pipewire-audio'
 		'pipewire-jack'
 		'pipewire-pulse'
+		"pipewire-v4l2"
 		'wireplumber'
 		'easyeffects'
 		'mpv'
