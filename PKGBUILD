@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r704.028eea4
+pkgver=r708.6829572
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -161,7 +161,7 @@ function package_moe-desktop-meta(){
 		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		"mutter-performance>=46"
+		"mutter"
 		"clapper"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
