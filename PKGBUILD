@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r719.4dc14ec
+pkgver=r721.51c62cf
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -174,7 +174,7 @@ function package_moe-desktop-meta(){
 		"clash-verge"
 		"firefox"
 		"firefox-gnome-theme"
-		"snotify-git"
+		"snotify"
 		"flatpak"
 		"papers"
 # 		# KDE Printing
