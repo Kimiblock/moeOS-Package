@@ -206,6 +206,7 @@ function package_moe-desktop-meta(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/env.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"systemd-ukify"
 		"btrfs-progs"
 		"nss-mdns"
 		"avahi"
