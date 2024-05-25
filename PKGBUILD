@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r742.244b6ab
+pkgver=r759.dbb682a
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -80,7 +80,6 @@ function package_moe-multimedia-meta(){
 		'easyeffects'
 		"decibels"
 		'mpv'
-		'obs-gstreamer'
 		'mediainfo'
 		'rtaudio'
 		'sof-firmware'
@@ -110,7 +109,6 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	export moePreferIM=iBus
 	if [[ ${moePreferIM} = iBus ]] || [[ ! ${moePreferIM} ]]; then
 		depends=(
 			"librime-data"
@@ -129,7 +127,7 @@ function package_moe-input-method(){
 			"fcitx5-rime"
 			"gnome-shell-extension-kimpanel-git"
 		)
-	elif [[ ${moePreferIM} =~ fcitx ]]; then
+	elif [[ ${moePreferIM} =~ fcitx ]] || [[ ${moePreferDE}=KDE ]]; then
 		depends=(
 			"librime-data"
 			"fcitx5-pinyin-moegirl-rime"
@@ -146,60 +144,71 @@ function package_moe-input-method(){
 }
 
 function package_moe-desktop-meta(){
-	depends=(
-		"espeak-ng"
-		"qgnomeplatform-qt6-git"
-		"qgnomeplatform-qt5-git"
+	depends+=(
 		"kvantum"
-		#"adwaita-qt6-git"
-		"fractal"
-		"foliate"
 		"cgproxy"
 		"highlight"
 		"clash-geoip"
 		"v2ray-domain-list-community"
 		"game-devices-udev"
-		"gnome-shell"
 		"libdecor"
 		"ffmpegthumbnailer"
-		"mutter-performance"
-		"clapper"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
-		"gnome-shell-extension-appindicator"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		"xdg-desktop-portal-gnome"
 		"iio-sensor-proxy"
-		"clash-verge"
 		"firefox"
-		"firefox-gnome-theme"
 		"snotify"
 		"flatpak"
-		"papers"
-# 		# KDE Printing
-# 		"system-config-printer"
-# 		"print-manager"
-# 		# KDE Deps
-#		"plasma5-integration"
-# 		"phonon-qt5-gstreamer"
-# 		"xdg-desktop-portal-kde"
-# 		"qt6-multimedia-gstreamer"
-# 		"ffmpegthumbs"
-# 		"kdegraphics-thumbnailers"
-# 		"kde-gtk-config"
-# 		"plasma-browser-integration"
-# 		"kmail"
-# 		"spectacle"
-# 		"dolphin"
-# 		"kate"
-# 		"kwalletmanager"
-# 		"konsole"
-# 		"gwenview"
-# 		"okular"
-# 		"ark"
-# 		"plasma-meta"
+		"orca"
+		"espeak-ng"
 	)
+	if [[ ${moePreferDE} =~ GNOME ]] || [ ! ${moePreferDE} ]; then
+		depends+=(
+			"qgnomeplatform-qt6-git"
+			"qgnomeplatform-qt5-git"
+			"fractal"
+			"foliate"
+			"gnome-shell"
+			"mutter-performance"
+			"clapper"
+			"gnome-shell-extension-appindicator"
+			"xdg-desktop-portal-gnome"
+			"firefox-gnome-theme"
+			"papers"
+		)
+		applyEnv moeOS-GNOME
+		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
+	elif [[ ${moePreferDE} =~ KDE ]]; then
+		depends+=(
+			# KDE Printing
+			"system-config-printer"
+			"print-manager"
+			# KDE Deps
+			"sddm"
+			"plasma5-integration"
+			"xdg-desktop-portal-kde"
+			"qt6-multimedia-gstreamer"
+			"ffmpegthumbs"
+			"kdegraphics-thumbnailers"
+			"kde-gtk-config"
+			"plasma-browser-integration"
+			"kmail"
+			"spectacle"
+			"dolphin"
+			"kate"
+			"kwalletmanager"
+			"konsole"
+			"gwenview"
+			"okular"
+			"ark"
+			"plasma-meta"
+			"phonon-qt6-mpv-git"
+		)
+		applyEnv moeOS-KDE
+		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
+	fi
 	conflict=("totem")
 }
 
