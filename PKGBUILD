@@ -22,6 +22,12 @@ sha256sums=(
 	"SKIP"
 	"SKIP")
 
+function prepare() {
+	if [ ! ${moePreferDE} ] && [ -f /etc/environment.d/moeOS-DE.conf ]; then
+		export $(cat /etc/environment.d/moeOS-DE.conf)
+	fi
+}
+
 function pkgver(){
 	cd moeOS.config
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
@@ -109,7 +115,7 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	if [[ ${moePreferIM} = iBus ]] || [[ ! ${moePreferIM} ]]; then
+	if [[ ${moePreferIM} = iBus ]] || [[ ! ${moePreferDE} ]]; then
 		depends=(
 			"librime-data"
 			"fcitx5-pinyin-moegirl-rime"
@@ -186,6 +192,7 @@ function package_moe-desktop-meta(){
 			"system-config-printer"
 			"print-manager"
 			# KDE Deps
+			"flatpak-kcm"
 			"sddm"
 			"plasma5-integration"
 			"xdg-desktop-portal-kde"
@@ -208,6 +215,7 @@ function package_moe-desktop-meta(){
 		)
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
+		echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
 	fi
 	conflict=("totem")
 }
