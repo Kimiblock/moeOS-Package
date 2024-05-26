@@ -205,6 +205,7 @@ function package_moe-desktop-meta(){
 			"spectacle"
 			"dolphin"
 			"kate"
+			"elisa"
 			"kwalletmanager"
 			"konsole"
 			"gwenview"
