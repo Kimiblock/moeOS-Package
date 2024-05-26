@@ -85,7 +85,7 @@ function package_moe-multimedia-meta(){
 		'wireplumber'
 		'easyeffects'
 		"decibels"
-		'mpv>=0.38'
+		'mpv'
 		'mediainfo'
 		'rtaudio'
 		'sof-firmware'
