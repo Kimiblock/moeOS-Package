@@ -169,6 +169,7 @@ function package_moe-desktop-meta(){
 		"flatpak"
 		"orca"
 		"espeak-ng"
+		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
 	if [[ ${moePreferDE} =~ GNOME ]] || [ ! ${moePreferDE} ]; then
 		depends+=(
@@ -181,7 +182,7 @@ function package_moe-desktop-meta(){
 			"clapper"
 			"gnome-shell-extension-appindicator"
 			"xdg-desktop-portal-gnome"
-			#"firefox-gnome-theme"
+			"firefox-gnome-theme"
 			"papers"
 		)
 		applyEnv moeOS-GNOME
