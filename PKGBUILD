@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r788.dbeab18
+pkgver=r834.be5fcc7
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -252,6 +252,7 @@ function package_moeOS-git(){
 		'sbctl'
 		'clash-meta'
 		'timeshift'
+		"sudo"
 		
 		# Printing
 		"cups"
@@ -274,7 +275,6 @@ function package_moeOS-git(){
 	if [[ ${_branch} ]]; then
 		git checkout ${_branch}
 	fi
-	install=moeOS-git.install
 	createDir
 	copyFiles
 	for file in os-release mkinitcpio.conf mkinitcpio.d; do
