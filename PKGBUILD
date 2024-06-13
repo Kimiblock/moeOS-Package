@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r828.457f88c
+pkgver=r788.dbeab18
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -17,10 +17,8 @@ makedepends=(
 optdepends=()
 source=(
 	"git+https://github.com/LinuxStandardBase/lsb-samples.git"
-	"git+https://github.com/Kimiblock/moeOS.config.git"
-	"git+https://github.com/Kimiblock/webpfier.git")
+	"git+https://github.com/Kimiblock/moeOS.config.git")
 sha256sums=(
-	"SKIP"
 	"SKIP"
 	"SKIP")
 
@@ -222,12 +220,6 @@ function package_moe-desktop-meta(){
 		echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
 	fi
 	conflict=("totem")
-	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
-		"${pkgdir}/usr/share/applications/awebpfier.desktop"
-	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
-		"${pkgdir}/usr/share/icons/hicolor/scalable/apps/webpfier.svg"
-	install -Dm755 "${srcdir}/webpfier/webpfier" \
-		"${pkgdir}/usr/bin/webpfier"
 }
 
 function package_moeOS-git(){
@@ -282,6 +274,7 @@ function package_moeOS-git(){
 	if [[ ${_branch} ]]; then
 		git checkout ${_branch}
 	fi
+	install=moeOS-git.install
 	createDir
 	copyFiles
 	for file in os-release mkinitcpio.conf mkinitcpio.d; do
