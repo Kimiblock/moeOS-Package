@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r837.0abef4c
+pkgver=r845.55fdc4f
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -212,10 +212,14 @@ function package_moe-desktop-meta(){
 			"kwalletmanager"
 			"konsole"
 			"gwenview"
+			"kcalc"
 			"okular"
 			"ark"
 			"plasma-meta"
 			"phonon-qt6-mpv-git"
+			"nheko"
+			"kimageformats"
+			"gst-plugin-qmlgl"
 		)
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
