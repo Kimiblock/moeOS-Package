@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r851.51c5a8f
+pkgver=r855.05b4ae4
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -153,7 +153,6 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends+=(
-		"kvantum"
 		"cgproxy"
 		"highlight"
 		"clash-geoip"
@@ -175,6 +174,7 @@ function package_moe-desktop-meta(){
 	)
 	if [[ ${moePreferDE} =~ GNOME ]] || [ ! ${moePreferDE} ]; then
 		depends+=(
+			"kvantum"
 			"qgnomeplatform-qt6-git"
 			"qgnomeplatform-qt5-git"
 			"fractal"
@@ -194,7 +194,10 @@ function package_moe-desktop-meta(){
 			# KDE Printing
 			"system-config-printer"
 			"print-manager"
+			"kcolorchooser"
+			"kdiskmark"
 			# KDE Deps
+			"kamoso"
 			"flatpak-kcm"
 			"sddm"
 			"plasma5-integration"
@@ -220,6 +223,12 @@ function package_moe-desktop-meta(){
 			"nheko"
 			"kimageformats"
 			"gst-plugin-qmlgl"
+			"kio"
+			"kio-zeroconf"
+			"kio-admin"
+			"kio-extras"
+			"kio-fuse"
+			"kio-gdrive"
 		)
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
