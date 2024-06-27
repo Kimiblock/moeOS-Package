@@ -230,6 +230,21 @@ function package_moe-desktop-meta(){
 			"kio-fuse"
 			"kio-gdrive"
 			"partitionmanager"
+			"filelight"
+			"ksystemlog"
+			"kgpg"
+			"krdc"
+			"skanlite"
+			"kompare"
+			"krfb"
+			"kweather"
+			"kmouth"
+			"audiotube"
+			"digikam"
+			"krecorder"
+			"isoimagewriter"
+			"tokodon"
+			"alligator"
 		)
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
@@ -247,6 +262,7 @@ function package_moe-desktop-meta(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/env.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"bcachefs-tools"
 		"systemd-ukify"
 		"btrfs-progs"
 		"nss-mdns"
