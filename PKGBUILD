@@ -229,6 +229,7 @@ function package_moe-desktop-meta(){
 			"kio-extras"
 			"kio-fuse"
 			"kio-gdrive"
+			"partitionmanager"
 		)
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
