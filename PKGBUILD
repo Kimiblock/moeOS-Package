@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r855.05b4ae4
+pkgver=r859.6546ba8
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -265,6 +265,7 @@ function package_moeOS-git(){
 		"bcachefs-tools"
 		"systemd-ukify"
 		"btrfs-progs"
+		"hfsprogs"
 		"nss-mdns"
 		"avahi"
 		"systemd-resolvconf"
