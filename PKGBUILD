@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r859.6546ba8
+pkgver=r880.7212d04
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -262,6 +262,7 @@ function package_moe-desktop-meta(){
 function package_moeOS-git(){
 	backup=('etc/moeOS-clash-meta/env.conf' 'etc/moeOS-clash-meta/merge.yaml')
 	depends=(
+		"linux-lily"
 		"bcachefs-tools"
 		"systemd-ukify"
 		"btrfs-progs"
@@ -393,7 +394,8 @@ function fixPermission(){
 
 function configureNvidia(){
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=("nvidia-libgl" "NVIDIA-MODULE")
+		#depends+=("nvidia-libgl" "NVIDIA-MODULE")
+		depends+=("nvidia-lily")
 		optdepends+=("lib32-nvidia-libgl")
 		_info "Fixing RTD3 power management"
 		install -Dm644 \
