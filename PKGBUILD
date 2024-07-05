@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r859.6546ba8
+pkgver=r885.95ab8e0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -323,18 +323,12 @@ function package_moeOS-git(){
 	configureGraphics
 	genBuildId
 	gdmWayland
-	blacklistSteamUdev
 	fixPermission
 }
 
 function gdmWayland(){
 	ln -sf /dev/null "${srcdir}/61-gdm.rules"
 	install -Dm 644 "${srcdir}/61-gdm.rules" "${pkgdir}/etc/udev/rules.d/61-gdm.rules"
-}
-
-function blacklistSteamUdev(){
-	ln -sf /dev/null "${srcdir}/70-steam-input.rules"
-	install -Dm 644 "${srcdir}/70-steam-input.rules" "${pkgdir}/etc/udev/rules.d/70-steam-input.rules"
 }
 
 function copyFiles(){
