@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r888.4f45621
+pkgver=r890.4977daf
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -117,7 +117,22 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	if [[ ${moePreferIM} = iBus ]] || [[ ! ${moePreferDE} ]]; then
+	if [[ ! ${moePreferDE} ]] && [[ ${moePreferIM} =~ fcitx ]]; then
+		depends+=("gnome-shell-extension-kimpanel-git")
+	fi
+	if [[ ${moePreferIM} =~ fcitx ]] || [[ ${moePreferDE} = "KDE" ]]; then
+		depends=(
+			"librime-data"
+			"fcitx5-pinyin-moegirl-rime"
+			"rime-moe-pinyin"
+			"rime-pinyin-zhwiki"
+			"fcitx5-gtk"
+			"fcitx5"
+			"fcitx5-configtool"
+			"fcitx5-qt"
+			"fcitx5-rime"
+		)
+	elif [[ ! ${moePreferDE} ]]; then
 		depends=(
 			"librime-data"
 			"fcitx5-pinyin-moegirl-rime"
@@ -133,20 +148,6 @@ function package_moe-input-method(){
 			"fcitx5-configtool"
 			"fcitx5-qt"
 			"fcitx5-rime"
-			"gnome-shell-extension-kimpanel-git"
-		)
-	elif [[ ${moePreferIM} =~ fcitx ]] || [[ ${moePreferDE}=KDE ]]; then
-		depends=(
-			"librime-data"
-			"fcitx5-pinyin-moegirl-rime"
-			"rime-moe-pinyin"
-			"rime-pinyin-zhwiki"
-			"fcitx5-gtk"
-			"fcitx5"
-			"fcitx5-configtool"
-			"fcitx5-qt"
-			"fcitx5-rime"
-			"gnome-shell-extension-kimpanel-git"
 		)
 	fi
 }
@@ -247,11 +248,12 @@ function package_moe-desktop-meta(){
 			"tokodon"
 			"alligator"
 		)
+		conflicts+=("gnome-keyring")
 		applyEnv moeOS-KDE
 		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
 		echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
 	fi
-	conflict=("totem")
+	conflicts+=("totem")
 	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
 		"${pkgdir}/usr/share/applications/awebpfier.desktop"
 	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
@@ -323,24 +325,16 @@ function package_moeOS-git(){
 	done
 	configureGraphics
 	genBuildId
-	gdmWayland
 	fixPermission
 }
 
-function gdmWayland(){
-	ln -sf /dev/null "${srcdir}/61-gdm.rules"
-	install -Dm 644 "${srcdir}/61-gdm.rules" "${pkgdir}/etc/udev/rules.d/61-gdm.rules"
-}
-
 function copyFiles(){
-	_info "Moving Files..."
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
 }
 
 function createDir(){
 	for dir in "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d"; do
-		_info "Creating directory ${dir}"
 		mkdir -p "${pkgdir}${dir}"
 	done
 }
