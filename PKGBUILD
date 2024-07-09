@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r890.4977daf
+pkgver=r898.6431051
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -93,6 +93,7 @@ function package_moe-multimedia-meta(){
 		'sof-firmware'
 		'gst-plugin-va'
 		'yt-dlp'
+		"wl-clipboard"
 	)
 	conflicts=("moe-mpv-modern")
 }
