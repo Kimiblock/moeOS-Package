@@ -174,6 +174,7 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
+	conflicts+=("gnome-settings-daemon-xwayland-scaling")
 	if [[ ${moePreferDE} =~ GNOME ]] || [ ! ${moePreferDE} ]; then
 		depends+=(
 			"kvantum"
@@ -184,7 +185,7 @@ function package_moe-desktop-meta(){
 			"foliate"
 			"gnome-shell"
 			"mutter-performance"
-			"gnome-settings-daemon-xwayland-scaling"
+			"gnome-settings-daemon"
 			"clapper"
 			"gnome-shell-extension-appindicator"
 			"xdg-desktop-portal-gnome"
