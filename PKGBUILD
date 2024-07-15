@@ -156,6 +156,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"cgproxy"
+		"usbguard"
 		"highlight"
 		"clash-geoip"
 		"v2ray-domain-list-community"
