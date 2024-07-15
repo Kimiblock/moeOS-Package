@@ -152,7 +152,7 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
-	conflicts+=("gnome-settings-daemon-xwayland-scaling" "mutter-xwayland-scaling")
+	#conflicts+=("gnome-settings-daemon-xwayland-scaling" "mutter-xwayland-scaling")
 	depends+=(
 		"kvantum"
 		"decibels"
@@ -161,8 +161,7 @@ function package_moe-desktop-meta(){
 		"fractal"
 		"foliate"
 		"gnome-shell"
-		"mutter"
-		"gnome-settings-daemon"
+		"mutter-performance"
 		"clapper"
 		"gnome-shell-extension-appindicator"
 		"xdg-desktop-portal-gnome"
