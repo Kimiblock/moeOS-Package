@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r898.6431051
+pkgver=r916.9658c2d
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -78,7 +78,6 @@ function package_moe-multimedia-meta(){
 	depends=(
 		'gst-plugin-pipewire'
 		'pipewire'
-		'lib32-pipewire'
 		'pipewire-alsa'
 		'pipewire-audio'
 		'pipewire-jack'
@@ -95,6 +94,7 @@ function package_moe-multimedia-meta(){
 		'yt-dlp'
 		"wl-clipboard"
 	)
+	optdepends+=("lib32-pipewire")
 	conflicts=("moe-mpv-modern")
 }
 
@@ -183,7 +183,8 @@ function package_moe-desktop-meta(){
 			"fractal"
 			"foliate"
 			"gnome-shell"
-			"mutter"
+			"mutter-performance"
+			"gnome-settings-daemon-xwayland-scaling"
 			"clapper"
 			"gnome-shell-extension-appindicator"
 			"xdg-desktop-portal-gnome"
