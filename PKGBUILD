@@ -24,12 +24,6 @@ sha256sums=(
 	"SKIP"
 	"SKIP")
 
-function prepare() {
-	if [ ! ${moePreferDE} ] && [ -f /etc/environment.d/moeOS-DE.conf ]; then
-		export $(cat /etc/environment.d/moeOS-DE.conf)
-	fi
-}
-
 function pkgver(){
 	cd moeOS.config
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
@@ -118,39 +112,22 @@ function getLatestRel(){
 
 function package_moe-input-method(){
 	replaces=("moe-input-meta")
-	if [[ ! ${moePreferDE} ]] && [[ ${moePreferIM} =~ fcitx ]]; then
-		depends+=("gnome-shell-extension-kimpanel-git")
-	fi
-	if [[ ${moePreferIM} =~ fcitx ]] || [[ ${moePreferDE} = "KDE" ]]; then
-		depends=(
-			"librime-data"
-			"fcitx5-pinyin-moegirl-rime"
-			"rime-moe-pinyin"
-			"rime-pinyin-zhwiki"
-			"fcitx5-gtk"
-			"fcitx5"
-			"fcitx5-configtool"
-			"fcitx5-qt"
-			"fcitx5-rime"
-		)
-	elif [[ ! ${moePreferDE} ]]; then
-		depends=(
-			"librime-data"
-			"fcitx5-pinyin-moegirl-rime"
-			"rime-moe-pinyin"
-			"rime-pinyin-zhwiki"
-			"ibus-rime"
-		)
-		conflicts=(
-			"moe-input-meta"
-			"moe-input-config"
-			"fcitx5-gtk"
-			"fcitx5"
-			"fcitx5-configtool"
-			"fcitx5-qt"
-			"fcitx5-rime"
-		)
-	fi
+	depends=(
+		"librime-data"
+		"fcitx5-pinyin-moegirl-rime"
+		"rime-moe-pinyin"
+		"rime-pinyin-zhwiki"
+		"ibus-rime"
+	)
+	conflicts=(
+		"moe-input-meta"
+		"moe-input-config"
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
+	)
 }
 
 function package_moe-desktop-meta(){
@@ -175,88 +152,25 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
-	conflicts+=("gnome-settings-daemon-xwayland-scaling")
-	if [[ ${moePreferDE} =~ GNOME ]] || [ ! ${moePreferDE} ]; then
-		depends+=(
-			"kvantum"
-			"decibels"
-			"qgnomeplatform-qt6-git"
-			"qgnomeplatform-qt5-git"
-			"fractal"
-			"foliate"
-			"gnome-shell"
-			"mutter-performance"
-			"gnome-settings-daemon"
-			"clapper"
-			"gnome-shell-extension-appindicator"
-			"xdg-desktop-portal-gnome"
-			"firefox-gnome-theme"
-			"papers"
-		)
-		applyEnv moeOS-GNOME
-		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
-	elif [[ ${moePreferDE} =~ KDE ]]; then
-		depends+=(
-			# KDE Printing
-			"system-config-printer"
-			"print-manager"
-			"kcolorchooser"
-			"kdiskmark"
-			# KDE Deps
-			"kamoso"
-			"flatpak-kcm"
-			"sddm"
-			"plasma5-integration"
-			"xdg-desktop-portal-kde"
-			"qt6-multimedia-gstreamer"
-			"ffmpegthumbs"
-			"kdegraphics-thumbnailers"
-			"kde-gtk-config"
-			"plasma-browser-integration"
-			"kmail"
-			"spectacle"
-			"dolphin"
-			"kate"
-			"elisa"
-			"kwalletmanager"
-			"konsole"
-			"gwenview"
-			"kcalc"
-			"okular"
-			"ark"
-			"plasma-meta"
-			"phonon-qt6-mpv-git"
-			"nheko"
-			"kimageformats"
-			"gst-plugin-qmlgl"
-			"kio"
-			"kio-zeroconf"
-			"kio-admin"
-			"kio-extras"
-			"kio-fuse"
-			"kio-gdrive"
-			"partitionmanager"
-			"filelight"
-			"ksystemlog"
-			"kgpg"
-			"krdc"
-			"skanlite"
-			"kompare"
-			"krfb"
-			"kweather"
-			"kmouth"
-			"audiotube"
-			"digikam"
-			"krecorder"
-			"isoimagewriter"
-			"tokodon"
-			"alligator"
-		)
-		conflicts+=("gnome-keyring")
-		applyEnv moeOS-KDE
-		install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
-		echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
-	fi
+	conflicts+=("gnome-settings-daemon-xwayland-scaling" "mutter-xwayland-scaling")
+	depends+=(
+		"kvantum"
+		"decibels"
+		"qgnomeplatform-qt6-git"
+		"qgnomeplatform-qt5-git"
+		"fractal"
+		"foliate"
+		"gnome-shell"
+		"mutter"
+		"gnome-settings-daemon"
+		"clapper"
+		"gnome-shell-extension-appindicator"
+		"xdg-desktop-portal-gnome"
+		"firefox-gnome-theme"
+		"papers"
+	)
+	applyEnv moeOS-GNOME
+	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	conflicts+=("totem")
 	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
 		"${pkgdir}/usr/share/applications/awebpfier.desktop"
