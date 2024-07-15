@@ -128,7 +128,6 @@ function package_moe-input-method(){
 		"fcitx5-qt"
 		"fcitx5-rime"
 	)
-	fi
 }
 
 function package_moe-desktop-meta(){
