@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r923.4f8bbdc
+pkgver=r944.2f93dce
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -117,16 +117,15 @@ function package_moe-input-method(){
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-moe-pinyin"
 		"rime-pinyin-zhwiki"
-		"ibus-rime"
-	)
-	conflicts=(
-		"moe-input-meta"
-		"moe-input-config"
 		"fcitx5-gtk"
 		"fcitx5"
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+	)
+	conflicts=(
+		"moe-input-meta"
+		"moe-input-config"
 	)
 }
 
@@ -153,24 +152,84 @@ function package_moe-desktop-meta(){
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
 	#conflicts+=("gnome-settings-daemon-xwayland-scaling" "mutter-xwayland-scaling")
-	depends+=(
-		"kvantum"
-		"decibels"
-		"qgnomeplatform-qt6-git"
-		"qgnomeplatform-qt5-git"
-		"fractal"
-		"foliate"
-		"gnome-shell"
-		"mutter"
-		"clapper"
-		"gnome-shell-extension-appindicator"
-		"xdg-desktop-portal-gnome"
-		"firefox-gnome-theme"
-		"papers"
+# 	depends+=(
+# 		"kvantum"
+# 		"decibels"
+# 		"qgnomeplatform-qt6-git"
+# 		"qgnomeplatform-qt5-git"
+# 		"fractal"
+# 		"foliate"
+# 		"gnome-shell"
+# 		"mutter"
+# 		"clapper"
+# 		"gnome-shell-extension-appindicator"
+# 		"xdg-desktop-portal-gnome"
+# 		"firefox-gnome-theme"
+# 		"papers"
+# 	)
+# 	applyEnv moeOS-GNOME
+# 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
+# 	conflicts+=("totem")
+		depends+=(
+		# KDE Printing
+		"system-config-printer"
+		"print-manager"
+		"kcolorchooser"
+		"kdiskmark"
+		# KDE Deps
+		"kamoso"
+		"flatpak-kcm"
+		"sddm"
+		"plasma5-integration"
+		"xdg-desktop-portal-kde"
+		"qt6-multimedia-gstreamer"
+		"ffmpegthumbs"
+		"kdegraphics-thumbnailers"
+		"kde-gtk-config"
+		"plasma-browser-integration"
+		"kmail"
+		"spectacle"
+		"dolphin"
+		"kate"
+		"elisa"
+		"kwalletmanager"
+		"konsole"
+		"gwenview"
+		"kcalc"
+		"okular"
+		"ark"
+		"plasma-meta"
+		"phonon-qt6-mpv-git"
+		"nheko"
+		"kimageformats"
+		"gst-plugin-qmlgl"
+		"kio"
+		"kio-zeroconf"
+		"kio-admin"
+		"kio-extras"
+		"kio-fuse"
+		"kio-gdrive"
+		"partitionmanager"
+		"filelight"
+		"ksystemlog"
+		"kgpg"
+		"krdc"
+		"skanlite"
+		"kompare"
+		"krfb"
+		"kweather"
+		"kmouth"
+		"audiotube"
+		"digikam"
+		"krecorder"
+		"isoimagewriter"
+		"tokodon"
+		"alligator"
 	)
-	applyEnv moeOS-GNOME
-	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
-	conflicts+=("totem")
+	conflicts+=("gnome-keyring")
+	applyEnv moeOS-KDE
+	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
+	echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
 	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
 		"${pkgdir}/usr/share/applications/awebpfier.desktop"
 	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
@@ -268,7 +327,6 @@ function configureGraphics(){
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
 	elif [[ "${videoMod}" =~ amdgpu ]]; then
-		radvVA
 		_info "Adding libva-mesa-driver as a dependency"
 		if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
 			_info
@@ -283,12 +341,7 @@ function applyEnv(){
 	install -Dm644 "${srcdir}/moeOS.config/usr/share/moeOS-Docs/Environments.d/$@.conf" "${pkgdir}/etc/environment.d/$@.conf"
 }
 
-function radvVA(){
-	_info "Enabling vulkan video decode..."
-	applyEnv amdVulkanDecode
-}
-
-function fixPermission(){
+function fixPermission() {
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta/env.conf"
 	chmod 755 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
@@ -297,7 +350,16 @@ function fixPermission(){
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
 }
 
-function configureNvidia(){
+function configureNvidiaOnly() {
+	echo "[Info] NVIDIA only mode enabled"
+	depends+=("nvidia-vaapi-driver")
+	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
+	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
+	applyEnv moeOS-nvidiaOnly
+	return 0
+}
+
+function configureNvidia() {
 	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
 		depends+=("nvidia-libgl" "NVIDIA-MODULE")
 		optdepends+=("lib32-nvidia-libgl")
@@ -308,9 +370,12 @@ function configureNvidia(){
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
 			"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
-		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
-			_info "Your flatpak installation has been configured to not install any Nvidia runtime"
-			_info "If you need to run an app on discreate graphics card, install it natively and prepend prime-run when launching"
+		if [[ "${moeDiscreteOnly}" = 1 ]]; then
+			configureNvidiaOnly
+		elif [[ ! "${videoMod}" =~ i915 ]] && [[ ! "${videoMod}" =~ amdgpu ]] && [[ ! "${videoMod}" =~ xe ]]; then
+			configureNvidiaOnly
+		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
+			_info "If you need to run an app on discreate graphics card, consult README"
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 				applyEnv moeOS-nvidiaOffload-intel
 			elif [[ "${videoMod}" =~ amdgpu ]]; then
