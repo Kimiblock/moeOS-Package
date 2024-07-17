@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r948.388626b
+pkgver=r952.e749899
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -359,6 +359,7 @@ function configureNvidiaOnly() {
 	install -Dm644 \
 		"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-only.conf" \
 		"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-only.conf"
+	echo 'GST_PLUGIN_FEATURE_RANK=nvh264dec:512,nvav1dec:512,nvh265dec:512,nvvp8dec:512,nvvp9dec:512,nvmpegvideodec:512,nvmpeg4videodec:512,nvmpeg2videodec:512,nvjpegdec:512,nvh265enc:512,nvh264enc:512' >"${pkgdir}/etc/environment.d/moeOS-GStreamer.conf"
 	return 0
 }
 
