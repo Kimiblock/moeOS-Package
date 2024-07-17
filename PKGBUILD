@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r945.dfe234a
+pkgver=r948.388626b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -356,6 +356,9 @@ function configureNvidiaOnly() {
 	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
 	applyEnv moeOS-nvidiaOnly
+	install -Dm644 \
+		"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-only.conf" \
+		"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-only.conf"
 	return 0
 }
 
@@ -367,15 +370,16 @@ function configureNvidia() {
 		install -Dm644 \
 			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
 			"${pkgdir}/usr/lib/udev/rules.d/80-moe-nvidia-pm.rules"
-		install -Dm644 \
-			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
-			"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
 		if [[ "${moeDiscreteOnly}" = 1 ]]; then
 			configureNvidiaOnly
 		elif [[ ! "${videoMod}" =~ i915 ]] && [[ ! "${videoMod}" =~ amdgpu ]] && [[ ! "${videoMod}" =~ xe ]]; then
 			configureNvidiaOnly
 		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
+			install -Dm644 \
+				"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
+				"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
+			conflicts+=("nvidia-vaapi-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 				applyEnv moeOS-nvidiaOffload-intel
 			elif [[ "${videoMod}" =~ amdgpu ]]; then
