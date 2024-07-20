@@ -177,6 +177,7 @@ function package_moe-desktop-meta(){
 		"kcolorchooser"
 		"kdiskmark"
 		# KDE Deps
+		"arianna"
 		"kamoso"
 		"flatpak-kcm"
 		"sddm"

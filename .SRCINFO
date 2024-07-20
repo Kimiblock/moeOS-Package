@@ -145,6 +145,7 @@ pkgname = moe-desktop-meta
 	depends = print-manager
 	depends = kcolorchooser
 	depends = kdiskmark
+	depends = arianna
 	depends = kamoso
 	depends = flatpak-kcm
 	depends = sddm
