@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r965.594fd7e
+pkgver=r974.3a86c70
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -370,21 +370,16 @@ function configureNvidia() {
 		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git")
 		depends+=("vulkan-nouveau")
 		echo "[Warn] Enable kernel parameter nouveau.config=NvGspRm=1!"
-		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
+		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]] || [[ ${moeNouveau} =~ amd ]]; then
 			_info "If you need to run an app on discreate graphics card, use nouveau-prime"
-			install -Dm644 \
-				"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
-				"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
 			conflicts+=("nvidia-vaapi-driver")
-			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
+			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]]; then
 				applyEnv moeOS-nouveauOffload-intel
-			elif [[ "${videoMod}" =~ amdgpu ]]; then
+			elif [[ "${videoMod}" =~ amdgpu ]] || [[ ${moeNouveau} =~ amd ]]; then
 				applyEnv moeOS-nouveauOffload-amd
 			fi
 		fi
-		return 0
-	fi
-	if [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
+	elif [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
 		depends+=("nvidia-libgl" "NVIDIA-MODULE")
 		optdepends+=("lib32-nvidia-libgl")
 		_info "Fixing RTD3 power management"
@@ -397,9 +392,6 @@ function configureNvidia() {
 			configureNvidiaOnly
 		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
-			install -Dm644 \
-				"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-pm.conf" \
-				"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-pm.conf"
 			conflicts+=("nvidia-vaapi-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 				applyEnv moeOS-nvidiaOffload-intel
