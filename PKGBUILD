@@ -356,6 +356,7 @@ function configureNvidiaOnly() {
 	depends+=("nvidia-vaapi-driver")
 	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
+	sed -i "s|NVreg_DynamicPowerManagement=0x02|NVreg_DynamicPowerManagement=0x00|g" "${pkgdir}/usr/lib/modprobe.d/moeOS-NVIDIA-DRM.conf"
 	applyEnv moeOS-nvidiaOnly
 	install -Dm644 \
 		"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-only.conf" \
