@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r974.3a86c70
+pkgver=r981.e2cee11
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -117,11 +117,7 @@ function package_moe-input-method(){
 		"fcitx5-pinyin-moegirl-rime"
 		"rime-moe-pinyin"
 		"rime-pinyin-zhwiki"
-		"fcitx5-gtk"
-		"fcitx5"
-		"fcitx5-configtool"
-		"fcitx5-qt"
-		"fcitx5-rime"
+		"ibus-rime"
 	)
 	conflicts=(
 		"moe-input-meta"
@@ -151,26 +147,118 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
-	#conflicts+=("gnome-settings-daemon-xwayland-scaling" "mutter-xwayland-scaling")
-# 	depends+=(
-# 		"kvantum"
-# 		"decibels"
-# 		"qgnomeplatform-qt6-git"
-# 		"qgnomeplatform-qt5-git"
-# 		"fractal"
-# 		"foliate"
-# 		"gnome-shell"
-# 		"mutter"
-# 		"clapper"
-# 		"gnome-shell-extension-appindicator"
-# 		"xdg-desktop-portal-gnome"
-# 		"firefox-gnome-theme"
-# 		"papers"
-# 	)
-# 	applyEnv moeOS-GNOME
-# 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
-# 	conflicts+=("totem")
-		depends+=(
+	if [ ${XDG_CURRENT_DESKTOP} = "KDE" ] || [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]]; then
+		if [[ ${moePreferDE} = GNOME ]]; then
+			gnomeMeta
+		else
+			plasmaMeta
+		fi
+	else
+		gnomeMeta
+	fi
+	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
+		"${pkgdir}/usr/share/applications/awebpfier.desktop"
+	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
+		"${pkgdir}/usr/share/icons/hicolor/scalable/apps/webpfier.svg"
+	install -Dm755 "${srcdir}/webpfier/webpfier" \
+		"${pkgdir}/usr/bin/webpfier"
+}
+
+function gnomeMeta() {
+	applyEnv moeOS-GNOME
+	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
+	depends+=(
+		"kvantum"
+		"decibels"
+		"qadwaitadecorations-qt5"
+		"qadwaitadecorations-qt6"
+		"fractal"
+		"foliate"
+		"gnome-shell"
+		"mutter-performance"
+		"clapper"
+		"gnome-shell-extension-appindicator"
+		"xdg-desktop-portal-gnome"
+		"firefox-gnome-theme"
+		"papers"
+		# GNOME pkg group
+		"epiphany"
+		"baobab"
+		"evince"
+		"gdm"
+		"gnome-backgrounds"
+		"gnome-calculator"
+		"gnome-calendar"
+		"gnome-characters"
+		"gnome-clocks"
+		"gnome-color-manager"
+		"gnome-connections"
+		"gnome-console"
+		"gnome-contacts"
+		"gnome-control-center"
+		"gnome-disk-utility"
+		"gnome-font-viewer"
+		"gnome-keyring"
+		"gnome-logs"
+		"gnome-maps"
+		"gnome-menus"
+		"gnome-remote-desktop"
+		"gnome-session"
+		"gnome-settings-daemon"
+		"gnome-shell"
+		"gnome-shell-extensions"
+		"gnome-software"
+		"gnome-system-monitor"
+		"gnome-text-editor"
+		"gnome-tour"
+		"gnome-user-docs"
+		"gnome-weather"
+		"grilo-plugins"
+		"gvfs"
+		"gvfs-afc"
+		"gvfs-dnssd"
+		"gvfs-goa"
+		"gvfs-google"
+		"gvfs-gphoto2"
+		"gvfs-mtp"
+		"gvfs-nfs"
+		"gvfs-onedrive"
+		"gvfs-smb"
+		"gvfs-wsdd"
+		"loupe"
+		"nautilus"
+		"rygel"
+		"simple-scan"
+		"snapshot"
+		"tecla"
+		"tracker3-miners"
+		"xdg-user-dirs-gtk"
+	)
+	conflicts+=(
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
+	)
+}
+
+function plasmaMeta() {
+	mkdir -p "${pkgdir}/etc/environment.d"
+	echo "moePreferDE=KDE" \
+		>"${pkgdir}/etc/environment.d/moeOS-DE.conf"
+	install \
+		-Dm644 \
+		"${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list \
+		"${pkgdir}/usr/share/applications/mimeapps.list"
+	applyEnv moeOS-KDE
+	depends+=(
+		# IME
+		"fcitx5-gtk"
+		"fcitx5"
+		"fcitx5-configtool"
+		"fcitx5-qt"
+		"fcitx5-rime"
 		# KDE Printing
 		"system-config-printer"
 		"print-manager"
@@ -227,16 +315,6 @@ function package_moe-desktop-meta(){
 		"tokodon"
 		"alligator"
 	)
-	#conflicts+=("gnome-keyring")
-	applyEnv moeOS-KDE
-	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list "${pkgdir}/usr/share/applications/mimeapps.list"
-	echo "moePreferDE=KDE" >"${pkgdir}/etc/environment.d/moeOS-DE.conf"
-	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
-		"${pkgdir}/usr/share/applications/awebpfier.desktop"
-	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
-		"${pkgdir}/usr/share/icons/hicolor/scalable/apps/webpfier.svg"
-	install -Dm755 "${srcdir}/webpfier/webpfier" \
-		"${pkgdir}/usr/bin/webpfier"
 }
 
 function package_moeOS-git(){
@@ -356,7 +434,7 @@ function configureNvidiaOnly() {
 	depends+=("nvidia-vaapi-driver")
 	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
-	sed -i "s|NVreg_DynamicPowerManagement=0x02|NVreg_DynamicPowerManagement=0x00|g" "${pkgdir}/usr/lib/modprobe.d/moeOS-NVIDIA-DRM.conf"
+	#sed -i "s|NVreg_DynamicPowerManagement=0x02|NVreg_DynamicPowerManagement=0x00|g" "${pkgdir}/usr/lib/modprobe.d/moeOS-NVIDIA-DRM.conf"
 	applyEnv moeOS-nvidiaOnly
 	install -Dm644 \
 		"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-only.conf" \
