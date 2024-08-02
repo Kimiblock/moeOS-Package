@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r981.e2cee11
+pkgver=r982.8bcbabb
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -233,6 +233,9 @@ function gnomeMeta() {
 		"tecla"
 		"tracker3-miners"
 		"xdg-user-dirs-gtk"
+		"fragments"
+		"gnome-builder"
+		"newsflash"
 	)
 	conflicts+=(
 		"fcitx5-gtk"
