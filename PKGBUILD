@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r982.8bcbabb
+pkgver=r994.6939b08
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -449,7 +449,7 @@ function configureNvidiaOnly() {
 function configureNvidia() {
 	if [ ${moeNouveau} ]; then
 		echo "[Info] Nouveau enabled"
-		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git")
+		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git" "egl-wayland")
 		depends+=("vulkan-nouveau")
 		echo "[Warn] Enable kernel parameter nouveau.config=NvGspRm=1!"
 		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]] || [[ ${moeNouveau} =~ amd ]]; then
