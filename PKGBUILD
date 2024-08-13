@@ -213,6 +213,7 @@ function gnomeMeta() {
 		"gnome-tour"
 		"gnome-user-docs"
 		"gnome-weather"
+		"gnome-power-manager"
 		"grilo-plugins"
 		"gvfs"
 		"gvfs-afc"
