@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r994.6939b08
+	pkgver = r999.eda497b
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -88,6 +88,7 @@ pkgname = moe-multimedia-meta
 	depends = pipewire-jack
 	depends = pipewire-pulse
 	depends = pipewire-v4l2
+	depends = pipewire-libcamera
 	depends = wireplumber
 	depends = easyeffects
 	depends = mpv-git
