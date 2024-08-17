@@ -330,6 +330,7 @@ function package_moeOS-git(){
 		"btrfs-progs"
 		"hfsprogs"
 		"nss-mdns"
+		"dnsmasq"
 		"avahi"
 		"systemd-resolvconf"
 		"rebuild-detector"
