@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r999.eda497b
+pkgver=r1005.4189f11
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -171,6 +171,7 @@ function gnomeMeta() {
 	depends+=(
 		"kvantum"
 		"decibels"
+		"gapless"
 		"qadwaitadecorations-qt5"
 		"qadwaitadecorations-qt6"
 		"fractal"
