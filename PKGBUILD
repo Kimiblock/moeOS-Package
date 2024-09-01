@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1017.63e9db3
+pkgver=r1022.9077026
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -396,6 +396,7 @@ function package_moeOS-git(){
 function copyFiles(){
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
+	cp -r "${srcdir}"/moeOS.config/var "${pkgdir}"
 }
 
 function createDir(){
