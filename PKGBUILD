@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1052.780bb99
+pkgver=r1054.e634aaa
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -327,7 +327,8 @@ function plasmaMeta() {
 
 function package_moeOS-git(){
 	backup=(
-	"etc/moeOS-clash-meta/env.conf' 'etc/moeOS-clash-meta/merge.yaml"
+	'etc/moeOS-clash-meta/env.conf'
+	'etc/moeOS-clash-meta/merge.yaml'
 	"etc/default/seconnect"
 	)
 	depends=(
