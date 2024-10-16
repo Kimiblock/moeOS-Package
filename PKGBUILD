@@ -87,6 +87,7 @@ function package_moe-multimedia-meta(){
 		'sof-firmware'
 		'gst-plugin-va'
 		'yt-dlp'
+		'python-mutagen'
 		'yt-dlp-youtube-oauth2'
 		"wl-clipboard"
 	)
