@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1093.f956094
+pkgver=r1110.b48b655
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -150,7 +150,7 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 	)
-	if [ ${XDG_CURRENT_DESKTOP} = "KDE" ] || [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
+	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
 			gnomeMeta
 		else
