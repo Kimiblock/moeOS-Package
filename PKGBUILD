@@ -454,11 +454,7 @@ function configureNvidiaOnly() {
 	depends+=("nvidia-vaapi-driver")
 	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
-	#sed -i "s|NVreg_DynamicPowerManagement=0x02|NVreg_DynamicPowerManagement=0x00|g" "${pkgdir}/usr/lib/modprobe.d/moeOS-NVIDIA-DRM.conf"
 	applyEnv moeOS-nvidiaOnly
-	install -Dm644 \
-		"${srcdir}/moeOS.config/usr/share/moeOS-Docs/modprobe.d/moeOS-nvidia-only.conf" \
-		"${pkgdir}/usr/lib/modprobe.d/moeOS-nvidia-only.conf"
 	echo 'GST_PLUGIN_FEATURE_RANK=nvh264dec:512,nvav1dec:512,nvh265dec:512,nvvp8dec:512,nvvp9dec:512,nvmpegvideodec:512,nvmpeg4videodec:512,nvmpeg2videodec:512,nvjpegdec:512,nvh265enc:512,nvh264enc:512' >"${pkgdir}/etc/environment.d/moeOS-GStreamer.conf"
 	return 0
 }
