@@ -344,8 +344,6 @@ function package_moeOS-git(){
 		"avahi"
 		"systemd-resolvconf"
 		"rebuild-detector"
-		"dhclient"
-		"thermald"
 		"pacman-contrib"
 		"msr-tools"
 		"nano"
