@@ -174,6 +174,9 @@ function gnomeMeta() {
 	applyEnv moeOS-GNOME
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
+		# GSConnect
+		"python-nautilus"
+		"gnome-shell-extension-gsconnect"
 		"gnome-sound-recorder"
 		"kvantum"
 		"geary"
