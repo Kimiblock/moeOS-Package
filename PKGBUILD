@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1130.df85ae6
+pkgver=r1158.a937165
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -142,7 +142,6 @@ function package_moe-desktop-meta(){
 		"adw-gtk-theme"
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
-		"vk-hdr-layer-kwin6-git"
 		"iio-sensor-proxy"
 		"firefox"
 		"snotify"
@@ -268,6 +267,7 @@ function plasmaMeta() {
 		"${pkgdir}/usr/share/applications/mimeapps.list"
 	applyEnv moeOS-KDE
 	depends+=(
+		"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
 		"fcitx5"
