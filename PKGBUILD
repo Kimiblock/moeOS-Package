@@ -150,6 +150,7 @@ function package_moe-desktop-meta(){
 		"orca"
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
+		"7-zip-full" # Conflits p7zip
 	)
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
