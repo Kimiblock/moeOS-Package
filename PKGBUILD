@@ -88,7 +88,6 @@ function package_moe-multimedia-meta(){
 		'gst-plugin-va'
 		'yt-dlp'
 		'python-mutagen'
-		'yt-dlp-youtube-oauth2'
 		"wl-clipboard"
 	)
 	optdepends+=("lib32-pipewire")
