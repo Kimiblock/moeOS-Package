@@ -80,7 +80,7 @@ function package_moe-multimedia-meta(){
 		"pipewire-libcamera"
 		'wireplumber'
 		'easyeffects'
-		'mpv-git'
+		'mpv'
 		"mpv-mpris"
 		'mediainfo'
 		'rtaudio'
