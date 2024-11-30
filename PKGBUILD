@@ -344,6 +344,7 @@ function package_moeOS-git(){
 	)
 	depends=(
 		"scx-scheds"
+		"lld"
 		"systemd-ukify"
 		"btrfs-progs"
 		"hfsprogs"
