@@ -343,7 +343,7 @@ function package_moeOS-git(){
 	"etc/default/seconnect"
 	)
 	depends=(
-		"bcachefs-tools"
+		"scx-scheds"
 		"systemd-ukify"
 		"btrfs-progs"
 		"hfsprogs"
