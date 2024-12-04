@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1170.bd854b1
+pkgver=r1175.58b57c0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -160,9 +160,6 @@ function package_moe-desktop-meta(){
 	else
 		gnomeMeta
 	fi
-	if [ "${ENABLE_HDR_WSI}" = 1 ]; then
-		echo 'ENABLE_HDR_WSI=1' >>"${pkgdir}/etc/environment.d/moeOS-HDR.conf"
-	fi
 	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
 		"${pkgdir}/usr/share/applications/awebpfier.desktop"
 	install -Dm644 "${srcdir}/webpfier/webpfier.svg" \
@@ -271,7 +268,6 @@ function plasmaMeta() {
 		"${pkgdir}/usr/share/applications/mimeapps.list"
 	applyEnv moeOS-KDE
 	depends+=(
-		"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
 		"fcitx5"
