@@ -189,7 +189,7 @@ function gnomeMeta() {
 		"fractal"
 		"foliate"
 		"gnome-shell"
-		"mutter"
+		"mutter-performance"
 		"clapper"
 		"gnome-shell-extension-appindicator"
 		"xdg-desktop-portal-gnome"
