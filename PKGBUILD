@@ -130,7 +130,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"portable"
-		"cgproxy"
+		"cgtproxy"
 		"usbguard"
 		"highlight"
 		"clash-geoip"
