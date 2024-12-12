@@ -192,7 +192,7 @@ function gnomeMeta() {
 		"fractal"
 		"foliate"
 		"gnome-shell"
-		"mutter-performance"
+		"mutter"
 		"clapper"
 		"gnome-shell-extension-appindicator"
 		"xdg-desktop-portal-gnome"
@@ -261,6 +261,7 @@ function gnomeMeta() {
 		"fcitx5-configtool"
 		"fcitx5-qt"
 		"fcitx5-rime"
+		"mutter-performance"
 	)
 }
 
