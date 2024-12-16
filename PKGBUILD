@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1209.da83361
+pkgver=r1216.d8204d0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -116,7 +116,7 @@ function package_moe-input-method(){
 	replaces=("moe-input-meta")
 	depends=(
 		"librime-data"
-		"fcitx5-pinyin-moegirl-rime"
+		"rime-pinyin-moegirl"
 		"rime-moe-pinyin"
 		"rime-pinyin-zhwiki"
 		"ibus-rime"
