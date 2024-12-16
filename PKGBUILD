@@ -176,6 +176,7 @@ function gnomeMeta() {
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
 		"qt6ct"
+		"switcheroo"
 		"eartag"
 		"metadata-cleaner"
 		"obfuscate"
