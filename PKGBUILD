@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1225.9d76558
+pkgver=r1244.b683f95
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -264,6 +264,7 @@ function gnomeMeta() {
 		"fcitx5-qt"
 		"fcitx5-rime"
 		"mutter-performance"
+		"kdeconnect"
 	)
 }
 
@@ -277,6 +278,7 @@ function plasmaMeta() {
 		"${pkgdir}/usr/share/applications/mimeapps.list"
 	applyEnv moeOS-KDE
 	depends+=(
+		"kdeconnect"
 		"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
