@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1244.b683f95
+pkgver=r1245.ccd33a2
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -151,6 +151,7 @@ function package_moe-desktop-meta(){
 		"espeak-ng"
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 		"7zip" # Conflits p7zip
+		"zju-connect-bin"
 	)
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
