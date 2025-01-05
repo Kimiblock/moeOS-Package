@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1245.ccd33a2
+pkgver=r1248.8d0e9e8
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -280,6 +280,7 @@ function plasmaMeta() {
 	applyEnv moeOS-KDE
 	depends+=(
 		"kaddressbook"
+		"korganizer"
 		"zanshin"
 		"kdeconnect"
 		"vk-hdr-layer-kwin6-git"
