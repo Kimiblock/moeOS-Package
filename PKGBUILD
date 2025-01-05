@@ -278,6 +278,8 @@ function plasmaMeta() {
 		"${pkgdir}/usr/share/applications/mimeapps.list"
 	applyEnv moeOS-KDE
 	depends+=(
+		"kaddressbook"
+		"zanshin"
 		"kdeconnect"
 		"vk-hdr-layer-kwin6-git"
 		# IME
