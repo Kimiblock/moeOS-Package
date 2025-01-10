@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1254.e7a3cf6
+pkgver=r1261.dc1f59d
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -131,7 +131,7 @@ function package_moe-desktop-meta(){
 	depends+=(
 		"portable"
 		"steam-devices-git"
-		"cgtproxy"
+		"cgproxy"
 		"usbguard"
 		"highlight"
 		"clash-geoip"
