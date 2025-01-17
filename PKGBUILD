@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1261.dc1f59d
+pkgver=r1277.3d2617e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -130,6 +130,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"portable"
+		"drm_info"
 		"steam-devices-git"
 		"cgproxy"
 		"usbguard"
@@ -152,6 +153,7 @@ function package_moe-desktop-meta(){
 		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
 		"7zip" # Conflits p7zip
 		"zju-connect-bin"
+		"openrgb"
 	)
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
@@ -177,6 +179,7 @@ function gnomeMeta() {
 	applyEnv moeOS-GNOME
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
+		"resources"
 		"qt6ct"
 		"switcheroo"
 		"eartag"
