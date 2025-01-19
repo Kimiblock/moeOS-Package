@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1277.3d2617e
+pkgver=r1287.588f5a8
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -129,6 +129,7 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends+=(
+		"geoclue"
 		"portable"
 		"drm_info"
 		"steam-devices-git"
@@ -522,13 +523,14 @@ function configureNvidia() {
 }
 
 function _info() {
-	if [ -f /usr/bin/pamac ]; then
-		echo "  ==> [Info]: $@"
-	else
-		all_off="$(tput sgr0)"
-		bold="${all_off}$(tput bold)"
-		blue="${bold}$(tput setaf 4)"
-		yellow="${bold}$(tput setaf 3)"
-		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
-	fi
+#	if [ -f /usr/bin/pamac ]; then
+#		echo "  ==> [Info]: $@"
+#	else
+#		all_off="$(tput sgr0)"
+#		bold="${all_off}$(tput bold)"
+#		blue="${bold}$(tput setaf 4)"
+#		yellow="${bold}$(tput setaf 3)"
+#		printf "${blue}==>${yellow} [Info]:${bold} $1${all_off}\n"
+#	fi
+	echo "[Info] $@"
 }
