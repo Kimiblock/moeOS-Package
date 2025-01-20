@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1287.588f5a8
+pkgver=r1288.beca428
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -509,7 +509,7 @@ function configureNvidia() {
 			"${pkgdir}/usr/lib/udev/rules.d/80-moe-nvidia-pm.rules"
 		if [[ "${moeDiscreteOnly}" = 1 ]]; then
 			configureNvidiaOnly
-		elif [[ ! "${videoMod}" =~ i915 ]] && [[ ! "${videoMod}" =~ amdgpu ]] && [[ ! "${videoMod}" =~ xe ]]; then
+		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]]; then
 			configureNvidiaOnly
 		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
