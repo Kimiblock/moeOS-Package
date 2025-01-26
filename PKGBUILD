@@ -131,6 +131,7 @@ function package_moe-desktop-meta(){
 	depends+=(
 		"geoclue"
 		"xpadneo-dkms"
+		"xpad-noone"
 		"xone-dongle-firmware"
 		"xone-dlundqvist-dkms-git"
 		"portable"

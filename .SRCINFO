@@ -125,6 +125,7 @@ pkgname = moe-input-method
 pkgname = moe-desktop-meta
 	depends = geoclue
 	depends = xpadneo-dkms
+	depends = xpad-noone
 	depends = xone-dongle-firmware
 	depends = xone-dlundqvist-dkms-git
 	depends = portable
