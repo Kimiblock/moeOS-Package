@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1288.beca428
+pkgver=r1295.9090f06
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -130,6 +130,9 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"geoclue"
+		"xpadneo-dkms"
+		"xone-dongle-firmware"
+		"xone-dlundqvist-dkms-git"
 		"portable"
 		"drm_info"
 		"steam-devices-git"
