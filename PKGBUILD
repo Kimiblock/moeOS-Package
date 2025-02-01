@@ -222,7 +222,7 @@ function gnomeMeta() {
 		"gnome-clocks"
 		"gnome-color-manager"
 		"gnome-connections"
-		"gnome-console"
+		"ptyxis"
 		"gnome-contacts"
 		"gnome-control-center"
 		"gnome-disk-utility"
@@ -275,6 +275,7 @@ function gnomeMeta() {
 		"fcitx5-rime"
 		"mutter-performance"
 		"kdeconnect"
+		"gnome-console"
 	)
 }
 
