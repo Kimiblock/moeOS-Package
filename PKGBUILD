@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1303.01fb305
+pkgver=r1305.5cc5d30
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -195,6 +195,7 @@ function gnomeMeta() {
 		"nautilus-python"
 		"gnome-shell-extension-gsconnect"
 		"gnome-sound-recorder"
+		"file-roller"
 		"kvantum"
 		"geary"
 		"decibels"
