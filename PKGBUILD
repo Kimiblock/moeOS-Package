@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1295.9090f06
+pkgver=r1303.01fb305
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -275,7 +275,7 @@ function gnomeMeta() {
 		"fcitx5-rime"
 		"mutter-performance"
 		"kdeconnect"
-		"gnome-console"
+		"gnome-terminal"
 	)
 }
 
