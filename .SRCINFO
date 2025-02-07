@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1295.9090f06
+	pkgver = r1306.298fe02
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -111,6 +111,18 @@ pkgname = moe-fonts-meta
 	depends = ttf-twemoji
 	depends = inter-font
 	depends = ttf-roboto-mono
+	provides = drkonqi
+	provides = adwaita-fonts
+	provides = cantarell-fonts
+	provides = adobe-source-code-pro-fonts
+	conflicts = snapd
+	conflicts = optimus-manager
+	conflicts = optimus-manager-qt
+	conflicts = optimus-manager-qt-kde
+	conflicts = gnome-shell-performance
+	conflicts = adwaita-fonts
+	conflicts = cantarell-fonts
+	conflicts = adobe-source-code-pro-fonts
 
 pkgname = moe-input-method
 	depends = librime-data
