@@ -220,7 +220,7 @@ function gnomeMeta() {
 		"showtime"
 		"gnome-shell-extension-appindicator"
 		"xdg-desktop-portal-gnome"
-		"firefox-gnome-theme"
+		"firefox-gnome-theme-git"
 		"papers"
 		# GNOME pkg group
 		"epiphany"
