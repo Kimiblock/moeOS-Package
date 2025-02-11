@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1308.fa7d0d3
+pkgver=r1315.6f0f303
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -139,11 +139,12 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends+=(
+		"vk-hdr-layer-kwin6-git"
 		"geoclue"
 		"xpadneo-dkms"
 		"xpad-noone"
-		"xone-dongle-firmware"
-		"xone-dlundqvist-dkms-git"
+		#"xone-dongle-firmware"
+		#"xone-dlundqvist-dkms-git"
 		"portable"
 		"drm_info"
 		"steam-devices-git"
@@ -178,9 +179,6 @@ function package_moe-desktop-meta(){
 		fi
 	else
 		gnomeMeta
-	fi
-	if [ "${ENABLE_HDR_WSI}" = 1 ]; then
-		echo 'ENABLE_HDR_WSI=1' >>"${pkgdir}/etc/environment.d/moeOS-HDR.conf"
 	fi
 	install -Dm644 "${srcdir}/webpfier/awebpfier.desktop" \
 		"${pkgdir}/usr/share/applications/awebpfier.desktop"
@@ -300,6 +298,12 @@ function plasmaMeta() {
 		"${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-KDE.list \
 		"${pkgdir}/usr/share/applications/mimeapps.list"
 	applyEnv moeOS-KDE
+	conflicts+=(
+		gnome-shell
+		gnome-keyring
+		nautilus
+		gnome-console
+	)
 	depends+=(
 		"kaddressbook"
 		"korganizer"
