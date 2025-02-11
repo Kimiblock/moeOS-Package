@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1315.6f0f303
+pkgver=r1319.5a20c51
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -381,7 +381,6 @@ function package_moeOS-git(){
 	"etc/default/seconnect"
 	)
 	depends=(
-		"scx-scheds"
 		"lld"
 		"systemd-ukify"
 		"btrfs-progs"
