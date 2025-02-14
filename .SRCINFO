@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1326.90bc26c
+	pkgver = r1306.298fe02
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -17,11 +17,13 @@ pkgbase = moeOS-git
 	conflicts = gnome-shell-performance
 	source = git+https://github.com/LinuxStandardBase/lsb-samples.git
 	source = git+https://github.com/Kimiblock/moeOS.config.git
+	source = git+https://github.com/Kimiblock/webpfier.git
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = moeOS-git
+	depends = scx-scheds
 	depends = lld
 	depends = systemd-ukify
 	depends = btrfs-progs
@@ -133,10 +135,11 @@ pkgname = moe-input-method
 	replaces = moe-input-meta
 
 pkgname = moe-desktop-meta
-	depends = vk-hdr-layer-kwin6-git
 	depends = geoclue
 	depends = xpadneo-dkms
 	depends = xpad-noone
+	depends = xone-dongle-firmware
+	depends = xone-dlundqvist-dkms-git
 	depends = portable
 	depends = drm_info
 	depends = steam-devices-git
