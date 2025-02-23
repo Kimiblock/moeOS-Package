@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1306.298fe02
+	pkgver = r1338.cb1adaa
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -23,7 +23,6 @@ pkgbase = moeOS-git
 	sha256sums = SKIP
 
 pkgname = moeOS-git
-	depends = scx-scheds
 	depends = lld
 	depends = systemd-ukify
 	depends = btrfs-progs
@@ -135,11 +134,10 @@ pkgname = moe-input-method
 	replaces = moe-input-meta
 
 pkgname = moe-desktop-meta
+	depends = vk-hdr-layer-kwin6-git
 	depends = geoclue
 	depends = xpadneo-dkms
 	depends = xpad-noone
-	depends = xone-dongle-firmware
-	depends = xone-dlundqvist-dkms-git
 	depends = portable
 	depends = drm_info
 	depends = steam-devices-git

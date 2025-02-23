@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1319.5a20c51
+pkgver=r1338.cb1adaa
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -221,7 +221,6 @@ function gnomeMeta() {
 		"firefox-gnome-theme-git"
 		"papers"
 		# GNOME pkg group
-		"epiphany"
 		"baobab"
 		"evince"
 		"gdm"
@@ -286,6 +285,7 @@ function gnomeMeta() {
 		"mutter-performance"
 		"kdeconnect"
 		"gnome-terminal"
+		"epiphany"
 	)
 }
 
