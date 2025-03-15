@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1354.303d1a0
+pkgver=r1356.178980e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -309,7 +309,7 @@ function plasmaMeta() {
 		"korganizer"
 		"zanshin"
 		"kdeconnect"
-		"vk-hdr-layer-kwin6-git"
+		#"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
 		"fcitx5"
