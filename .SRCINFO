@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1338.cb1adaa
+	pkgver = r1354.303d1a0
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -134,7 +134,6 @@ pkgname = moe-input-method
 	replaces = moe-input-meta
 
 pkgname = moe-desktop-meta
-	depends = vk-hdr-layer-kwin6-git
 	depends = geoclue
 	depends = xpadneo-dkms
 	depends = xpad-noone
@@ -163,3 +162,9 @@ pkgname = moe-desktop-meta
 	depends = 7zip
 	depends = zju-connect-bin
 	depends = openrgb
+	conflicts = snapd
+	conflicts = optimus-manager
+	conflicts = optimus-manager-qt
+	conflicts = optimus-manager-qt-kde
+	conflicts = gnome-shell-performance
+	conflicts = vk-hdr-layer-kwin6-git
