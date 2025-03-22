@@ -310,7 +310,7 @@ function plasmaMeta() {
 		"korganizer"
 		"zanshin"
 		"kdeconnect"
-		"vk-hdr-layer-kwin6-git"
+		#"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
 		"fcitx5"
