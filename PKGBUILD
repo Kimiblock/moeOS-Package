@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1376.3f373a4
+pkgver=r1389.ceb9fc0
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -232,7 +232,7 @@ function gnomeMeta() {
 		"gnome-clocks"
 		"gnome-color-manager"
 		"gnome-connections"
-		"ptyxis"
+		"gnome-console"
 		"gnome-contacts"
 		"gnome-control-center"
 		"gnome-disk-utility"
