@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1389.ceb9fc0
+pkgver=r1390.86945db
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -171,7 +171,7 @@ function package_moe-desktop-meta(){
 		"zju-connect-bin"
 		"openrgb"
 	)
-	conflicts+=("vk-hdr-layer-kwin6-git")
+	#conflicts+=("vk-hdr-layer-kwin6-git")
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
 			gnomeMeta
@@ -310,7 +310,7 @@ function plasmaMeta() {
 		"korganizer"
 		"zanshin"
 		"kdeconnect"
-		#"vk-hdr-layer-kwin6-git"
+		"vk-hdr-layer-kwin6-git"
 		# IME
 		"fcitx5-gtk"
 		"fcitx5"
