@@ -307,6 +307,7 @@ function plasmaMeta() {
 		gnome-console
 	)
 	depends+=(
+		"merkuro"
 		"kaddressbook"
 		"korganizer"
 		"zanshin"
