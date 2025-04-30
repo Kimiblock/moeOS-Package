@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1412.51790b4
+pkgver=r1417.47994b6
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -385,6 +385,8 @@ function package_moeOS-git(){
 	)
 	depends=(
 		"lld"
+		"tuned"
+		"tuned-ppd"
 		"systemd-ukify"
 		"btrfs-progs"
 		"hfsprogs"
@@ -471,13 +473,9 @@ function configureGraphics(){
 	videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
 	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
-		depends+=("power-profiles-daemon" "intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
+		depends+=("intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
 	elif [[ "${videoMod}" =~ amdgpu ]]; then
 		_info "Adding libva-mesa-driver as a dependency"
-		if [[ $(cpupower frequency-info | grep driver) =~ epp ]]; then
-			_info
-			depends+=("power-profiles-daemon")
-		fi
 		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
 	fi
 	configureNvidia
