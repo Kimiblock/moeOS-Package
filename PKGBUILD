@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1417.47994b6
+pkgver=r1419.80470b7
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -382,6 +382,7 @@ function package_moeOS-git(){
 	'etc/moeOS-clash-meta/env.conf'
 	'etc/moeOS-clash-meta/merge.yaml'
 	"etc/default/seconnect"
+	'etc/moeOS-seconnect/config.toml'
 	)
 	depends=(
 		"lld"
@@ -490,6 +491,7 @@ function applyEnv(){
 
 function fixPermission() {
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta/env.conf"
+	chmod -R 700 "${pkgdir}/etc/moeOS-seconnect/config.toml"
 	chmod 755 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
 	chmod -R 755 "${pkgdir}/usr/bin"

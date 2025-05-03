@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1412.51790b4
+	pkgver = r1419.80470b7
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -24,6 +24,11 @@ pkgbase = moeOS-git
 
 pkgname = moeOS-git
 	depends = lld
+	depends = tuned
+	depends = tuned-ppd
+	depends = x86_energy_perf_policy
+	depends = systemtap
+	depends = virt-what
 	depends = systemd-ukify
 	depends = btrfs-progs
 	depends = hfsprogs
@@ -69,6 +74,7 @@ pkgname = moeOS-git
 	backup = etc/moeOS-clash-meta/env.conf
 	backup = etc/moeOS-clash-meta/merge.yaml
 	backup = etc/default/seconnect
+	backup = etc/moeOS-seconnect/config.toml
 
 pkgname = lsb-release-moe
 	pkgdesc = Replacement of the official lsb-release.
