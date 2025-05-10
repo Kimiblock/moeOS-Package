@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1431.1db630c
+pkgver=r1434.38e0392
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -518,7 +518,7 @@ function configureNvidia() {
 		depends+=("vulkan-nouveau")
 		echo "[Warn] Enable kernel parameter nouveau.config=NvGspRm=1!"
 		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]] || [[ ${moeNouveau} =~ amd ]]; then
-			_info "If you need to run an app on discreate graphics card, use nouveau-prime"
+			_info "If you need to run an app on discreate graphics card, use prime-run"
 			conflicts+=("nvidia-vaapi-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]]; then
 				applyEnv moeOS-nouveauOffload-intel
