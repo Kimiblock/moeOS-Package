@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1434.38e0392
+pkgver=r1439.df0d9db
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -308,6 +308,7 @@ function plasmaMeta() {
 	)
 	depends+=(
 		"merkuro"
+		"kdepim-addons"
 		"kaddressbook"
 		"korganizer"
 		"zanshin"
