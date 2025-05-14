@@ -308,6 +308,9 @@ function plasmaMeta() {
 	)
 	depends+=(
 		"merkuro"
+		"akregator"
+		"kalarm"
+		"kontact"
 		"kdepim-addons"
 		"kaddressbook"
 		"korganizer"
