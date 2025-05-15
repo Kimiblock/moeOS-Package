@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1419.80470b7
+	pkgver = r1441.0186236
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -140,6 +140,7 @@ pkgname = moe-input-method
 	replaces = moe-input-meta
 
 pkgname = moe-desktop-meta
+	depends = scx-scheds
 	depends = ppp
 	depends = geoclue
 	depends = xpadneo-dkms
