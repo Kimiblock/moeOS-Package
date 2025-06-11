@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1449.c44aef6
+	pkgver = r1451.6d9ddfb
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
