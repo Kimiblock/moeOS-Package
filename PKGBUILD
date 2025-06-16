@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1451.6d9ddfb
+pkgver=r1453.b94091e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -419,6 +419,12 @@ function package_moeOS-git(){
 		'plymouth'
 		"kernel-modules-hook-bindmount"
 		'linux-firmware'
+		'linux-firmware-bnx2x'
+		'linux-firmware-marvell'
+		'linux-firmware-mellanox'
+		'linux-firmware-nfp'
+		'linux-firmware-qcom'
+		'linux-firmware-qlogic'
 		'base-devel'
 		'paru'
 		'sbctl'
@@ -521,7 +527,7 @@ function configureNvidia() {
 	if [ ${moeNouveau} ]; then
 		echo "[Info] Nouveau enabled"
 		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git")
-		depends+=("vulkan-nouveau")
+		depends+=("vulkan-nouveau" "linux-firmware-nvidia")
 		echo "[Warn] Enable kernel parameter nouveau.config=NvGspRm=1!"
 		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]] || [[ ${moeNouveau} =~ amd ]]; then
 			_info "If you need to run an app on discreate graphics card, use prime-run"
