@@ -423,6 +423,8 @@ function package_moeOS-git(){
 		'linux-firmware-nfp'
 		'linux-firmware-qcom'
 		'linux-firmware-qlogic'
+		'linux-firmware-cirrus'
+		'linux-firmware-liquidio'
 		'base-devel'
 		'paru'
 		'sbctl'
