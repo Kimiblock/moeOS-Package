@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1456.8976e6d
+pkgver=r1465.c3433aa
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -307,6 +307,7 @@ function plasmaMeta() {
 		gnome-console
 	)
 	depends+=(
+		"appmenu-gtk-module"
 		"merkuro"
 		"akregator"
 		"kalarm"
