@@ -1,6 +1,6 @@
 pkgbase = moeOS-git
 	pkgdesc = moeOS Configurations
-	pkgver = r1465.c3433aa
+	pkgver = r1468.1fefb8f
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/Kimiblock/moeOS.config
@@ -48,6 +48,9 @@ pkgname = moeOS-git
 	depends = bat
 	depends = glxinfo
 	depends = networkmanager
+	depends = modemmanager
+	depends = dhcpcd
+	depends = usb_modeswitch
 	depends = plymouth
 	depends = kernel-modules-hook-bindmount
 	depends = linux-firmware

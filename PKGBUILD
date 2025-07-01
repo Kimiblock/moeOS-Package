@@ -416,6 +416,7 @@ function package_moeOS-git(){
 		'glxinfo'
 		'networkmanager'
 		'modemmanager'
+		'dhcpcd'
 		'usb_modeswitch'
 		'plymouth'
 		"kernel-modules-hook-bindmount"
