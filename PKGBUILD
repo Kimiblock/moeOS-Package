@@ -495,6 +495,7 @@ function configureGraphics(){
 		videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
 	else
 		_info "Using pre-defined videoMod"
+	fi
 	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
