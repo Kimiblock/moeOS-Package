@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1476.b2f56d9
+pkgver=r1484.79d1ac4
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -164,7 +164,12 @@ function package_moe-desktop-meta(){
 		"tela-circle-icon-theme-pink-git"
 		"xdg-desktop-portal"
 		"iio-sensor-proxy"
-		"firefox-portable"
+		"zen-browser-portable"
+		"zen-browser-single-file"
+		"zen-browser-ublock-origin"
+		"zen-browser-violentmonkey"
+		"zen-browser-bitwarden"
+		"zen-browser-dark-reader"
 		"thunderbird-portable"
 		"snotify"
 		"flatpak"
