@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1484.79d1ac4
+pkgver=r1502.4214bd5
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -533,7 +533,7 @@ function configureNvidiaOnly() {
 	sed -i 's|gpu-hwdec-interop|#gpu-hwdec-interop|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	sed -i 's|vaapi|auto|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	applyEnv moeOS-nvidiaOnly
-	echo 'GST_PLUGIN_FEATURE_RANK=nvh264dec:512,nvav1dec:512,nvh265dec:512,nvvp8dec:512,nvvp9dec:512,nvmpegvideodec:512,nvmpeg4videodec:512,nvmpeg2videodec:512,nvjpegdec:512,nvh265enc:512,nvh264enc:512' >"${pkgdir}/etc/environment.d/moeOS-GStreamer.conf"
+	echo 'GST_PLUGIN_FEATURE_RANK=nvh264dec:512,nvav1dec:512,nvh265dec:512,nvvp8dec:512,nvvp9dec:512,nvmpegvideodec:512,nvmpeg4videodec:512,nvmpeg2videodec:512,nvjpegdec:512,nvh265enc:512,nvh264enc:512' >"${pkgdir}/usr/lib/environment.d/moeOS-GStreamer.conf"
 	return 0
 }
 
