@@ -529,12 +529,14 @@ function fixPermission() {
 function configureNvidiaOnly() {
 	echo "[Info] NVIDIA only mode enabled"
 	depends+=("nvidia-vaapi-driver")
-	sed -i "s|vaapi,vulkan,auto|nvdec,vulkan,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
+	sed -i "s|vulkan,vaapi,auto|vulkan,nvdec,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i 's|gpu-hwdec-interop|#gpu-hwdec-interop|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	sed -i 's|vaapi|auto|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	applyEnv moeOS-nvidiaOnly
-	echo 'GST_PLUGIN_FEATURE_RANK=nvh264dec:512,nvav1dec:512,nvh265dec:512,nvvp8dec:512,nvvp9dec:512,nvmpegvideodec:512,nvmpeg4videodec:512,nvmpeg2videodec:512,nvjpegdec:512,nvh265enc:512,nvh264enc:512' >"${pkgdir}/usr/lib/environment.d/moeOS-GStreamer.conf"
+	ln -sf \
+		"/usr/share/moeOS-Docs/Environments.d/moeOS-GStreamer.nv.conf" \
+		"${pkgdir}/usr/lib/environment.d/moeOS-GStreamer.conf"
 	return 0
 }
 
