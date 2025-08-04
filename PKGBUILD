@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1512.13ccabb
+pkgver=r1514.3f5781d
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -464,6 +464,23 @@ function package_moeOS-git(){
 		"diffutils"
 		"zram-generator"
 		"watchdog"
+
+		"hunspell"
+		"hunspell-en_gb"
+		"hunspell-en_us"
+		"hunspell-en_ca"
+		"hunspell-de"
+		"hunspell-el"
+		"hunspell-en_au"
+		"hunspell-es_any"
+		"hunspell-fr"
+		"hunspell-he"
+		"hunspell-hu"
+		"hunspell-it"
+		"hunspell-nl"
+		"hunspell-pl"
+		"hunspell-ro"
+		"hunspell-ru"
 	)
 	cd "${srcdir}/moeOS.config"
 	if [[ ${_branch} ]]; then
