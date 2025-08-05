@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1514.3f5781d
+pkgver=r1517.3421193
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -360,7 +360,7 @@ function plasmaMeta() {
 		"okular"
 		"ark"
 		"plasma-meta"
-		"phonon-qt6-mpv"
+		#"phonon-qt6-mpv"
 		"nheko"
 		"kimageformats"
 		"gst-plugin-qmlgl"
