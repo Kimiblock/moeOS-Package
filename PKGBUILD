@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1517.3421193
+pkgver=r1523.e7e511b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -203,6 +203,7 @@ function gnomeMeta() {
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
 		"solanum"
+		"delfin"
 		"wildcard"
 		"clapper"
 		"resources"
