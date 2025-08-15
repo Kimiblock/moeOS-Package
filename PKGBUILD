@@ -161,7 +161,7 @@ function package_moe-desktop-meta(){
 		"ffmpegthumbnailer"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
-		"tela-circle-icon-theme-pink-git"
+		"tela-circle-icon-theme-pink"
 		"xdg-desktop-portal"
 		"iio-sensor-proxy"
 		"zen-browser-portable"
