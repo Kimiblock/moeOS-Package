@@ -521,6 +521,7 @@ function configureGraphics(){
 			videoMod = $(echo "${videoMod}" | grep "video ")
 		else
 			return 0
+		fi
 	else
 		_info "Using pre-defined videoMod"
 	fi
