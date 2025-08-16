@@ -71,6 +71,7 @@ function package_moe-rime-essay(){
 function package_moe-multimedia-meta(){
 	depends=(
 		'gst-plugin-pipewire'
+		'samba'
 		'pipewire'
 		'pipewire-alsa'
 		'pipewire-audio'
