@@ -513,15 +513,18 @@ function genBuildId(){
 }
 
 function configureGraphics(){
+	fi
 	if [[ -z "${videoMod}" ]]; then
-		videoMod=$(lsmod | grep "video " | grep -v "uvcvideo")
+		videoMod=$(lsmod | grep -v "uvcvideo")
+		if [[ "${videoMod}" =~ 'video ' ]]; then
+			_info "Configuring graphics"
+			videoMod = $(echo "${videoMod}" | grep "video ")
+		else
+			return 0
 	else
 		_info "Using pre-defined videoMod"
 	fi
-	if [[ -z "${videoMod}" ]]; then
-		return 0
-	fi
-	_info "Configuring graphics card..."
+
 	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
 		depends+=("intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
