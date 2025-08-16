@@ -517,7 +517,7 @@ function configureGraphics(){
 		videoMod=$(lsmod | grep -v "uvcvideo")
 		if [[ "${videoMod}" =~ 'video ' ]]; then
 			_info "Configuring graphics"
-			videoMod = $(echo "${videoMod}" | grep "video ")
+			videoMod=$(echo "${videoMod}" | grep "video ")
 		else
 			return 0
 		fi
