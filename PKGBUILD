@@ -492,7 +492,9 @@ function package_moeOS-git(){
 	for file in os-release mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
+	_info "Done moving files"
 	configureGraphics
+	_info "Done configuring graphics"
 	genBuildId
 	fixPermission
 }
@@ -502,6 +504,7 @@ function copyFiles(){
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/var "${pkgdir}"
+	_info "Done copying files"
 }
 
 function genBuildId(){
