@@ -513,7 +513,6 @@ function genBuildId(){
 }
 
 function configureGraphics(){
-	fi
 	if [[ -z "${videoMod}" ]]; then
 		videoMod=$(lsmod | grep -v "uvcvideo")
 		if [[ "${videoMod}" =~ 'video ' ]]; then
