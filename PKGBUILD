@@ -488,7 +488,6 @@ function package_moeOS-git(){
 	if [[ ${_branch} ]]; then
 		git checkout ${_branch}
 	fi
-	createDir
 	copyFiles
 	for file in os-release mkinitcpio.conf mkinitcpio.d; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
@@ -499,15 +498,10 @@ function package_moeOS-git(){
 }
 
 function copyFiles(){
+	_info "Copying files"
 	cp -r "${srcdir}"/moeOS.config/usr "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/etc "${pkgdir}"
 	cp -r "${srcdir}"/moeOS.config/var "${pkgdir}"
-}
-
-function createDir(){
-	for dir in "/usr/lib/udev/rules.d" "/usr/lib/modprobe.d"; do
-		mkdir -p "${pkgdir}${dir}"
-	done
 }
 
 function genBuildId(){
