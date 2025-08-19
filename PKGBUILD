@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1532.37adff1
+pkgver=r1533.809e15c
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -567,12 +567,12 @@ function configureNvidiaOnly() {
 function configureNvidia() {
 	if [ ${moeNouveau} ]; then
 		echo "[Info] Nouveau enabled"
-		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git")
+		conflicts+=("nvidia-libgl" "NVIDIA-MODULE" "lib32-nvidia-libgl" "nvidia-settings" "nvidia-vaapi-driver-git" "libva-nvidia-driver")
 		depends+=("vulkan-nouveau" "linux-firmware-nvidia")
 		echo "[Warn] Enable kernel parameter nouveau.config=NvGspRm=1!"
 		if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]] || [[ ${moeNouveau} =~ amd ]]; then
 			_info "If you need to run an app on discreate graphics card, use prime-run"
-			conflicts+=("nvidia-vaapi-driver")
+			conflicts+=("nvidia-vaapi-driver" "libva-nvidia-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]] || [[ ${moeNouveau} =~ intel ]]; then
 				applyEnv moeOS-nouveauOffload-intel
 			elif [[ "${videoMod}" =~ amdgpu ]] || [[ ${moeNouveau} =~ amd ]]; then
@@ -590,9 +590,9 @@ function configureNvidia() {
 			configureNvidiaOnly
 		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]]; then
 			configureNvidiaOnly
-		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
+		elif [[ "${moeDiscreteOnly}" = "no" ]] || [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
-			conflicts+=("nvidia-vaapi-driver")
+			conflicts+=("nvidia-vaapi-driver" "libva-nvidia-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 				applyEnv moeOS-nvidiaOffload-intel
 			elif [[ "${videoMod}" =~ amdgpu ]]; then
