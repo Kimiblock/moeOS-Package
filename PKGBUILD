@@ -142,7 +142,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"scx-scheds"
-		"element-portable"
+		#"element-portable"
 		"ppp"
 		"geoclue"
 		"xpadneo-dkms"
