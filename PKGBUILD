@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1540.bb27101
+pkgver=r1555.c9391a9
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -317,6 +317,7 @@ function plasmaMeta() {
 	)
 	depends+=(
 		"appmenu-gtk-module"
+		"vlc-plugins-all"
 		"merkuro"
 		"akregator"
 		"kalarm"
