@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1555.c9391a9
+pkgver=r1563.aa61c1f
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -591,7 +591,7 @@ function configureNvidia() {
 			configureNvidiaOnly
 		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]]; then
 			configureNvidiaOnly
-		elif [[ "${moeDiscreteOnly}" = "no" ]] || [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
+		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
 			conflicts+=("nvidia-vaapi-driver" "libva-nvidia-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
