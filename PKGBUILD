@@ -142,6 +142,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"scx-scheds"
+		"libwebp-utils"
 		"ppp"
 		"geoclue"
 		"xpadneo-dkms"
