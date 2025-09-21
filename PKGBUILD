@@ -584,10 +584,6 @@ function configureNvidia() {
 	elif [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
 		depends+=("nvidia-libgl" "NVIDIA-MODULE")
 		optdepends+=("lib32-nvidia-libgl")
-		_info "Fixing RTD3 power management"
-		install -Dm644 \
-			"${srcdir}/moeOS.config/usr/share/moeOS-Docs/udev/80-moe-nvidia-pm.rules" \
-			"${pkgdir}/usr/lib/udev/rules.d/80-moe-nvidia-pm.rules"
 		if [[ "${moeDiscreteOnly}" = 1 ]]; then
 			configureNvidiaOnly
 		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]]; then
