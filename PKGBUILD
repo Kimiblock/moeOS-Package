@@ -510,7 +510,6 @@ function copyFiles(){
 }
 
 function genBuildId(){
-	_info "Generating Build ID"
 	echo "BUILD_ID=${pkgver}@$(date +%m/%d/%Y)" >>"${pkgdir}/usr/share/moeOS-Docs/os-release"
 }
 
