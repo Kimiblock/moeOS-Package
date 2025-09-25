@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1584.b5df45b
+pkgver=r1601.aa5d3a4
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -97,8 +97,10 @@ function package_moe-multimedia-meta(){
 
 function package_moe-fonts-meta(){
 	depends=(
-		'noto-fonts-cjk'
-		'ttf-twemoji'
+		'ttf-noto-sans-cjk-vf'
+		'ttf-noto-sans-mono-cjk-vf'
+		'ttf-noto-serif-cjk-vf'
+		'ttf-twemoji-mozilla'
 		"inter-font"
 		"ttf-roboto-mono"
 	)
