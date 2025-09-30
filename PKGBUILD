@@ -105,6 +105,7 @@ function package_moe-fonts-meta(){
 		'ttf-noto-serif-vf'
 		"inter-font"
 		"ttf-roboto-mono"
+		"noto-fonts-extra"
 	)
 	provides+=(
 		adwaita-fonts
@@ -119,15 +120,6 @@ function package_moe-fonts-meta(){
 		cantarell-fonts
 		adobe-source-code-pro-fonts
 	)
-}
-
-function getLatestRel(){
-	if [[ $2 = github ]]; then
-		_rawVersion=$(curl -s https://api.github.com/repos/"$1"/releases/latest | jq .tag_name)
-		_release=$(echo "${_rawVersion}" | cut -c 2-$(expr ${#_rawVersion} - 1))
-	else
-		return 1
-	fi
 }
 
 function package_moe-input-method(){
@@ -189,7 +181,7 @@ function package_moe-desktop-meta(){
 		"zju-connect-bin"
 		"openrgb"
 	)
-	#conflicts+=("vk-hdr-layer-kwin6-git")
+	conflicts+=("appmenu-gtk-module")
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
 			gnomeMeta
@@ -404,6 +396,7 @@ function package_moeOS-git(){
 	backup=(
 	'etc/moeOS-clash-meta/env.conf'
 	'etc/moeOS-clash-meta/merge.yaml'
+	'etc/default/moeOS-sing.env'
 	"etc/default/seconnect"
 	'etc/moeOS-seconnect/config.toml'
 	)
@@ -549,6 +542,8 @@ function applyEnv(){
 
 function fixPermission() {
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta/env.conf"
+	touch "${pkgdir}/etc/default/moeOS-sing.env"
+	chmod 700 "${pkgdir}/etc/default/moeOS-sing.env"
 	chmod -R 700 "${pkgdir}/etc/moeOS-seconnect/config.toml"
 	chmod 755 "${pkgdir}/usr/lib/udev/rules.d"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
