@@ -179,6 +179,7 @@ function package_moe-desktop-meta(){
 
 		# FS support
 		"exfatprogs"
+		"ntfs-3g"
 		"btrfs-progs"
 		"hfsprogs"
 		"xfsprogs"
