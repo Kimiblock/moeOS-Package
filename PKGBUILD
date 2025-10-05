@@ -192,6 +192,8 @@ function package_moe-desktop-meta(){
 		"7zip" # Conflits p7zip
 		"zju-connect-bin"
 		"openrgb"
+
+		"ffmpeg4.4"
 	)
 	conflicts+=("appmenu-gtk-module")
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
