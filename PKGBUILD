@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1607.0ed562d
+pkgver=r1633.1090abb
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -176,7 +176,18 @@ function package_moe-desktop-meta(){
 		"flatpak"
 		"orca"
 		"espeak-ng"
-		"exfat-utils" # exfatprogs doesn't seem good for Nautilus
+
+		# FS support
+		"exfatprogs"
+		"btrfs-progs"
+		"hfsprogs"
+		"xfsprogs"
+		"udftools"
+		"nilfs-utils"
+		"f2fs-tools"
+		"e2fsprogs"
+		"dosfstools"
+
 		"7zip" # Conflits p7zip
 		"zju-connect-bin"
 		"openrgb"
@@ -408,8 +419,6 @@ function package_moeOS-git(){
 		"systemtap"
 		"virt-what"
 		"systemd-ukify"
-		"btrfs-progs"
-		"hfsprogs"
 		"nss-mdns"
 		"dnsmasq"
 		"avahi"
@@ -542,6 +551,7 @@ function applyEnv(){
 
 function fixPermission() {
 	chmod -R 700 "${pkgdir}/etc/moeOS-clash-meta/env.conf"
+	mkdir -p "${pkgdir}/etc/default"
 	touch "${pkgdir}/etc/default/moeOS-sing.env"
 	chmod 700 "${pkgdir}/etc/default/moeOS-sing.env"
 	chmod -R 700 "${pkgdir}/etc/moeOS-seconnect/config.toml"
