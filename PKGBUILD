@@ -218,6 +218,7 @@ function gnomeMeta() {
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
 		"tuba"
+		"epiphany-portable"
 		"seahorse"
 		"dialect"
 		"curtail"
@@ -312,7 +313,6 @@ function gnomeMeta() {
 		"mutter-performance"
 		"kdeconnect"
 		"gnome-terminal"
-		"epiphany"
 	)
 }
 
