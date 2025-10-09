@@ -7,9 +7,9 @@ pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
-replaces=()
+replaces=("drkonqi" "gstreamer-vaapi")
 conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance")
-provides=("drkonqi")
+provides=("drkonqi" "gstreamer-vaapi")
 groups=("moeOS")
 makedepends=(
 	"git"
@@ -542,10 +542,10 @@ function configureGraphics(){
 
 	if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 		_info "Adding Intel driver and Power Profiles Daemon as dependencies"
-		depends+=("intel-media-driver" "libva-utils" "libva" "gstreamer-vaapi" "vulkan-intel" "vpl-gpu-rt")
+		depends+=("intel-media-driver" "libva-utils" "libva" "vulkan-intel" "vpl-gpu-rt")
 	elif [[ "${videoMod}" =~ amdgpu ]]; then
 		_info "Adding libva-mesa-driver as a dependency"
-		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'gstreamer-vaapi' 'vulkan-radeon')
+		depends+=('libva-mesa-driver' "libva-utils" 'libva' 'vulkan-radeon')
 	fi
 	configureNvidia
 }
