@@ -217,6 +217,8 @@ function gnomeMeta() {
 	applyEnv moeOS-GNOME
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
+		"decoder"
+		"flatseal"
 		"tuba"
 		"epiphany-portable"
 		"seahorse"
