@@ -105,8 +105,7 @@ function package_moe-fonts-meta(){
 		'ttf-noto-serif-vf'
 		"inter-font"
 		"ttf-roboto-mono"
-		"noto-fonts-extra"
-		"otf-latinmodern-math"
+		"noto-fonts"
 	)
 	provides+=(
 		adwaita-fonts
