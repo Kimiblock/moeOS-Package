@@ -106,6 +106,7 @@ function package_moe-fonts-meta(){
 		"inter-font"
 		"ttf-roboto-mono"
 		"noto-fonts-extra"
+		"otf-latinmodern-math"
 	)
 	provides+=(
 		adwaita-fonts
@@ -217,6 +218,7 @@ function gnomeMeta() {
 	applyEnv moeOS-GNOME
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
+		"hieroglyphic"
 		"decoder"
 		"flatseal"
 		"tuba"
