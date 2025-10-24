@@ -510,7 +510,7 @@ function package_moeOS-git(){
 		git checkout ${_branch}
 	fi
 	copyFiles
-	for file in os-release mkinitcpio.conf; do
+	for file in os-release; do
 		mv "${pkgdir}"/etc/${file} "${pkgdir}/usr/share/moeOS-Docs"
 	done
 	_info "Done moving files"
