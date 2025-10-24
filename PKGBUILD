@@ -98,15 +98,11 @@ function package_moe-multimedia-meta(){
 
 function package_moe-fonts-meta(){
 	depends=(
-		'ttf-noto-sans-cjk-vf'
-		'ttf-noto-sans-mono-cjk-vf'
-		'ttf-noto-serif-cjk-vf'
 		'noto-fonts-emoji'
-		'ttf-noto-sans-vf'
-		'ttf-noto-serif-vf'
 		"inter-font"
 		"ttf-roboto-mono"
 		"noto-fonts"
+		noto-fonts-cjk
 	)
 	provides+=(
 		adwaita-fonts
@@ -115,8 +111,12 @@ function package_moe-fonts-meta(){
 	)
 	conflicts+=(
 		#noto-fonts
-		#noto-fonts-cjk
 		#ttf-twemoji
+		'ttf-noto-sans-cjk-vf'
+		'ttf-noto-sans-mono-cjk-vf'
+		'ttf-noto-serif-cjk-vf'
+		'ttf-noto-sans-vf'
+		'ttf-noto-serif-vf'
 		adwaita-fonts
 		cantarell-fonts
 		adobe-source-code-pro-fonts
