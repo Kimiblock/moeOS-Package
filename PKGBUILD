@@ -419,6 +419,7 @@ function package_moeOS-git(){
 	"etc/default/seconnect"
 	'etc/moeOS-seconnect/config.toml'
 	)
+	conflicts+=(linux-cachyos)
 	depends=(
 		"lld"
 		"tuned"
