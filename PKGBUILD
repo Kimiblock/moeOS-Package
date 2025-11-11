@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1669.39afc91
+pkgver=r1692.32ecf4b
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -223,7 +223,7 @@ function gnomeMeta() {
 		"flatseal"
 		"tuba"
 		"epiphany-portable"
-		"seahorse"
+		"key-rack"
 		"dialect"
 		"curtail"
 		"denaro"
@@ -244,7 +244,7 @@ function gnomeMeta() {
 		"geary"
 		"decibels"
 		"gapless"
-		"fractal"
+		"fractal-portable"
 		"foliate"
 		"gnome-shell"
 		"mutter"
