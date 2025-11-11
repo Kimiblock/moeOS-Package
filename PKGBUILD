@@ -447,8 +447,8 @@ function package_moeOS-git(){
 		'usb_modeswitch'
 		'plymouth'
 		"kernel-modules-hook-bindmount"
-		"linux-cachyos"
-		"linux-cachyos-headers"
+		"linux"
+		"linux-headers"
 		'linux-firmware'
 		'linux-firmware-bnx2x'
 		'linux-firmware-marvell'
