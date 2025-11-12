@@ -486,7 +486,6 @@ function package_moeOS-git(){
 		'iptables-nft'
 		"diffutils"
 		"zram-generator"
-		"watchdog"
 
 		"hunspell"
 		"hunspell-en_gb"
