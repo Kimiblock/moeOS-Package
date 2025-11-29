@@ -196,11 +196,7 @@ function package_moe-desktop-meta(){
 
 		"ffmpeg4.4"
 	)
-	conflicts+=(
-		"appmenu-gtk-module"
-		"wqy-microhei" # Causes Korean characters to go mad in Firefox
-		#"wqy-zenhei"
-		)
+	conflicts+=("appmenu-gtk-module")
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
 		if [[ ${moePreferDE} = GNOME ]]; then
 			gnomeMeta
