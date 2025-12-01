@@ -107,11 +107,11 @@ function package_moe-fonts-meta(){
 		ttf-adobe-source-han-sans-tw-variables
 		ttf-adobe-source-han-sans-jp-variables
 		ttf-adobe-source-han-sans-kr-variables
-		adobe-source-han-serif-tw-fonts
-		adobe-source-han-serif-kr-fonts
-		adobe-source-han-serif-jp-fonts
-		adobe-source-han-serif-hk-fonts
-		adobe-source-han-serif-cn-fonts
+		ttf-adobe-source-han-serif-cn-variables
+		ttf-adobe-source-han-serif-hk-variables
+		ttf-adobe-source-han-serif-tw-variables
+		ttf-adobe-source-han-serif-jp-variables
+		ttf-adobe-source-han-serif-kr-variables
 	)
 	provides+=(
 		adwaita-fonts
