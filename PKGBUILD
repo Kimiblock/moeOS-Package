@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1743.1ddf066
+pkgver=r1762.5468c03
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -159,7 +159,7 @@ function package_moe-desktop-meta(){
 		#"xone-dongle-firmware"
 		"xone-dkms-git"
 		"portable"
-		"drm_info"
+		"drm-info"
 		#"steam-devices-git"
 		"cgproxy"
 		"usbguard"
@@ -615,7 +615,7 @@ function configureNvidia() {
 		optdepends+=("lib32-nvidia-libgl")
 		if [[ "${moeDiscreteOnly}" = 1 ]]; then
 			configureNvidiaOnly
-		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]]; then
+		elif [ $(ls /dev/dri/renderD* -la | wc -l) = 1 ] && [[ ${videoMod} =~ nvidia ]] && [[ ! "${moeDiscreteOnly}" = no ]]; then
 			configureNvidiaOnly
 		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
