@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1762.5468c03
+pkgver=r1773.be223a9
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -263,7 +263,6 @@ function gnomeMeta() {
 		"papers"
 		# GNOME pkg group
 		"baobab"
-		"evince"
 		"gdm"
 		"gnome-backgrounds"
 		"gnome-calculator"
