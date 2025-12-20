@@ -588,9 +588,6 @@ function configureNvidiaOnly() {
 	sed -i 's|gpu-hwdec-interop|#gpu-hwdec-interop|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	sed -i 's|vaapi|auto|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
 	applyEnv moeOS-nvidiaOnly
-	ln -sf \
-		"/usr/share/moeOS-Docs/Environments.d/moeOS-GStreamer.nv.conf" \
-		"${pkgdir}/usr/lib/environment.d/moeOS-GStreamer.conf"
 	return 0
 }
 
