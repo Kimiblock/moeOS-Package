@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1815.742fcbc
+pkgver=r1836.2ce87ca
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -150,7 +150,7 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends+=(
-		"scx-scheds>1.0.19"
+		"scx-scheds"
 		"libwebp-utils"
 		"ppp"
 		"geoclue"
