@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1907.76a1e5f
+pkgver=r1911.8ff7b4c
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -579,6 +579,7 @@ function fixPermission() {
 	chmod -R 755 "${pkgdir}/usr/bin"
 	chmod 644 "${pkgdir}/etc/udev/rules.d"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
+	chmod 755 -R "${pkgdir}/etc/kernel"
 }
 
 function configureNvidiaOnly() {
