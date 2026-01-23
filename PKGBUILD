@@ -579,7 +579,7 @@ function fixPermission() {
 	chmod -R 755 "${pkgdir}/usr/bin"
 	chmod 644 "${pkgdir}/etc/udev/rules.d"
 	chmod -R 644 "${pkgdir}/usr/lib/udev/rules.d"/*
-	chmod 755 -R "${pkgdir}/etc/kernel"
+	chmod 755 -R "${pkgdir}/etc/kernel/install.d"
 }
 
 function configureNvidiaOnly() {
