@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1905.967ea14
+pkgver=r1907.76a1e5f
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -455,6 +455,8 @@ function package_moeOS-git(){
 		'usb_modeswitch'
 		'plymouth'
 		"kernel-modules-hook-bindmount"
+		"tpm2-tools"
+		"tpm2-tss"
 		"linux-zen"
 		"linux-zen-headers"
 		'linux-firmware'
