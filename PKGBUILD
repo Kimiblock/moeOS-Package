@@ -1,15 +1,15 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1911.8ff7b4c
+pkgver=r1913.4bd6b70
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
-replaces=("drkonqi" "gstreamer-vaapi")
-conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio")
-provides=("drkonqi" "gstreamer-vaapi")
+replaces=("drkonqi" "gstreamer-vaapi" librime-data)
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" librime-data)
+provides=("drkonqi" "gstreamer-vaapi" librime-data)
 groups=("moeOS")
 makedepends=(
 	"git"
