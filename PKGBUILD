@@ -7,9 +7,9 @@ pkgdesc="moeOS Configurations"
 arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
-replaces=("drkonqi" "gstreamer-vaapi" librime-data)
-conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" librime-data)
-provides=("drkonqi" "gstreamer-vaapi" librime-data)
+replaces=("drkonqi" "gstreamer-vaapi")
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio")
+provides=("drkonqi" "gstreamer-vaapi")
 groups=("moeOS")
 makedepends=(
 	"git"
@@ -133,9 +133,9 @@ function package_moe-fonts-meta(){
 }
 
 function package_moe-input-method(){
-	replaces=("moe-input-meta")
+	replaces=("moe-input-meta" librime-data)
+	provides+=(librime-data)
 	depends=(
-		"librime-data"
 		"librime-luajit"
 		"rime-pinyin-moegirl"
 		"rime-moe-pinyin"
@@ -145,6 +145,7 @@ function package_moe-input-method(){
 	conflicts=(
 		"moe-input-meta"
 		"moe-input-config"
+		librime-data
 	)
 }
 
@@ -428,6 +429,9 @@ function package_moeOS-git(){
 	)
 	conflicts+=(linux-cachyos)
 	depends=(
+		"moe-input-method"
+		"moe-multimedia-meta"
+		"moe-fonts-meta"
 		"lld"
 		"tuned"
 		"tuned-ppd"
