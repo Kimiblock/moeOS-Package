@@ -8,7 +8,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 replaces=("drkonqi" "gstreamer-vaapi")
-conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" timeshift)
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" timeshift linux-zen)
 provides=("drkonqi" "gstreamer-vaapi")
 groups=("moeOS")
 makedepends=(
@@ -460,8 +460,8 @@ function package_moeOS-git(){
 		"kernel-modules-hook-bindmount"
 		"tpm2-tools"
 		"tpm2-tss"
-		"linux-zen"
-		"linux-zen-headers"
+		"linux"
+		"linux-headers"
 		'linux-firmware'
 		'linux-firmware-bnx2x'
 		'linux-firmware-marvell'
