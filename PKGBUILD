@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1933.85689bb
+pkgver=r1959.117b94c
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -369,7 +369,7 @@ function plasmaMeta() {
 		"arianna"
 		"kamoso"
 		"flatpak-kcm"
-		"sddm"
+		"plasma-login-manager"
 		"plasma5-integration"
 		"xdg-desktop-portal-kde"
 		"qt6-multimedia-gstreamer"
