@@ -369,7 +369,7 @@ function plasmaMeta() {
 		"arianna"
 		"kamoso"
 		"flatpak-kcm"
-		"sddm"
+		"plasma-login-manager"
 		"plasma5-integration"
 		"xdg-desktop-portal-kde"
 		"qt6-multimedia-gstreamer"
