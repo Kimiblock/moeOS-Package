@@ -462,6 +462,7 @@ function package_moeOS-git(){
 		"tpm2-tss"
 		"linux"
 		"linux-headers"
+		acpi
 		acpi_call
 		'linux-firmware'
 		'linux-firmware-bnx2x'
