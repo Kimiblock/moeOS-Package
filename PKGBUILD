@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1933.85689bb
+pkgver=r1965.75864ee
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -462,6 +462,7 @@ function package_moeOS-git(){
 		"tpm2-tss"
 		"linux"
 		"linux-headers"
+		acpi_call
 		'linux-firmware'
 		'linux-firmware-bnx2x'
 		'linux-firmware-marvell'
