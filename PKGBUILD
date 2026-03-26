@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1974.3d21f8e
+pkgver=r1981.c485d87
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -160,6 +160,7 @@ function package_moe-desktop-meta(){
 		#"xone-dongle-firmware"
 		#"xone-dkms-git"
 		"portable"
+		"autocolor"
 		"drm-info"
 		#"steam-devices-git"
 		"cgproxy"
