@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1981.c485d87
+pkgver=r1984.4cb4a21
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -614,7 +614,7 @@ function configureNvidia() {
 			fi
 		fi
 	elif [[ ${videoMod} =~ "nvidia_modeset" ]] || [[ ${videoMod} =~ "nouveau" ]]; then
-		depends+=("nvidia-libgl" "NVIDIA-MODULE" "vk-hdr-layer-kwin6-git")
+		depends+=("nvidia-libgl" "NVIDIA-MODULE")
 		optdepends+=("lib32-nvidia-libgl")
 		if [[ "${moeDiscreteOnly}" = 1 ]]; then
 			configureNvidiaOnly
