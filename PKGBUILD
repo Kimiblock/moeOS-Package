@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1991.ca96557
+pkgver=r1997.f14ae57
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -427,7 +427,6 @@ function package_moeOS-git(){
 	"etc/default/seconnect"
 	'etc/moeOS-seconnect/config.toml'
 	)
-	conflicts+=(linux-cachyos)
 	depends=(
 		"moe-input-method"
 		"moe-multimedia-meta"
@@ -461,8 +460,6 @@ function package_moeOS-git(){
 		"kernel-modules-hook-bindmount"
 		"tpm2-tools"
 		"tpm2-tss"
-		"linux"
-		"linux-headers"
 		acpi
 		acpi_call
 		'linux-firmware'
