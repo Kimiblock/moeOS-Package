@@ -203,8 +203,6 @@ function package_moe-desktop-meta(){
 
 		"7zip" # Conflits p7zip
 		"zju-connect-bin"
-		"openrgb"
-
 		"ffmpeg4.4"
 	)
 	conflicts+=("appmenu-gtk-module")
