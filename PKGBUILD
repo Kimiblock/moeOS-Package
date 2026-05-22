@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r1997.f14ae57
+pkgver=r2020.44024ce
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -203,7 +203,7 @@ function package_moe-desktop-meta(){
 
 		"7zip" # Conflits p7zip
 		"zju-connect-bin"
-		"ffmpeg4.4"
+		"irqbalance"
 	)
 	conflicts+=("appmenu-gtk-module")
 	if [[ $(cat /etc/environment.d/moeOS-DE.conf) =~ "moePreferDE=KDE" ]] || [[ ${moePreferDE} = KDE ]]; then
