@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2038.0e064f1
+pkgver=r2064.681fc5e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -155,10 +155,6 @@ function package_moe-desktop-meta(){
 		"libwebp-utils"
 		"ppp"
 		"geoclue"
-		"xpadneo-dkms"
-		#"xpad-noone"
-		#"xone-dongle-firmware"
-		#"xone-dkms-git"
 		"portable"
 		"autocolor"
 		"drm-info"
@@ -617,6 +613,8 @@ function configureNvidia() {
 			configureNvidiaOnly
 		elif [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ amdgpu ]] || [[ "${videoMod}" =~ xe ]]; then
 			_info "If you need to run an app on discreate graphics card, consult README"
+			install "${pkgdir}/usr/share/moeOS-Docs/nv-no-backlight.conf" \
+				-t "${pkgdir}/usr/lib/modprobe.d/"
 			conflicts+=("nvidia-vaapi-driver" "libva-nvidia-driver")
 			if [[ "${videoMod}" =~ i915 ]] || [[ "${videoMod}" =~ xe ]]; then
 				applyEnv moeOS-nvidiaOffload-intel
