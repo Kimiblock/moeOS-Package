@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2089.e0236aa
+pkgver=r2095.c351f61
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -131,6 +131,7 @@ function package_moe-fonts-meta(){
 		cantarell-fonts
 		adobe-source-code-pro-fonts
 	)
+	install -d "${pkgdir}/etc/fonts/conf.d/"
 
 	ln -sf \
 		/usr/share/fontconfig/conf.avail/09-texlive-fonts.conf \
