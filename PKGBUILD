@@ -103,6 +103,7 @@ function package_moe-fonts-meta(){
 		"ttf-roboto-mono"
 		"noto-fonts"
 		"texlive-basic"
+		"texlive-fontsrecommended"
 		ttf-adobe-source-han-sans-cn-variables
 		ttf-adobe-source-han-sans-hk-variables
 		ttf-adobe-source-han-sans-tw-variables
