@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2064.681fc5e
+pkgver=r2089.e0236aa
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -102,6 +102,7 @@ function package_moe-fonts-meta(){
 		"inter-font"
 		"ttf-roboto-mono"
 		"noto-fonts"
+		"texlive-basic"
 		ttf-adobe-source-han-sans-cn-variables
 		ttf-adobe-source-han-sans-hk-variables
 		ttf-adobe-source-han-sans-tw-variables
@@ -130,6 +131,10 @@ function package_moe-fonts-meta(){
 		cantarell-fonts
 		adobe-source-code-pro-fonts
 	)
+
+	ln -sf \
+		/usr/share/fontconfig/conf.avail/09-texlive-fonts.conf \
+		"${pkgdir}/etc/fonts/conf.d/09-texlive-fonts.conf"
 }
 
 function package_moe-input-method(){
