@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2095.c351f61
+pkgver=r2109.cc69e70
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -158,34 +158,23 @@ function package_moe-input-method(){
 
 function package_moe-desktop-meta(){
 	depends+=(
-		"scx-scheds"
+		"kmscon"
 		"libwebp-utils"
 		"ppp"
 		"geoclue"
 		"portable"
 		"autocolor"
-		"drm-info"
-		#"steam-devices-git"
-		"cgproxy"
 		"usbguard"
 		"highlight"
 		"clash-geoip"
 		"v2ray-domain-list-community"
-		"dae"
 		"game-devices-udev"
 		"libdecor"
 		"ffmpegthumbnailer"
 		"libreoffice-fresh"
 		"adw-gtk-theme"
-		"tela-circle-icon-theme-pink"
 		"xdg-desktop-portal"
 		"iio-sensor-proxy"
-		"zen-browser-portable"
-		"zen-browser-single-file"
-		"zen-browser-ublock-origin"
-		"zen-browser-violentmonkey"
-		"zen-browser-bitwarden"
-		"zen-browser-dark-reader"
 		"thunderbird-portable"
 		"snotify"
 		"flatpak"
@@ -194,7 +183,7 @@ function package_moe-desktop-meta(){
 
 		# FS support
 		"exfatprogs"
-		"ntfs-3g"
+		"ntfsprogs"
 		"btrfs-progs"
 		"hfsprogs"
 		"xfsprogs"
