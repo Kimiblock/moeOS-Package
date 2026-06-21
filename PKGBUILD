@@ -159,6 +159,7 @@ function package_moe-input-method(){
 function package_moe-desktop-meta(){
 	depends+=(
 		"kmscon"
+		"pango" # direct dep
 		"libwebp-utils"
 		"ppp"
 		"geoclue"
