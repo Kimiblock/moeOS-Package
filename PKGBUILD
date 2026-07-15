@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2144.6ca225e
+pkgver=r2185.995dc76
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -8,7 +8,7 @@ arch=('x86_64')
 url="https://github.com/Kimiblock/moeOS.config"
 license=('MIT')
 replaces=("drkonqi" "gstreamer-vaapi")
-conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" timeshift linux-zen)
+conflicts=("snapd" "optimus-manager" "optimus-manager-qt" "optimus-manager-qt-kde" "gnome-shell-performance" "mkinitcpio" timeshift "kernel-modules-hook-bindmount" "kernel-modules-hook")
 provides=("drkonqi" "gstreamer-vaapi")
 groups=("moeOS")
 makedepends=(
@@ -448,7 +448,6 @@ function package_moeOS-git(){
 		'modemmanager'
 		'usb_modeswitch'
 		'plymouth'
-		"kernel-modules-hook-bindmount"
 		"tpm2-tools"
 		"tpm2-tss"
 		'linux-firmware'
