@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2144.6ca225e
+pkgver=r2193.ce578d9
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -562,7 +562,7 @@ function fixPermission() {
 
 function configureNvidiaOnly() {
 	echo "[Info] NVIDIA only mode enabled"
-	depends+=("libva-nvidia-driver")
+	depends+=("libva-nvidia-driver" "cuda")
 	sed -i "s|vulkan,vaapi,auto|vulkan,nvdec,auto|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i "s|dmabuf-wayland|gpu-next|g" "${pkgdir}/etc/mpv/mpv.conf"
 	sed -i 's|gpu-hwdec-interop|#gpu-hwdec-interop|g' "${pkgdir}/usr/share/moeOS-Docs/Celluloid.d/celluloid.options"
