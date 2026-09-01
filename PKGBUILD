@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2193.ce578d9
+pkgver=r2214.ae5112c
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -298,6 +298,7 @@ function gnomeMeta() {
 		"gvfs-wsdd"
 		"loupe"
 		"nautilus"
+		"sushi"
 		"rygel"
 		"simple-scan"
 		"snapshot"
