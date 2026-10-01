@@ -1,6 +1,6 @@
 # Maintainer: Kimiblock Moe
 pkgname=("moeOS-git" "lsb-release-moe" "nvidia-prime-moe" "moe-multimedia-meta" "moe-fonts-meta" "moe-input-method" "moe-desktop-meta")
-pkgver=r2268.3413007
+pkgver=r2269.fb6a74e
 epoch=1
 pkgrel=1
 pkgdesc="moeOS Configurations"
@@ -221,9 +221,7 @@ function gnomeMeta() {
 	applyEnv moeOS-GNOME
 	install -Dm644 "${srcdir}"/moeOS.config/usr/share/moeOS-Docs/mime/mimeapps-GNOME.list "${pkgdir}/usr/share/applications/mimeapps.list"
 	depends+=(
-		"hieroglyphic"
 		"decoder"
-		"flatseal"
 		"epiphany-portable"
 		"dialect"
 		"curtail"
@@ -232,11 +230,7 @@ function gnomeMeta() {
 		"qt6ct"
 		"qadwaitadecorations-qt6"
 		"eartag"
-		"metadata-cleaner"
 		"obfuscate"
-		# GSConnect
-		"nautilus-python"
-		"gnome-shell-extension-gsconnect"
 		"gnome-sound-recorder"
 		"file-roller"
 		"gnome-mahjongg"
@@ -249,7 +243,6 @@ function gnomeMeta() {
 		"gnome-shell"
 		"mutter"
 		"showtime"
-		"gnome-shell-extension-appindicator"
 		"xdg-desktop-portal-gnome"
 		"papers"
 		# GNOME pkg group
@@ -261,21 +254,18 @@ function gnomeMeta() {
 		"gnome-characters"
 		"gnome-clocks"
 		"gnome-color-manager"
-		"gnome-connections"
 		"gnome-console"
 		"gnome-contacts"
 		"gnome-control-center"
 		"gnome-disk-utility"
 		"gnome-font-viewer"
 		"gnome-keyring"
-		"gnome-logs"
 		"gnome-maps"
 		"gnome-menus"
 		"gnome-remote-desktop"
 		"gnome-session"
 		"gnome-settings-daemon"
 		"gnome-shell"
-		"gnome-shell-extensions"
 		"gnome-software"
 		"gnome-system-monitor"
 		"gnome-text-editor"
@@ -305,7 +295,6 @@ function gnomeMeta() {
 		"xdg-user-dirs-gtk"
 		"fragments"
 		"gnome-builder"
-		"newsflash"
 	)
 	conflicts+=(
 		"fcitx5-gtk"
